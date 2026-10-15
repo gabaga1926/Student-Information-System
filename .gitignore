@@ -1,0 +1,54 @@
+
+# MySQL
+
+# MySQL dump files
+*.sql
+
+# MySQL backup files
+*.sql.gz
+*.dump
+
+
+# C# / .NET
+
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+packages/
+
+# Build logs
+*.log
+
+
+# Visual Studio Code
+
+.vscode/
+
+# Windows
+
+Thumbs.db
+Desktop.ini
+
+# General
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.cache
+
+# Environment / secrets
+.env
+.env.*
+!.env.example

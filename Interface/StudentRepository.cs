@@ -222,4 +222,56 @@ public static class StudentRepository
             throw new InvalidOperationException("Student ID was not found for deletion.");
         }
     }
+    public static DataTable SearchStudents(string searchText)
+    {
+        var tableName = GetStudentTableName();
+        var hasContactColumn = HasColumn("Contact_Number");
+
+        var table = new DataTable();
+        table.Columns.Add("Student_ID");
+        table.Columns.Add("Full_Name");
+        table.Columns.Add("Gender");
+        table.Columns.Add("Year_Level", typeof(int));
+        table.Columns.Add("Program");
+        if (hasContactColumn)
+        {
+            table.Columns.Add("Contact_Number");
+        }
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var columns = new List<string> { "`Student_ID`", "`Full_Name`", "`Gender`", "`Year_Level`", "`Program`" };
+        if (hasContactColumn)
+        {
+            columns.Add("`Contact_Number`");
+        }
+
+        var query = $@"
+        SELECT {string.Join(", ", columns)}
+        FROM `{tableName}`
+        WHERE `Student_ID` LIKE @term OR `Full_Name` LIKE @term
+        ORDER BY `Student_ID`;";
+
+        using var command = new MySqlCommand(query, connection);
+        command.Parameters.AddWithValue("@term", $"%{searchText.Trim()}%");
+
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            var row = table.NewRow();
+            row["Student_ID"] = reader["Student_ID"]?.ToString() ?? string.Empty;
+            row["Full_Name"] = reader["Full_Name"]?.ToString() ?? string.Empty;
+            row["Gender"] = reader["Gender"]?.ToString() ?? string.Empty;
+            row["Year_Level"] = reader.GetInt32("Year_Level");
+            row["Program"] = reader["Program"]?.ToString() ?? string.Empty;
+            if (hasContactColumn)
+            {
+                row["Contact_Number"] = reader["Contact_Number"]?.ToString() ?? string.Empty;
+            }
+            table.Rows.Add(row);
+        }
+
+        return table;
+    }
 }

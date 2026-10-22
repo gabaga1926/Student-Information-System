@@ -35,11 +35,43 @@ public partial class Form1 : Form
             var table = StudentRepository.LoadStudents();
             dgvStudents.DataSource = table;
             dgvStudents.ClearSelection();
+            UpdateActionButtons();
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Unable to load student records.\n\n{ex.Message}", "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    private void ApplySearchFilter()
+    {
+        try
+        {
+            var searchText = txtSearch.Text.Trim();
+            dgvStudents.DataSource = string.IsNullOrWhiteSpace(searchText)
+                ? StudentRepository.LoadStudents()
+                : StudentRepository.SearchStudents(searchText);
+            dgvStudents.ClearSelection();
+            UpdateActionButtons();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to search student records.\n\n{ex.Message}", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private bool IsEditMode()
+    {
+        return !string.IsNullOrWhiteSpace(txtStudentId.Text.Trim());
+    }
+
+    private void UpdateActionButtons()
+    {
+        var isEditMode = IsEditMode();
+        btnAdd.Enabled = !isEditMode;
+        btnClear.Enabled = !isEditMode;
+        btnUpdate.Enabled = isEditMode;
+        btnDelete.Enabled = isEditMode;
     }
 
     private void ClearForm()
@@ -51,6 +83,7 @@ public partial class Form1 : Form
         txtProgram.Clear();
         txtContactNumber.Clear();
         dgvStudents.ClearSelection();
+        UpdateActionButtons();
         txtStudentId.Focus();
     }
 
@@ -291,6 +324,11 @@ public partial class Form1 : Form
 
     }
 
+    private void txtSearch_TextChanged(object sender, EventArgs e)
+    {
+        ApplySearchFilter();
+    }
+
     private void dvgStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0)
@@ -314,5 +352,12 @@ public partial class Form1 : Form
         {
             txtContactNumber.Clear();
         }
+
+        UpdateActionButtons();
+    }
+
+    private void Form1_Load_1(object sender, EventArgs e)
+    {
+
     }
 }

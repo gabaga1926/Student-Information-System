@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             cboGender = new ComboBox();
             txtContactNumber = new TextBox();
@@ -46,6 +47,8 @@
             label2 = new Label();
             label1 = new Label();
             dgvStudents = new DataGridView();
+            txtSearch = new TextBox();
+            lblSearch = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             SuspendLayout();
@@ -233,16 +236,36 @@
             dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudents.Dock = DockStyle.Fill;
-            dgvStudents.Location = new Point(400, 0);
+            dgvStudents.Location = new Point(400, 50);
             dgvStudents.MultiSelect = false;
             dgvStudents.Name = "dgvStudents";
             dgvStudents.ReadOnly = true;
             dgvStudents.RowHeadersVisible = false;
             dgvStudents.RowHeadersWidth = 51;
             dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudents.Size = new Size(882, 553);
+            dgvStudents.Size = new Size(882, 503);
             dgvStudents.TabIndex = 1;
             dgvStudents.CellContentClick += dvgStudents_CellContentClick;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Dock = DockStyle.Top;
+            txtSearch.Location = new Point(400, 23);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search by Student ID or Full Name...";
+            txtSearch.Size = new Size(882, 27);
+            txtSearch.TabIndex = 2;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // lblSearch
+            // 
+            lblSearch.Dock = DockStyle.Top;
+            lblSearch.Location = new Point(400, 0);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Padding = new Padding(8, 3, 0, 0);
+            lblSearch.Size = new Size(882, 23);
+            lblSearch.TabIndex = 3;
+            lblSearch.Text = "Search:";
             // 
             // Form1
             // 
@@ -250,15 +273,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1282, 553);
             Controls.Add(dgvStudents);
+            Controls.Add(txtSearch);
+            Controls.Add(lblSearch);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1300, 600);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Student Information System";
+            Load += Form1_Load_1;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -281,5 +309,7 @@
         private TextBox txtYearLevel;
         private TextBox txtFullName;
         private ComboBox cboGender;
+        private TextBox txtSearch;
+        private Label lblSearch;
     }
 }

@@ -1,9 +1,6 @@
 
 # MySQL
 
-# MySQL dump files
-*.sql
-
 # MySQL backup files
 *.sql.gz
 *.dump

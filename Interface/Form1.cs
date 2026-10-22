@@ -35,11 +35,38 @@ public partial class Form1 : Form
             var table = StudentRepository.LoadStudents();
             dgvStudents.DataSource = table;
             dgvStudents.ClearSelection();
+            UpdateActionButtons();
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Unable to load student records.\n\n{ex.Message}", "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    private void ApplySearchFilter()
+    {
+        try
+        {
+            var searchText = txtSearch.Text.Trim();
+            dgvStudents.DataSource = string.IsNullOrWhiteSpace(searchText)
+                ? StudentRepository.LoadStudents()
+                : StudentRepository.SearchStudents(searchText);
+            dgvStudents.ClearSelection();
+            UpdateActionButtons();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to search student records.\n\n{ex.Message}", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void UpdateActionButtons()
+    {
+        var hasSelectedRow = dgvStudents.SelectedRows.Count > 0;
+        btnAdd.Enabled = !hasSelectedRow;
+        btnClear.Enabled = !hasSelectedRow;
+        btnUpdate.Enabled = hasSelectedRow;
+        btnDelete.Enabled = hasSelectedRow;
     }
 
     private void ClearForm()
@@ -51,6 +78,7 @@ public partial class Form1 : Form
         txtProgram.Clear();
         txtContactNumber.Clear();
         dgvStudents.ClearSelection();
+        UpdateActionButtons();
         txtStudentId.Focus();
     }
 
@@ -291,6 +319,11 @@ public partial class Form1 : Form
 
     }
 
+    private void txtSearch_TextChanged(object sender, EventArgs e)
+    {
+        ApplySearchFilter();
+    }
+
     private void dvgStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0)
@@ -314,5 +347,7 @@ public partial class Form1 : Form
         {
             txtContactNumber.Clear();
         }
+
+        UpdateActionButtons();
     }
 }

@@ -1,4 +1,4 @@
-namespace StudentInfoSystemInterface
+namespace Interface
 {
     internal static class Program
     {

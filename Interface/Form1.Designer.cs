@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            cboGender = new ComboBox();
             txtContactNumber = new TextBox();
             txtProgram = new TextBox();
             txtYearLevel = new TextBox();
@@ -45,7 +46,6 @@
             label2 = new Label();
             label1 = new Label();
             dgvStudents = new DataGridView();
-            cboGender = new ComboBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             SuspendLayout();
@@ -78,11 +78,22 @@
             groupBox1.Text = "Student Details";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // cboGender
+            // 
+            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGender.FormattingEnabled = true;
+            cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
+            cboGender.Location = new Point(169, 172);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(225, 33);
+            cboGender.TabIndex = 25;
+            cboGender.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // txtContactNumber
             // 
             txtContactNumber.Location = new Point(169, 354);
             txtContactNumber.Name = "txtContactNumber";
-            txtContactNumber.PlaceholderText = "e.g. 09171234567";
+            txtContactNumber.PlaceholderText = "09935382981";
             txtContactNumber.Size = new Size(225, 31);
             txtContactNumber.TabIndex = 24;
             // 
@@ -90,7 +101,7 @@
             // 
             txtProgram.Location = new Point(169, 294);
             txtProgram.Name = "txtProgram";
-            txtProgram.PlaceholderText = "e.g. BSCS";
+            txtProgram.PlaceholderText = "BS Computer Science";
             txtProgram.Size = new Size(225, 31);
             txtProgram.TabIndex = 23;
             txtProgram.TextChanged += textBox3_TextChanged;
@@ -99,7 +110,7 @@
             // 
             txtYearLevel.Location = new Point(169, 234);
             txtYearLevel.Name = "txtYearLevel";
-            txtYearLevel.PlaceholderText = "1 - 4";
+            txtYearLevel.PlaceholderText = "2";
             txtYearLevel.Size = new Size(225, 31);
             txtYearLevel.TabIndex = 22;
             txtYearLevel.TextChanged += textBox2_TextChanged;
@@ -108,7 +119,7 @@
             // 
             txtFullName.Location = new Point(169, 114);
             txtFullName.Name = "txtFullName";
-            txtFullName.PlaceholderText = "Enter full name";
+            txtFullName.PlaceholderText = "Juan Dela Cruz";
             txtFullName.Size = new Size(225, 31);
             txtFullName.TabIndex = 21;
             // 
@@ -116,7 +127,7 @@
             // 
             txtStudentId.Location = new Point(169, 54);
             txtStudentId.Name = "txtStudentId";
-            txtStudentId.PlaceholderText = "e.g. 2024-0001";
+            txtStudentId.PlaceholderText = "2025-01-0001";
             txtStudentId.Size = new Size(225, 31);
             txtStudentId.TabIndex = 20;
             // 
@@ -124,7 +135,7 @@
             // 
             btnClear.Location = new Point(277, 403);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(79, 29);
+            btnClear.Size = new Size(79, 37);
             btnClear.TabIndex = 15;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -133,7 +144,7 @@
             // 
             btnDelete.Location = new Point(192, 403);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(79, 29);
+            btnDelete.Size = new Size(79, 37);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -142,7 +153,7 @@
             // 
             btnUpdate.Location = new Point(107, 403);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(79, 29);
+            btnUpdate.Size = new Size(79, 37);
             btnUpdate.TabIndex = 13;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -151,7 +162,7 @@
             // 
             btnAdd.Location = new Point(22, 403);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(79, 29);
+            btnAdd.Size = new Size(79, 37);
             btnAdd.TabIndex = 12;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -232,17 +243,6 @@
             dgvStudents.Size = new Size(882, 553);
             dgvStudents.TabIndex = 1;
             dgvStudents.CellContentClick += dvgStudents_CellContentClick;
-            // 
-            // cboGender
-            // 
-            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboGender.FormattingEnabled = true;
-            cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
-            cboGender.Location = new Point(169, 172);
-            cboGender.Name = "cboGender";
-            cboGender.Size = new Size(225, 33);
-            cboGender.TabIndex = 25;
-            cboGender.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // Form1
             // 

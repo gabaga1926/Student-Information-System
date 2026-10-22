@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             cboGender = new ComboBox();
             txtContactNumber = new TextBox();
@@ -275,10 +276,12 @@
             Controls.Add(txtSearch);
             Controls.Add(lblSearch);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1300, 600);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Student Information System";
+            Load += Form1_Load_1;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();

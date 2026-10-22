@@ -60,13 +60,18 @@ public partial class Form1 : Form
         }
     }
 
+    private bool IsEditMode()
+    {
+        return !string.IsNullOrWhiteSpace(txtStudentId.Text.Trim());
+    }
+
     private void UpdateActionButtons()
     {
-        var hasSelectedRow = dgvStudents.SelectedRows.Count > 0;
-        btnAdd.Enabled = !hasSelectedRow;
-        btnClear.Enabled = !hasSelectedRow;
-        btnUpdate.Enabled = hasSelectedRow;
-        btnDelete.Enabled = hasSelectedRow;
+        var isEditMode = IsEditMode();
+        btnAdd.Enabled = !isEditMode;
+        btnClear.Enabled = !isEditMode;
+        btnUpdate.Enabled = isEditMode;
+        btnDelete.Enabled = isEditMode;
     }
 
     private void ClearForm()
@@ -349,5 +354,10 @@ public partial class Form1 : Form
         }
 
         UpdateActionButtons();
+    }
+
+    private void Form1_Load_1(object sender, EventArgs e)
+    {
+
     }
 }

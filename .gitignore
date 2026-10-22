@@ -1,9 +1,4 @@
 
-# MySQL
-
-# MySQL dump files
-*.sql
-
 # MySQL backup files
 *.sql.gz
 *.dump
@@ -52,3 +47,4 @@ Desktop.ini
 .env
 .env.*
 !.env.example
+appsettings.json

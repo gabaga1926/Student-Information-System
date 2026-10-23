@@ -1,0 +1,1434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <bookmarks list=""/>
+  <node unique_id="6" master_id="0" name="1. Team &amp; Overview" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+    <rich_text>Member roster, role allocation, project summary and Git workflow.</rich_text>
+    <node unique_id="1" master_id="0" name="Project Overview" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>STUDENT INFORMATION SYSTEM (SIS)
+Group: Klink Klank Klan
+Repository: https://github.com/gabaga1926/Student-Information-System
+
+WHAT IT IS
+A desktop application built with C# Windows Forms and MySQL. It works as a central directory for student records and was built as the CS Midterm Project. The WinForms UI talks to a MySQL database through a small repository class that uses parameterized queries.
+
+CURRENT FEATURE STATUS (as of the latest main branch, Oct 23 2026)
+  [DONE]    Add student
+  [DONE]    Update student
+  [DONE]    Delete student (with confirmation dialog)
+  [DONE]    Clear form
+  [DONE]    Load all students into the DataGridView, ordered by Student_ID
+  [DONE]    Click a grid row to load it into the form
+  [DONE]    Input validation (required fields, gender, year level, contact number)
+  [DONE]    Try/catch error handling with message boxes
+  [DONE]    Connection string loaded from appsettings.json
+  [TODO]    Live search by Student ID or Name (promised in README)
+  [TODO]    Year Level and Program quick filters (promised in README)
+  [TODO]    Custom color palette / typography (promised in README)
+
+LICENSE
+MIT License, copyright Klink Klank Klan.
+</rich_text>
+    </node>
+    <node unique_id="2" master_id="0" name="Team Members" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792736824">
+      <rich_text>DEVELOPMENT TEAM (from README)
+
+1) Brix Llarena - Lead Developer
+   System architecture, Git workflow and branch management, core CRUD integration oversight, repository curation.
+
+2) Cyber John Llacer - Lead Programmer
+   MySQL engine integration, database connection drivers, parameterized SQL query logic, data layer security, state management.
+
+3) Erwin Gabriel Aga - Assistant Developer
+   UI/UX visual layout, DataGridView styling, input validation routines, error handling guardrails, CherryTree documentation.
+
+GIT AUTHORS SEEN IN COMMIT HISTORY
+  Brix Rodriguez Llarena / LofiTech
+  HeyItsCyber / ItsCyber-101
+  gabaga1926
+
+
+
+</rich_text>
+    </node>
+    <node unique_id="3" master_id="0" name="Git Branches &amp; Workflow" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>BRANCHES ON THE REMOTE
+  main               - stable branch, contains everything merged so far
+  develop            - integration branch
+  feature/database   - SQL schema and seed data
+  feature/interface  - WinForms UI and data/logic code
+
+MERGE HISTORY (Oct 23 2026)
+  PR #4  feature/database  -&gt; develop
+  PR #3  feature/interface -&gt; develop
+  PR #5  develop           -&gt; main
+
+FLOW USED
+  feature branch -&gt; pull request -&gt; develop -&gt; pull request -&gt; main
+
+NOTES
+  - appsettings.json is listed in .gitignore on purpose, so database passwords are never committed. Each teammate creates their own copy.
+  - The early README claimed .NET Framework 4.8, but the project file targets net10.0-windows.
+</rich_text>
+    </node>
+    <node unique_id="4" master_id="0" name="Tech Stack" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>ACTUAL STACK (from the project files)
+  Language        C#
+  Target          net10.0-windows (Interface.csproj)
+  UI              Windows Forms (UseWindowsForms = true), designed with the Visual Studio Designer
+  Nullable        enabled
+  ImplicitUsings  enabled
+  Database        MySQL Server 8.0 / MariaDB (XAMPP works)
+  Driver          MySql.Data 26.10.0 (NuGet)
+  Config          Microsoft.Extensions.Configuration.Json 10.0.13 (NuGet)
+  IDE             Visual Studio 2022 (solution file is .slnx)
+  Version control Git and GitHub
+  Documentation   CherryTree (this notebook)
+
+NOTE: the README still lists .NET Framework 4.8 and Visual Studio 2019 or 2022. The .slnx format and net10.0 target need a recent Visual Studio 2022 version with the .NET 10 SDK installed.
+</rich_text>
+    </node>
+    <node unique_id="5" master_id="0" name="Repository Layout" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>ROOT (branch: main)
+  .gitignore
+  LICENSE
+  README.md
+  database/
+    migrations/001_initial_setup.sql
+    seeds/001_sample_data.sql
+  Interface/
+    Interface.slnx
+    Interface.csproj
+    Program.cs
+    Student.cs
+    StudentRepository.cs
+    Form1.cs
+    Form1.Designer.cs
+    Form1.resx
+</rich_text>
+    </node>
+  </node>
+  <node unique_id="12" master_id="0" name="2. Database Info" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+    <rich_text>Schema, constraints, SQL scripts and known mismatches.</rich_text>
+    <node unique_id="7" master_id="0" name="Database Overview" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>DATABASE NAME : student_information_system_db
+ENGINE        : MySQL 8.0 / MariaDB
+TABLES        : 1 (Student)
+
+Files:
+  database/migrations/001_initial_setup.sql  - creates the database and the Student table
+  database/seeds/001_sample_data.sql         - inserts two sample students
+
+Run order: migration first, then seed.
+</rich_text>
+    </node>
+    <node unique_id="8" master_id="0" name="Student Table - Columns" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792739241">
+      <rich_text>TABLE: Student
+
+Column               Type                  Rules
+----------------      --------------        ----------------------------------------------
+Student_ID          VARCHAR(20)     PRIMARY KEY
+Full_Name           VARCHAR(100)   NOT NULL
+Gender               VARCHAR(20)     NOT NULL
+Year_Level           INT                  NOT NULL, CHECK between 1 and 4
+Program              VARCHAR(100)   NOT NULL
+Contact_Number   VARCHAR(11)    NOT NULL, UNIQUE, CHECK regex ^[0-9]{11}$
+
+CONSTRAINTS
+  chk_contact_number : Contact_Number must be exactly 11 digits (REGEXP '^[0-9]{11}$')
+  Year_Level CHECK    : value must be 1, 2, 3 or 4
+  UNIQUE                  : no two students may share a contact number
+
+C# MAPPING (Student.cs)
+  Student_ID        -&gt; StudentId
+  Full_Name         -&gt; FullName
+  Gender             -&gt; Gender
+  Year_Level         -&gt; YearLevel
+  Program            -&gt; Program
+  Contact_Number -&gt; ContactNumber
+</rich_text>
+    </node>
+    <node unique_id="9" master_id="0" name="SQL - Schema (001_initial_setup.sql)" prog_lang="sql" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>CREATE DATABASE IF NOT EXISTS student_information_system_db;
+
+USE student_information_system_db;
+
+CREATE TABLE Student (
+    Student_ID VARCHAR(20) PRIMARY KEY,
+    Full_Name VARCHAR(100) NOT NULL,
+    Gender VARCHAR(20) NOT NULL,
+    Year_Level INT NOT NULL CHECK (Year_Level BETWEEN 1 AND 4),
+    Program VARCHAR(100) NOT NULL,
+    Contact_Number VARCHAR(11) NOT NULL UNIQUE,
+
+    CONSTRAINT chk_contact_number
+        CHECK (Contact_Number REGEXP '^[0-9]{11}$')
+);</rich_text>
+    </node>
+    <node unique_id="10" master_id="0" name="SQL - Seed Data (001_sample_data.sql)" prog_lang="sql" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>USE student_information_system_db;
+
+INSERT INTO Student (
+    Student_ID,
+    Full_Name,
+    Gender,
+    Year_Level,
+    Program,
+    Contact_Number
+)
+VALUES 
+    ('2024-001', 'Juan Dela Cruz', 'Male', 2, 'BS Computer Science', '09935382981'),
+    ('2024-002', 'Maria Clara Santos', 'Female', 2, 'BS Information Technology', '09662143078')
+ON DUPLICATE KEY UPDATE
+    Full_Name = VALUES(Full_Name);</rich_text>
+    </node>
+    <node unique_id="11" master_id="0" name="Database Notes &amp; Known Mismatches" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792737694">
+      <rich_text>1) The form allows Year Level 1 to 8, but the database CHECK only allows 1 to 4. Entering 5 to 8 will pass the form validation and then fail in MySQL.
+   Fix: change the form to 1-4, or change the CHECK to BETWEEN 1 AND 8.
+
+2) StudentRepository tries these table names in order: Student, students, student, student_information, student_information_system. The schema only uses Student, so the guessing is unnecessary.
+
+3) The seed uses ON DUPLICATE KEY UPDATE Full_Name = VALUES(Full_Name), so it can be re-run safely.
+</rich_text>
+    </node>
+  </node>
+  <node unique_id="20" master_id="0" name="3. Setup Guide" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+    <rich_text>Environment setup, dependencies, configuration and troubleshooting.</rich_text>
+    <node unique_id="13" master_id="0" name="Prerequisites" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>REQUIRED
+  - Windows 10 (1903+) or Windows 11, 64-bit
+  - Visual Studio 2022 (latest) with the ".NET desktop development" workload
+  - .NET 10 SDK (the project targets net10.0-windows)
+  - MySQL Server 8.0 or XAMPP (MariaDB)
+  - Git
+
+NOT RECOMMENDED
+  Windows 7, 8 and 8.1: TLS 1.2 problems with the MySQL driver, high-DPI scaling glitches, and missing runtime updates.
+</rich_text>
+    </node>
+    <node unique_id="14" master_id="0" name="Step 1 - Database" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>1. Start MySQL (XAMPP Control Panel &gt; Start MySQL, or MySQL Workbench).
+2. Open a SQL client (phpMyAdmin, MySQL Workbench, or the mysql command line).
+3. Run database/migrations/001_initial_setup.sql
+   This creates student_information_system_db and the Student table.
+4. Run database/seeds/001_sample_data.sql
+   This inserts two sample students.
+
+COMMAND LINE EXAMPLE
+  mysql -u root -p &lt; database/migrations/001_initial_setup.sql
+  mysql -u root -p &lt; database/seeds/001_sample_data.sql
+</rich_text>
+    </node>
+    <node unique_id="15" master_id="0" name="Step 2 - Clone &amp; Open" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>  git clone https://github.com/gabaga1926/Student-Information-System.git
+  cd Student-Information-System
+
+Open Interface/Interface.slnx in Visual Studio.
+Let NuGet restore the packages (MySql.Data and Microsoft.Extensions.Configuration.Json).
+</rich_text>
+    </node>
+    <node unique_id="16" master_id="0" name="Step 3 - appsettings.json (example)" prog_lang="json" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792735820">
+      <rich_text>{
+  "ConnectionStrings": {
+    "StudentDb": "Server=localhost;Port=3306;Database=student_information_system_db;Uid=root;Pwd=YOUR_PASSWORD;charset=utf8mb4;"
+  }
+}
+</rich_text>
+    </node>
+    <node unique_id="17" master_id="0" name="Step 3 - appsettings.json notes" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>WHY YOU NEED THIS FILE
+The repo does not include appsettings.json (it is in .gitignore so passwords are not committed). Without it, the app shows "appsettings.json was not found".
+
+WHERE TO PUT IT
+StudentRepository.GetConnectionString() starts in the app's output folder and walks UP through parent folders until it finds appsettings.json. Putting it in the Interface/ project folder works.
+
+IMPORTANT
+  - The key name must be exactly: ConnectionStrings &gt; StudentDb
+  - The example JSON in the next node was written for this documentation. It is not a file from the repo.
+  - If you want it copied to the output folder automatically, set "Copy to Output Directory" to "Copy if newer" in the file's Properties in Visual Studio. Not required because of the parent-folder search.
+  - Never commit your real password.
+</rich_text>
+    </node>
+    <node unique_id="18" master_id="0" name="Step 4 - Run" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>Press F5 in Visual Studio (or run: dotnet run --project Interface).
+On start, Form1_Load calls StudentRepository.EnsureSchema() and then LoadStudents().
+If the connection fails, a "Database Error" message box shows the exception message.
+</rich_text>
+    </node>
+    <node unique_id="19" master_id="0" name="Troubleshooting" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>"appsettings.json was not found"
+  Create the file (see Step 3) in the Interface folder.
+
+"Connection string 'StudentDb' was not found in appsettings.json"
+  The key must be ConnectionStrings:StudentDb.
+
+"Unable to connect to any of the specified MySQL hosts"
+  MySQL is not running, wrong port, or wrong credentials. Start MySQL and check the connection string.
+
+"Unknown database 'student_information_system_db'"
+  Run the migration script first.
+
+"No student table was found in the configured database"
+  The Database= in your connection string points to the wrong database, or the migration was not run.
+
+Add/Update fails with a CHECK constraint error
+  Year level must be 1-4 and contact number must be 11 digits in the database.
+
+Duplicate entry for key 'Contact_Number' or 'PRIMARY'
+  Student ID and contact number must both be unique.
+
+Build errors about net10.0
+  Install the .NET 10 SDK and update Visual Studio.
+</rich_text>
+    </node>
+  </node>
+  <node unique_id="32" master_id="0" name="4. App Walkthrough" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1792703477" ts_lastsave="1792739098">
+    <rich_text>Interface tour, CRUD workflows, validation and the data layer.</rich_text>
+    <node unique_id="21" master_id="0" name="UI Layout &amp; Controls" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792739301">
+      <rich_text>WINDOW
+  Title: "Student Information System"  (Form1, defined in Form1.Designer.cs)
+
+LEFT PANEL: GroupBox "Student Details" (groupBox1)
+  Control            Name                    Label / Placeholder
+  ------------------ ---------------          --------------------------------
+  TextBox            txtStudentId          "Student ID"          placeholder 2025-01-0001
+  TextBox            txtFullName           "Full name"           placeholder Juan Dela Cruz
+  ComboBox        cboGender             "Gender"              items: Male, Female, Other (DropDownList)
+  TextBox            txtYearLevel          "Year level"           placeholder 2
+  TextBox            txtProgram            "Program"             placeholder BS Computer Science
+  TextBox            txtContactNumber  "Contact Number"   placeholder 09935382981
+  Button              btnAdd                  "Add"
+  Button              btnUpdate             "Update"
+  Button              btnDelete              "Delete"
+  Button              btnClear                "Clear"
+
+MAIN AREA
+  DataGridView       dgvStudents     lists all students
+
+GRID COLUMNS
+  Student_ID, Full_Name, Gender, Year_Level, Program, Contact_Number
+
+NOT YET PRESENT
+  Search box, Year Level filter, Program filter.
+
+</rich_text>
+      <encoded_png char_offset="1255" justification="left" link="">iVBORw0KGgoAAAANSUhEUgAABQQAAAJQCAYAAADYJmn0AAAABHNCSVQICAgIfAhkiAAAIABJREFUeJzs3X9YG/edL/q3sJM4Tuzi1I6Rm5zaWKpL+mBSWLsr2j053Q24Ijy79m5g95z2YggY4p5UlZrrPheepb29dGFPfXrQcnvjgO0afLvndI33mvYSKRHOzZM2sbbJhQbzJH5cZOxsG4PvemuyJGnq2Oj+MRppZjTSjKTRL/R+PY+exJpfH818+c7oo+8P05YtW4JQce+99+Kee+7BmjVrsGrVKqxatUptNSIiIiKivLK8vGz4Pu1f/A58P/vf4q5TUlKCGzduJL5z2350fqkUuPwC+obPxV1W3dyJPduAuef7MOKP3pVs+fJ+dNaVYs3Ca3AfeQ43AOC+PXjyYDXMd/4Lpr79A/wE1djfuQela27g/Ek3/vESgPv+DE99vRKb3pvFPx7+EX5d9yScnzPjvdmf4PCPpoQD3fcnaDv47/Egfo2f/c0x/K65E3u2rcb8qz/Asz7hHGy4bwNu/PZG+DOsuT6Fb//vPwlF+md46juV2BR6b8/B76C65BZ+/fIPcOz/kZ7DUHxF8zh35Fm88FsA2IAN993Ajd8qP31on/92AT/6/o8xCwD3bcCG394AQp9h/hduPOsJxffnTjgrNmDe/22cL4kR/7//Mr7z2U1478KPcPjHs/LPtfcpfOezm/Avv/w2fjC2AY8ddGJ3yXuYHTuMH/1SiGjDH7fhqUceBH7zM/QcfTG8za23X0TPD38muWZrMO//Np59Xk+BCX1OAMAt3HjzBfzDqdcwr7pu7POHP4x/Tp7Fk/iOzYxbv/kZfnD0RchK9me/gkN7rbhXWrZgxV+5voKy4hu4cNKNH18KxXnz13jxb47hZ0CkLCycw7ePvIY/+5oTlRvl58z6V4fwlbJ78aGszMcoW0QJ+uijj3StZ7fbAQBer1dz3fvvvx8LCwtx10n6/kCkYnl5Gbdv38bNmzfxu9/9Du+//77qeiZlQvCuu+7Cxo0b8cgjj8BisWD79u2wWCzYuHFjRgInIiIiIhMA1d9sk9wXktyfSXsVVUbFTpmRzHXmNSYiIspFv/3tbzE3N4dLly5hbm4Or776Km7cuIGbN2/K1pMlBDds2IAHHngAbW1t+NKXvpTxoImIiIgIyH5CkInAwpTIdee1JiIiygcTExMYHh7GtWvX8O6774bfNx08eDAIAKtWrcJnPvMZ1NXV4b777staoERERESUakJQLbGjd3/JJgMTOQblJiaCiYiIVqJr165heHgYExMT4aTgqqtXr/6vV65cgclkwlNPPYVNmzZlOUwiIiKiQpdKUi7V7fMhKZTq+aHYkjm3vB5ERES57N5774XVasUrr7yC9957D7dv30YRAGzcuBFtbW0oKSnJdoxERERERBrYIi19giovIiIiynebN29GS0sLNmzYAAAo2r59O+rq6jhmIBERERERqWBikIiIaCWoqanB5z//edxzzz1YfeLECZhMbOZPRERElDuYfKF8I/0+wfJLRESUq0pLS3H33XejaOznb+KDj5gQJCIiIqJcZALHqMsViUxMo3wRERFRLigtLcWdd96JouDtW9h03/psx0NERERERDmPrf+IiIjyWWlpKVatWoUiIIh77r4r6R1tvH8TPvHglpjLNz+wBf/8z/+c9P6JiIiIiCiXcExBIiKifPXxj38cRUVFKEqlCf+Pf/xj7KrahX+9dgP3rLkXa++6B2vuXIu77rgTv//dMjaVmPHRhx+hctdnDQydiIiIiNInFxI97Goaodb9NhsvIz8HERERZVtRKhOKPPE/7cfPXvoZTABu376F5eXbQHAZCJpw771rcGk2gKIiAMEiwwImIiIionTKdsIm28cndWrXJRjjlcy+iIiIKJOKkr0d33XXXbgdBG7fWsbfdDfh73/wdVx+6x9w8+ZN3Lx5E8u3b2PDuo/h2tX/D3feeaehQRMRERFRIcmFVovZkkzCLdvyKVYiIsqWo0ePYtOmTVi3bl3c16ZNm3D06NFsh5uSHTs+jdHR05rrjY6exkMPfSYDEQGrk20gePadf8O7d9yDuxDEJ+ytuOw5go2b9mJV0Z14d+nfUHLnnbj7o9/DdIcJl381h8UbiyjeUJzQMVwuF44dOxb+d1tbG/r7+5MLOM4xABi+33j8fj9qa2uxtLSU0Hb79u3D2bNnsW3bNpw/fz5N0Rlj3759uHTpUtrjPH36NFpaWsL/zodzQ0RERHoxoaROPC+ZbmknHo/XhYiIUtfV1YVvfOMb+MIXvhB3vVdeeQVdXV04cOBAhiIz3ne/+1085XAAABoaHlddZ3T0NJ5yOPCDgYGMxLQaSWYEa8wbECwyIRhcRvDjjyD4h4/gg+VlvHRpHr++414s3/4QLWtfxv8R2IjGBzegqOhuIIGE4L59+7B161ZZ0kxM3gHAzp078a1vfQuPP65+IrPlypUrKC8vx8zMDLZu3WrYfk+fPo1Lly4lnETMBLUE55kzZ9J+XLfbjR/+8Icxy0iy1q1bB5/PB5vNlvK+iIiI8kOqiaVUE0TsQlp4pNecCUYiokL04Ycf4gtf+AL+6I/+SHPd3t7eDESUPmISMFZSUJoMjJUwNNrqZDb62f/pwB0bP4//UN+EVatMCBatQjAIrF9dhD+1lgAAbt3+CO/+SyWKxhtw5EuDePf9efzdFrOu/V+5cgVnz57FzMyM7P1MtuLLNb/5zW+wffv2bIeRU374wx/iW9/6luy9Qi4jREREycl2Mi7W8Zkk0hZEdq6fCfqvT7JjCvL6ExHRyhIrKZiNZCAAJDzbx80PP8DyzVt45uRp3P/A/ehtr8Jff+UhfKNhO/75F2O4+suzcPz5J/G3HdU40fNX+NidG/DvvC488tYQ/nXpQ13HEFvWzc/PRy3z+/1Yt24dLl++jJaWFqxbtw5+vx+nT5/Gzp07VdeVcrlc4X7o+/btUz3+vn37wuso9ykeT9qf3e/3AxBarJWXlwMAysvLo44dixj76dOnVY+7b98+dHd34+zZs1i3bh3cbnd42c6dO2WxXLlyJWq/brcb69atg8vlwpUrV6I+g3gepOdGegzlMulxXC4Xamtrw+dGjNvtdkedX+U+Tp+O9J9Xi0v5eZS2b9+O3/zmN6rLlPsXYxLjUx7n9OnT4fMPALW1tbLji/GpnR+16ycul14fsZwQERERGScfxxhUyufYiYiI9GtoeBw/GBjAUw4HRkdPZy0ZCCSREPx/z3wLH/7+9/jg1hrs+/NmtBz8Jv6XvzmG//Ls8+g/8wvsdXwX3pnbeKCkBHfddSfW3LEG965dj+VlYOkDfQlBAOjp6UFtbW1UYspms2FpaQnbtm3DiRMnsLS0pLtrp8vlwosvvoilpSUsLS3hy1/+smyMQkDeVXlpaQl/8id/EpXYErvHLi0toaenBx0dHQAAp9MZbtU4MzOTUPfey5cv49VXXw3vF0D4s585cwY9PT149NFHsbS0BKfTCUBIej3xxBPhbU6cOIHy8nJZEu3y5ct4++23sbS0JGs919HREd5OTDR+/vOfx9LSEnw+H7q7u2XJMACyz/ynf/qnAIQWeT6fL7w81vh9+/btw5UrV8L7mJmZQUtLS1TSThpXW1tb3C7A3/zmN9Hd3a2a2G1ra8Pf//3fy94TWxReuXIFtbW14WskXrPHH388fO59Ph+WlpawdevWcDdw8b2lpSV0d3fLYpdeP/H8rVu3Dj/96U+jygkRERFRejG5RkSUz7Qm2VC+KL9Ik4LZSgYCQFFRgt0MllevwT3r7ob374/gv37ra9iy44+xfsMncNcdd+Abrq+hreWrePPnP8P7S+9h2QTcCgZxa/k2/sX8edx/zx0YfXFS13HE5JqYWFEmjhJ15coVHDt2DD/96U/D7z3++ON49NFHw//2+/24dOmSLHH29a9/HWfPnpUl2U6cOBH+/7179+Ly5ctxW7LpJT3uE088gZdffjnmum63G48++mg4OQhEPs/Y2FjM/YoGBwfD/9/W1oZt27aFx2MUE6xiC82tW7fK9iF+Zr38fj/Onj0rG1dw69at6OnpiUraSeNqbGzE2bNnY+5XTA5funQp3AIy1rZXrlzB5cuX8fjjj8s+l/jfeGNR/t3f/R16enpkiWe12MVzZLPZsG3bNrS1tYWP8bnPfS6hc0ZERGSseMmhbCSOTJKXGiazcp/WNcz1/RMR5S6xIYreF1EyEm4huHbDNlR+vgmmILBh7VqYlm8DJhNMJhP+3V2/x4E/q8T/NfQ01txzD+5cVYSLFy7g7W3V2P45O27dvoWuk7/SfSyxpZ7P50NLS0tKE0bMz89j27ZtURN9SP/9zjvv4PLly7JMu9gFWOoTn/hE1PZq3ZsTsW3bNtm/H3jgAVy6dCnm+m+//TYeeeSRqPcfeeQRvP322zH3KzKbI+M5fvKTn4wan3Dbtm145513wv+WdpkVz4neJOg777wjS7yKPve5z0V9Rmlc4v9rHef8+fNYWlrCsWPHwl2CxaScmEgeGxtDW1tbeNmjjz6q2jVazZUrV8KJafHV3d0tW0d5nrdv345PfvKTCX8WIiIiIuNkKrFqUnklayV0gSYiIopN2k1Y2n040xJOCO784yfwyl0WjP7bGiwHP8LyrZsIfnQTt2/dwq3lW1i+/Xt8eucX8cGHv8NvNnwK93f932jZcxCf37QBtz+6hQ9+n3j22mazYWZmBseOHUt7QkXslqt8GTljcL4Rx0ZUdrHNNeIvI2IS8IknnsCrr74KQOgu3NjYGF73zJkz4a6/esb3E7unS1+ZmEmZiIjIGPESNGyBtbKpJdiYcCMiIsoG5ZiByjEFMymhhOCam7/D6d+8iy9+fB2Krv0rDvyPAJZ/P4R3b72G71y9C8PXP47eG2a8/voEblm+gKef7MVTOx7E+jtv4fZHN/Hu++/h1vLtpALVSsh94hOfiOqSKW3hZjabVbv2vvjii7J9xOuimks++clPqnYpfvnll2Ut04zw8ssv48SJE0m3hox1Xn/xi18YPnOydH979+6VJZHVxpoUxyr83ve+F3OfW7duDScWiYiISIoJpZWB15GIiCjdYk0gkq2kYBFM+n8VvrF0Axtf/ycgeAu1n74f/+3LlXjX9CV88O5NfHPrBhz+7z/H//zAXfiLbxxH83/6OlabTJh89yO89M5v8d4H72HnUx78oWWt5nGuXLkS1T3Y7XbLuvwqZ5gVkz3SLqAtLS3h/9+6dSseffRR2X7dbrcsiSh2M1WbHVcvo7oQa3E6nTh79mzUbLdnz56VjStoFGlCTDk5hlZ3WLGLrvS8it1wv/nNbyYdk/I6iWMV/sEf/AEA+TV/4oknZOspx6SUJpyV3aUbGxtx7Ngx2TanT5/mrMFEREREMXEMQCIiim/NmjV45ZVX8POf/zzu65VXXsGaNWuyHW5KtGYTzkZScHUiK9/98S149C+2YPuTp/HLv63B3XffhTvvLkNwlQW/+91v8bUvlOKjj24iaDJh+dYt/Pq317H7vjvwQfHvsan1eZjuLMJPevdrHmfr1q04duyYbAbgbdu2yWaw/fKXv4yWlhZ0d3fD5/PBZrPB5/OhtrY2PL6b+G/RmTNnsHPnzvAsPD09PeFx5UTnz5+XrSPuJxFtbW3h46ZzgM+lpaWo8ezScbz+/n6Ul5eHr4fyvIqJt/Ly8qjrJDpz5gz27dsXdV71zhAdi3JGpZmZGVlyTywnyolVWlpawgnjRx99VNb994knnggvn5mZkZUtcZtYn5OIiKhwsEXZyhNEehJ4JrC8EBGRUm9vL7q6utDb2xt3vTVr1miuk+u+/e1va84mLC7767/+64zMOmxyD/8k2PoXf5zQRquK7sSJof8Gy45Po2LnZ3Fj8V2sX7cOlfVNcDbU4KOPbmHT/ZvwtRM3MHO0HpX/+R/x+1Wr8N+/9Rgeq/5Mmj4KUTS3242XX36Z4/0REVGeSTWBopbUibW/ZBNAmYqPck8yZYbXl4iIClcwGIQpgR666fb4448n1kJQ9OkvNuLcT57FH1RWYOn9D/DYFz+LB+8vxh898Dv0/e13ceIfxmGrqsJ/Pvq3KGs9BVPRbfz0vzbgP+x6yOjPQBRXd3c3Tpw4ke0wiIiIiFYQMbmXO19siIiIclkuJQNFq5OJ6c0Xf4SR/zGKO9bcgU9vseLVX17Cvyxcx+3lj3DgwJNocX4Hm+//OEw37sCWe6/j4mvPGR85URw7d+7E5cuX0dPTg8cfT39TWyIiIiKKR/qlg60FiYiIsm11slnK/f+xAfv/Y4PqsocqTqHly42pxEWUEo7vR0RElKtyobswx7QzRrJjDvL8ExERZdtqUxqa+jMZSERERJRLjE6+5HsyJ9/jzyV6zmXudZMiIiIqdEm3ECQiIiKiXMdEIOUCjjlIRESUa1bzvkxERERE6cUHTrl8Ox/pSARzTEEiIqJsKipiC0EiIiKiFYitA3NTPj57GxVzrDJkUryIiIgo3VZnOwAiIiIiUmLyjVYqlm0iIqJcwDEEiYiIiChLmBwiIiIiyobV7DJMRERERJROK+F5WznmH8cAJCIiymerwYQgEREREWXcSk0iFcKztfIzmpC+65nOfRMRERUuNhAkIiIiIg1MyFC2sOwRERGlw2rAhNu3b2c7DiIiIiIiIiIiIsoAthAkIiIiIiIiIiIqIEWcZZiIiIiIiIiIiKhwFDEdSEREREREREREVDiKOMswERERERERERFR4WALQSIiIiIiIiIiogJStO3jq7MdQ4Im4CwuRs0zc9kOJC9MOItRXPMMeLaIiIiIiIiIiAgAipLfdA7P1BSjuFj+KqhE3dwzqCmOPgfZOw+ha8IEIBERERERERERxZBcQnDCieLiSpzZN4XFxcXIa7RZuhKcxcVwThgSZwYlGvcu9E4tys/D4ig+01WJ4qQ/f76eOyIifSacih9SslbhzeFILetbIiIiIiIqLEkkBOfwzPeGgeZRTHy1VL6oxh15b24Wb6YcXhYYEncN3IuLGG0GhhtqkHBjwaRjKMVXJxaxOPFVlGqvTESUBUICrgGjsh9SRncE2LKZiIiIiIgoQ5JICF7Cr143PpCVqMY9ima8jq4BNj0hIgIAzL2AM6/tRp+jRvZ2zcGD/CGDiIiIiIgoQ5JICNbgsWYAw9+L2fJtwlmM4souvA5guEHaHSw0xl1U3yyN98PdyuK0tlOO56cYRy88uYZiPelYf7HjTpZ4rp6DbC9xYo0fg8q4jYr49Ewikjtd9Yio4JRa8BBew8VL8VebO1IrqadqcWROthC10jqs9oikzhO7AAtDLxQXO8P1r3yfym7CwnZRx5s7glrl8YmIiIiIiPLcagC4fv16zBU2btwY9V6NexTNww3oqixG165eTCm6qNa4F7HoeAY1lV34zOgi3OGGIAl8o5oTtn+9eRSLE+IOJuAsbsAwgF0q66J3CotfLYWQOKtEpdOKRbekFcrrXajs6MXU4qIQ74QTxQ2VcFqFGGPHnbztn9olf0Mj1rgxTAwI4zZOiGdbOB81n5qK7r6tSjhWF3oxtSheswk4nbG3iFc2iIjU7hHx1cDRtxuVDcV4q28KvoPRddfckVpUntmHqUVfpK6udMKy6EYNgLkXLmLf1CJ8pYCQyKtEpdMiq+/fOvwc9k0tYrFUss/OhzC66EON8AaOSJKSww1Poi+0/oSzGA1PHsEeH1stEhERERHRyrRa/J/EvtQJY+Q5nqlBZVcXKou7AJXEYComBrrw+q5eTMkyYjVwT/XizcouyXtzeKYjlDgMJ8VK8dVvNqOr4Xt4xlGDSK5sF3oHJTHWONC7axhdz03AXWNA9i+mNzE7B9SUJhKriho3JmRhCi0Qh888j7mv6jn3Qnfv5lHpujVwu2NvkfiXfSIqFMn+YFB60IfFPUdQW1mJ4k5gtywxOIGBTqBv6qCsru7bXYnnJtyoqQFKD7pxMLI3HDzUjM7DAcyhJrLNPgciucYJDHS+hubRUDJQCALSXOTuvmfD/65x9GF35UVcAlBaehC+xcjRiIiIiIiIVoLkZhkOKf3qBBYXFzHVu0tofRevS29CJvDcMLBr35eik1ylVnxG+u+553HmdaD5MUVCb/unsAuv41fSbmm79uFLsh2WwvoZAG/Opnkw+8/AWppgrDHJuw03DCcSx3Z8aleSE50QERmp9CB8odnpX+usjAxdMPEchvEaOiulQxtUovM1+eay7r8qFeFDFkllP/EchtEMZdUbc30AwFsIsJ4kIiIiIqIVKqWEoEhIDIYm0OiIP35duoTH2xNfoXH4su3Sr14Hdn0K2yXvJRurMPZfpdBtWJyZszmRaIRZiEebX0dXJccPJKIcUOPG4lQfdg8flozT14xRyQzE4ktoMC6MDSh0KQ4tS6wiJCIiIiIiKniGJAQFNXD07gJe/xV0NXQzWPNo9JfHyBfILJl7Bt8bjm7pmFSsoX01jy7qHC8wthp36JhTvdg13KA5CQkRUVpJJxrZvgO747XOmwvgLTRjVDK+31zgrfj719onERERERFRgTEwIRhqDRdXrC66wth2EULX1tfPPB+dqJp4DsOyXX4J+3YBw8/lWku30HiBu3oxKCbwDI91DrNvprB56VcxMdoMvH4Gz/OLMhFlwtwR1CpaJs8dORzp0lt6EIeaX0NnpVMyO/scjjilMwlLkntzR/Cksj+xkto+547giJ6qmLMMExERERHRClT03nvvJbjJBJzF0i9q4ttONAwDu3odwqDtobH+3pyVf4uqeawZeL0LA5FvZXimpkGe5AtNtIHXu1Ap/eI49wxqosaKCq073AD5d8wJOJNp+RYj7oTMPYOa4tBsvrKJVnTGqhZD6D1pMnHCWYmuhPpFT8Cp+CI+IQzWqBhbkYgoTUoteGi4QTZsgjD7rzs84UeNexGjzcNokIwheGbHHqEuLT2IZ/sQGWPwSeBZHV2Go/ZZeQaysRyIiIiIiIgKyOp77703ic2G0VA8rHhvF3qnFiWz5NbAPdqM4oZKFHcBaB7ForsGqHFjqvdNVDYUh5OAzaNT6P1eJaRzBwvjSn0KNZUNCB9qVy+mFkcxUNyAN5XrjgLFkn0K+11MYtbjGHHHJIzHJ4s9dC4m1A6uK1b1GIQZliPnY1fvFEabK9GQSCvBYcn5FHZi6OzQRETxCbPUx5ncXFjLvYjFGCuVHvRBOfHvYmT6YBz0LSawT5X1ZTMLc5ZhIiIiIiJaeUwvvfRS8MEHH8TGjRuzHQsREeWR69ev895BRERERESUZ/7yL//S2DEEiYiIiIiIiIiIKLcxIUhERERERERERFRAVmc7ACIiyl/BYBDLy8sIBoPZDoWIiIiIiIjiuHnzJoqKhLaBTAgSEVHSbt++jXvuuQerVq3KdihEREREREQUxwcffIAPPvgAABOCRESUolWrVuGOO+7IdhhEREREREQUh7QhB8cQJCIiIiIiIiIiKiBMCBIRERERERERERUQJgSJiIiIiIiIiIgKCBOCREREREREREREBYQJQSIiIiIiIiIiogLCWYaJiMhQ0yMOHJ+UvFHVioH9FVmIZAG+vl7M1w1A7+GnRxzwmLvQWVtiWBSZOB8Lvj70ztdl9DxPjzhwHJHPsuDrQ+/4fNR65npjz6dmTJPy96pa9V1/5bXXKgvCscyo7+qEcpVsXA8iIiIiokQwIUhERAYREnDjW1oxMBBJhEz7fFgAkJmUUC7RcT6mR+DwmNHVWZtb5yfZuKKSndMYcfTCMV6F1oH9yER6LJMJSGAe4yd82Jlr14+IiIiISAO7DBMRkTEWzmNy3oz6PfK0T0VtgSZLeD4AVGD/QBfqzZM4PjKd7WAMZ66vR9X8OE74FrIdChERERFRQthCkIiIjFGyGVswj/lriNscUN61VNHlcsGHvt5xhDuemuslrdTELsCtwPHjmESk1Zmyu6q8m2iopd68yvH0xCiJQdlNNrzuZFV0azqN8yHt3trrGA+1rgNGHB6Yo87JPOokLexkXWPN9Wit0vgMss8tnscumD3R50U9rlTa9pWgtq4K48ffwPT+ipitBKO6HMuOG/va6zOt67wmbif2t87DcfwFTNfG2U/cci12T25F1eRxiKegqnUA+zdLt4v+zHH/loiIiIiI4mBCkIiIDFKBPfVm9B534GqMbpvh5NlAbaTLbO8INouJvfPzqOoakCWuekc2yxJSVz1voKprAAMlkn2Ob0HrQKeQLFnwwXctcszJ4ydQH1p/esSB4xpdPOfHe3GivgsDAyVRMVQ8XAV4rkm6QC/g/OQ8qurU9hf/fFTsH8DAw8quudqt6KZHHDh+tV5+Do/PA5KkoNZ5jnde1ONK0WYzzJjEtRh9x6OuYei8O0Za4177nFCxH61VDhwfeThm4lRPuZ4f9wChz7bg60PvcQcmzfXoGhhASWgb6TH0XGMiIiIioljYZZiIiAxTUtuJga56YLwXDocDfbKulNN4YRyob5EkmSr2oN48iTemxe33S1o4CS3LcFVIwIVV7ZGsM40XxudR1SpJgpTUolaSETHXt4TXr9hTD/P8PCT5wmhVrZLkXQlqW+phnvTAtwCg4mFUzU/ivBjQwnlMzlfh4RgZmPjnIxnTeGPSrDiH+xUtBLXPM5DEeUlFyWZsibkwFG+XNJElnvc35ClS2bVXNx8618JrREeKNXUVeyRlRIW+cl0XXqektg5VgCTRrNxG3zUmIiIiIoqFLQSJiMhYJbXoHKgNtVzrhWM+1Mpr+g1MYh7odWBcsYk0nxXVddRcL1t3y2ZJRmj6DaH7aJwmUbL1AQBXY7ZUAwCzebPi80iTWRV4uOo4POcXUFtSgoXzk5ivqovfIivW+UjGwjVcxRY8rIh9s9mMcH9Unec50fOSkoVruArArLZs+g1MYgtalcct2YwtilaF0TFHy+ykIiEltWipn0RvqJWlGq1yHVXuYEbUWyKd15iIiIiIKBYmBImIKD0JjYVxAAAgAElEQVQq9mOgy4y+Xg98eyogpEnijf02jRHH8VA3SUk3SE/mQtaj4uEqHPecx0ItQt2FdSb3lOcjmZzVtXnMa6+F+Oc5C67NY95chZ251NXXYCW1dagaP44Tvp1okS1JV7nOsWtMRERERHmFXYaJiCh9pBNrbDbDLLZCU7NwDVdRhVbJuHUL167G37/WPpMwP6/oOBtqwRZunCZ2G56O311YlfR86CVNAsb4vNfmJWnCNJyT1Exj5PhkjHEWETveUGtIHY0Ck6M7uapXBfa3VmF+/AWcl76dTLnWknPXmIiIiIjyDROCRERkjAUf+kamFW95MIlQ0qykFnVV8xjvlY7rtgDfiE8ylpokybHgw4lxjZSN2j4XfPClMo7a5HFEPoaQzDLX75G0xKrAw1XzmPRMYr7q4fgzy8Y7HyLZ2H2bYTbPY/wFcTvh+GHi5z0hOWfTI5Cuou8862DEmIILPvQ5jmOyqhUxe0nHivfEOCA776nQOK9GqdiP1qpJjEeV2wTLtRata7zgQ5+jTxjTMNb/ExEREVFBY5dhIiIyRslmbJk8DocszyLv1lixfwCtcOC4ZCVzfZfQnVgch00cF81cj67WKvRqdK2M3qcZ9V3q47jpYa5vhdnjgOO4+BFaMaCcIXhPPTy9k6hviZOu0nE+hIkgeoXYq4SxBWs7WzHvELerQmtXPa72RhJIFfu7UN/Xi17HeDi+rvqrkKwS/zzroRKXLqqfd0AzqVexfwBd5j70OhyyeI0bC7BE87waRZhgZDzS+jDJcq15nFSvMREREREVNNNLL70UfPDBB7Fx48Zsx0JERHnk+vXrKC4uxvr163HHHXdkO5zMmh6Bw2NGV2eMbrBEREREREQ55r333sPS0hJaWlrYZZiIiCgxC/B5JmGu2slkIBERERER5SV2GSYiItJpesQhjNen0o2YiIiIiIgoXzAhSEREpFPF/gEM7M92FERERERERKlhl2EiIiIiIiIiIqICwoQgERERERERERFRAWGXYSIiSsmVK1ewdevWbIdBREREREREcVy9ehXBO+8BwIQgERGloKioCM8//zzefffdbIdCREREREREcXzsYx/Dnz7+nwAwIUhERCm47777sh0CERERERER6eRwOLBnzx4mBImIKDVtbW3ZDoGIiIiIiIh0OHbsGAC2ECQiIgN8//vfz3YItAI8/fTTLEuUMpYjMgrLEhmB5YiMwrJERnj66afD/8+EIBERGWL9+vXZDoFWAJYjMgLLERmFZYmMwHJERmFZIiMxIUh5IRgM4vbt29kOg6jg3Lx5E0VFRVizZk22QyEiIiIiIiKDMCFIeWF5eRnr16/H6tUsskSZ9P7772NpaSnbYRAREREREZGBmF2hvBAMBrF69WqYTKZsh0JUUJiEJyIiIiIiWnmKsh0AERERERERERERZQ4TgkRERERERERERAWECUEiIiIiIiIiIqICUrS8vJztGIiIqIB4O0wwmSSvDq/hxwi4q9OyXz28HfLPFHBXyz9v6FXtDmQlvpUgqgyZTNB7ub0d8nOv/Hf8Y1ZDbdVsljcygLcj+m80zdeTZWblUNb5ooC7GqZqNzJZ08eKJRPH5T0tddH3NvV7DpFe0c+gHVgpd55sP5etlHqvaO3atdmOgYiICkIA7moT6uBBMBgMvzxlFyNfmLwdGf8CpUuqcbXLP3Mw6EG5y7qiHswyzdY/Kzung/ZMHNUPV1MOlk9KklAnmeoAj+Lvs33mIq8z6WI/1A/bUI/iS6kXh11+tHc7YclWYJSXpPe22X7AZWVSkJIh3N+srnL5/c0DjBn54Gn0c3vC++NzWaqKOGsrERFlRGAcp/w29B+SZ27szkL8wmTHYHAW/bYh1LGVUN6w9fej3e9CE7+drQgBdxNc6MdscBCKWgmD5wqxXqKkWJzobvfDdVjaMrwHQ7Z+HMrIDxW0UlmcJ9Fv8+PUOO85lJiY9zf7YIZ+QM0MPpeljmMIEhFRZlh2oBx+XJhVX+ztMMFUNwT4XbCGu+x50aHsDhBwo1rRsk7WzabaDbVDyLtNSPcp/Ira4Q21FlIsV4/LCBY4u9uBoTG2EjSMvvKSvHoMetrhdx2Ov7+AG9UmeZmUhiR0M/FKyluoy7Nsu+iYY5dhSlxiLbiSrT/CRzOkjvKiY4V1+VophFaCYl0ewPgpedmK+7cbt74w9trHikOtq7GyyzPrn2yLXRaiuoWqPKco6yCvrEtljH2n6V5G6ab//ha/7CT5fKxRbtSO2+FN9nlbz3OZ9rNhKmVZ9lk0P2vu3duZEKS8teDrg8PhiLz6fFhQXxO+Psl6jj74VFbUtz/lvuLvM070umJSxteX2EESPJbR6xkRO60sdhzqt2GoTn3MDftgEEFPO2Drx2wwiKDOnzC9HSbUzYS2CQYR7L6AOpdftk7AXQ3rqcbIOp5yuKzyG+9QXRNwMtSNuT3SBSHZuHSxlsGGGVzkF6v8YR+Epz1+y87A+AU0zopddGbRDxesivX9rp5weZsN/V2YmoCT4jaK1qN6yjAlwDuGIbRjr44/51TqD8C4OmqmZwxls0EEo1o0UtZZ6tFoG0KPOwB4D8OFSOtArWurp74w4trHi8O+tx2QdZOXJzVZ/2RX+Y5IWkdZFgLuakW30Fn0z9TJkil66iDVfafhXkYZoPP+pqfsAIk/H2uVm6jjzvajLM7+NOl4LtMjmbLsd1nRhJPxP2uO39uZEKS8tODrQ+/4FrQODGBgYAADA12oxzh6o5J40xhx9GJ8S2tovQF01QPjvfIklv79XcP8PFDVOhDen/DqRG2J3uj1xSSJDr4+B3rH5xM5RQkey+j1jIidViKL8xyCwqA4Bk2s4cXYkA39JyW/gtoH4WmXr3PYBcU6h9BvG5KNo2LrPwmnRVzcD5v/gmorHkNZdqA83cdYofyhMpSNFgjqY4ZFWJyD4bIUbgmqHJOuvTu8jsXZjXZA8mu+cht9ZZhSI/8VXyxTqdYfxtVRaDwkKVeUW4S/Wf+pcbjHhiR/y9rXVld9kfK114jDvhft/lMI90wNjOOUX0wosP7JFm+HFS6/IrEjKwuhazMrTSRY4DwpbbGqpw5S23c67mWUO/SUHUGiz8fxy02o9aJHclyLE84UM2Faz2W6JFOW2z04F/6w4vkT48iPe3sBJQQn4CwuRu2RuWwHQkbYXIeugf2oCL9RgtqWepjnx/HCdGS1BZ8Hk6hC637JmrUtqDfPY1y6os79GUF3TACmRxxwOHqRbD5N77GMXs+I2GkFszhxLij8Cuh3WVPrghu4iBmUY4fiRmots0X+4R3DEPxwWaWzrFmh/HG8XLmTTLTcC1zETJoPsVLJJxXJ8K+qFidO9iPuQNay5FLdUNRyW5lV+Q6i3hLpLMOUGovzXLi1QrgGSbX+SGsdRTnFfgj9cME1Ixk7UOe11aovUr72mnHYsbc9MlZdYPwU/O17hXqV9U9GSX/sElr1ye9vsrLgHcOQSv0i/NiYQB2ktu8QQ+9llDv0lJ2QZJ6PY5abBFrnJ0THc5mWZMpy1DbSH/rz5N6ehYTgHI7UFqO4WP4qqETd3BHUFhfDORH9nvK8FNy50amkogJRDfJKNmMLgKvXxKZqCzg/OQ9UPSxJ9AFACXZWmYHJNyCmsPTtD8DCNVyFGebNyUauPyZgAdeuAub6LqHFojldxzJ6PSNip4JgHxS+eKfyi97sBej7TtKumEU0kzPTxjF7AX5bI+r5PT/vWJzdMQayFsaCkXcRUWuKkagcLcP5KqHu+imc+3yvoygBFtQ32oDyHYpxu+Jd23TVF2rilzH7XqGFY0DsLiz7xs7ymSmyH7uMmNxIdx2klMmySYbK6nA02Ss3sZ/Lsin3687MJgQnnCgursSZfVNYXFyMvEabpSvBqUyW5QUj4t6NvqlF+blZHMVDnZUozstzkmEL13AVwJbNYmpP6N5rVsnelWzeAuAqrsUb1i5qf0ZIJKYS1HYOoFN/X+Qkj2X0ekbETgVDY6IRVdKH2xgPPbMXJI+/OTtOnxcddUO6JzWgJCX9ZUiLPTyQ9bj07cBFzKAdHskXucDFFNuB5mwZzmMqM8OqSvXc53UdRSnTurbpqC+SiQOIdBv2SrsL69yWsiPWtZG2CtRTB6nJVNkk41nq0WjTuL/pKTvJ0Co3aa1PYjyXqTHo2dCv/AIjbXmZJ3VnBhOCczhyeBhoHoXvYKl8UY078t5cAG9lLijjpC3uGrgXFzHaDAw31IKNBWNbOD+JeVThYbH5WooJvaj9AcC1ecxjHuO9eiYzUdtpOpKMKR7L6PWIYgm4UR01i2FPdNcB2dgkVpTJHmqEJFqY+KVe2kXA2wFZrxZxHdkgvgG4OxLsVmDkmIIBN6pNdRhq9+TUr4T5T6O8GC00kLUrqu+c5AEw4EZTqn3rjCrDJGMf9KB9qE51VsCwVM99Jusoyj26rq3B9UXScYS6DfecAvoPycb3YvnMUbGuTZMrcg3F5FC8OiimDJRNSgMLnOdi3N+8HcLsuXrKjl5Rz8dxyo3acQNuuKVfD1J53lZ9Lkvjs+FQHSJfbYT92sJ/e/lRdxb921uZGg32Ei6+lqFDrUA17lE04zV0DrCZoKrpEfSOz8Ncv0fRndXg/VXsV0wm0oqq+XH0OkZg8FCDRCuPZQfKh+ok42iYQrOMScbHCQ22W2cyhcYWlDzUmEwwmcawVzq+FwD7YGhWL3G/Y3sx2y8fG8c+GBRmIJOM4XGqrF5/y7youBKk+Nwm6wV0Gz1jMUFPeTGa/ZBi/+I4NuKYMU3ASQO6y6RchkmFHYPBIDzlkvrDZILJ6kK5ZMDzVM99Ruooyllxr2066gvl/aY6MiOoVhmz722H3w80KsaxYPnMXfbBIGb7Z+TXpnFWPtHBOe06KEqa7mWUKXYMBhXX3WSCqacsPMapdtnRcxjF87GOchNVn1hPAdYY+0vmkyufy9L4bGjr96CsRzx/wg/90vOXD3Wnyel0Bp966ils3Lgx7QebcBajYXg3+qZ8UDYSjCxXvNk8ikX3dhyprUTnQ6NYdNdIFs7Ffz+cgNyNvqlDuFjZgLf6puQtFOeOoLayE5FV+zDlOwhxjQlnMRre6sPUs8CTkvV2S/YTO+4aqAod86HRRYRXmTuC2soz2Bfj3ESO04zRRTdi7HnFunXrFu677z6YTKaoZdMjDhyfFMark3VRXfChr3ccW1oHsF+ZJZwegeP4VdR3Rc8OHHN/MU1jxHEcV8PrL8DXp5xMowqtA/tRkWRM4j4nq5QxGXAsGLye7tgpH3z44Ye4ceMG1q5dG7Xs+vXrsFgsaGtrw/e//32sX78+CxHSSnLgwAEcPXo022FQnmM5IqOwLJERcrEceTtM6ClLMPlDWZeLZYnyz4EDB3Ds2DHs2bMHqzN54Br3KJqHG9BZWYxOReJNWL6IRYdKsgwJ9JMVE3zNo1j0iTuYgLO4AcMAdqusi74pLB4shZhIrHRa5Mm81zpR+WQfphYXhXgnnChuqITTIsQYO25jbd+xW3ulgiIk4iZhjpGIytT+NsNsBibnrwEogTh+Xm2q4eiSyWMRkcCLDlMd1DobtHtya6BgSgSvKxHlOtZTZABvB+qG2uEJMhlIuYz1XSYU7fxYJg8njIc31bdbSLIVF6O49kgi6T5NEwOdeG13H6ZkWbkauKf65MlAzOHIk0LiMNJisBQHDzUDw4cVY/XtRt+zkuRljQN9u4Hh57LRffctBDiOIMLJO3M9ugZiJO9KdqLKrJglOGTh2lXAXIWd4e107M8ICcWUoWMZvR7Riid0M1TOGJZrs4ZRonhdiSjXsZ6ixHk7TPJu5HWQD9dClJNY32VCZmcZDik96MOiLDFo1GQZE3huGNi9bw+iet2WWvCQ9N9zL+DMa0DzY4rmfNt3YDdew8VLkvd278Me2Q5LYXkIwFsBQ5OZ+jwES4wuxYVkeuQ4JlGF1s5axM5BlWDzFmB+8rxi0o8FnJ+ch7lqZ3hbffuLYeE8JmPMvptKTKnTeyyj1yMiIiIiolxgH1QmVJgMJCJBVhKCIiExGJos40ljWwrqNdxQjOJiyUs6nmCOuXTxNWD3DmzPdiBZN403JqFrApGK/aFJP0YiU34s+E5gfL4KdeFmgPr3t+AbgU+WDZvGSO845s31aNHZrFBfTMbQeyyj1yMiIiIiIiKi3JXRMQTV1cDRtxvDnRdxCYhu2ZdmzWkc889Qc0dweBjY3afS+rFAzY/3wjGutiQ0qQYAoAL7B1oBx3E4JkOLzfXoGohuCahvf1cx3uuAdDVzfRcGEkqG6Y8pdXqPZfR6RERERERERJSrciAhGGr5Ju/QqyDtolsjSYhdgnzT7dixGxg+8wLmDsonLMHEc/JJRUr3YN/uTnQ+NwF3Ta5nBEPjHe7uw1SsKYgLSgX2Dwxgv2Hr699fSW0nBgyZwSPRz5DK5CF6j2X0eiJOfEJERERERESUSzKYEJyAs/g5PLbohiz9NuFEwzCwu88hvB8a6++twBxQE0l+1TzWDAx3YmDiYKhF3xyO1AozB0cIk4J0NnTKZwqeO4LaBvmakXUb4HxM2kpwAs7aAByKGZA1xYg7ZeKsySqzMhMR5Yqnn3462yHQCnHgwIFsh0ArAMsRGYVliYzAckRGYVkiI2W4heAwGoqHFe/tRt/UIiIN32rgHm1GcUMlijsBNI8Kib0aN6b63kJlQ3E4Cdg8OoW+w5XolO6uxo3FqR2orWxA+FC7+zC1OIqB4ga8pVx3FCiW7FPY72ISibcYcSfkNXRWFss/T+j8+JgJJKIcdvTo0WyHQCvAgQMHWJYoZSxHZBSWJTICyxEZhWWJjCBNKmcwIVgD9+Ii3LpWdWNxMXrN0oM+LB5UrrsI5VsoPQhf1IqAe3FR97EiixehspX6+xr7ihtfjJiJiIiIiIiIiIiMlNVZhomIiIiIiIiIiCizmBAkIiIiIiIiIiIqIKsfsv9VtmMg0uXy5cvYtm1btsMgKihXr17F2rVrsx0GERERERERGSjDk4oQJaeoqAjPPfcc3n333WyHQlRQPvaxj+ErX/lKtsMgIiIiIiIiAzEhSHmhqKgITU1N2Q6DiIiIiIiIiCjvcQxBIiIiIiIiIiKiAsKEIBERERERERERUQFhQpCIiNLD2wGTyRR5dXhVVpEsr3YjkOD28nWr4Q7EXkX3cXUsFwTgrjYhXlhkIG8HTKYOZOt0B9zV8vIYelXrLXQS3o7kttOOKXvnJx8If9fx6gkvOrTqGpV9GnEtKc8kcn8iikHtvqJWn8ieSXSWN94foiVzHiPb5f75i//sKjyzxv7sGssVdV5UOVXWicp9aG2vFb9mnav1+fhsH0tRMBjMdgxERLTiBOAeK8NsMIhgMIhg0IP2oTrZA0DAXY26mf7QOrPohwvW8B1Ye3vZsXqG9EcW97jaywHxocIKlz+Rc0J5r90TKo+Rclnusmbhi4LwwGp1lcMjjccDjBXQQ2xy/Dg1HuNrgLsHMzZbhuOh/JPI/YlIg/S+MtsPuKySZIRQ19dBfu/xlF2MkcyIbJO39wdvR5xkTbKSOY8R9sEggsFB2A2NyViaz9TVVrjKxc8/i/6ZOknSTGs54B2DpDwJzz5RSTPlM9KgXff2AXc16obaw+t4yhP5TqAdf/z9h2Is0Gf7Iq83H2oGIiLKLxY4B52whP9tx6F+G/ynxkMPX14cdvnR3i2uY4HzZD9sQz2h1jta20cE3E1wlbejXVdcWsfVWg7A2xF6qPDoPCatXHYMBmfRbxtCXQZ/Tg64m+BCP2aVX1DsgxjM5W8sOcBms8HvOqySwA1g/FSBfQugJOm/PxElxOJEdzswJGbuAuM45beh/5C8Yrc7peVPjvcHFUmcx/yi8ewaGMcpfzs84QIgLh8T7oVaywHYB6XlyY690nIKIHBxJm6E8bcX7r/tnsg69kPS42vUuZrxa+0fBf1sX/TFL34x2zEQEVEBsOwoj/wjcBEzaMdeu2wFlMOPC7M6tg/vx40mVzk8g3v1BaF1XD1x2Qdz/pfilc+LDmXXz4Ab1dKWegE3qk2xuoeIXUKkXUz0dzmXs8ApfIOTJZnk3bU09h03ViXlg7/qDkOfL9QF1tQBr9Y5U+vusxK7QjZ2o982FN1SxnsYLvSju1HxfkLXRtwkgWtPK4Lq/YkoSbYyq/A/Gs9F0fTcHwRRXYpVWktVu72ybpgdXijqRHnreHEIBdm+ZXVm/PuQt8MEU90Q4HfBqogpdr2qdr9T0HkeledEPLza0BDa8RjxfKGT1rPr7AVE/dxl2YFyzOBiQMfyGMLlNEmpbC+rc5OMX6aAn+05hiAREWWEd2wIKN8hPKTOXoDfVgb5o4AVZXF668m2BwAE4G5yodyTwA1c67hJxEW5KTB+AY2zwUj3EZWu30N1TcDJUPeRdj9cTUl2U7KWwSZ58Ay4q2E91Rjp3uIph8sau1uxnljDvGMYUj74xzDTM4ayWZ1dneyDsq4+s/02wNaP2RXXpMSK+kYbhnrk19o7NgRbYz2UX08SujZI/NrTyhB9fyJKQqiVUrdTLElCS6ihOp1jleq8PwTc1YouxdFdLAHA7+oJ3yNnQ3GYmoCT4jYqreP9LiuacFJ3nSllHwwi6GkX7j2SLqd66tX49zvt8xh1Tmb7URbv/GnEY9jzhR5az67WMqg/xoYShlrLlaLKachQne5xv+XbCz+sDtVFzqH3sAv+9r0xn11kda5m/Invv5AwIUhERGkXHrtDR3JhRuXnPLXtvR3CeCFG5SvUjpvIcsotFucgIs+qoVZ8M/Lxgmz9J8Pr2A/1w+a/AN0NMWQH24HIb9VeHHYB/SclLTTsh9RbpSUQa1IaD0H5vK5LwI0m5WdYQSzObrT7TyE8lGDAjR61LzdI9Nokfu0p/yVyfyOKIk2i1A3JujUCgMV5Ljy2YLITWcmF6qlZ6XGiu4gCANq7w/WfxdmNdkDeLVWtPmz34Jw00aMcdiXZeLXqVY37XfzzGGpZKT33Fiecqn/S+uIx7PkiRTMXA4ClHo2K5K23ow7h0be1lgvvhFpgmmDqKYvqkm5xnpONr9w+pEwwx98e9kHM9s+gLrROHTyyMQiloupcPfEnsP9Cw4QgERGllbdDHNxaX0u+8h3yJzrV7b0dwuDJMW/mkgcPnbPrKY+b6HLKPbIuPXXRE89EX9MEupfIDnQR4dFzvGMYgh8uq7T8aQ9SrRVrMpIrs0LLW0i+zKw8duxtj0wuEhg/FbelgO5rk+S1p/yV6P2NKIpsIoZZlPWotK6yOHEuKLSe87usqQ3l4B3DEMoRdXtQ6WIZ3aXTBq1enlHbyH4wS4LOelXX/S7WeUyg5X3y8ST5fJEiIQ4LnOdCSbpQzGN7PWgPX0+t5YAwZnKonJ4EmuImp+0Y9CiHUom3fWginAvdkV4KZT2qz+7qda5W/Pr3X4iYECQiojSRzuqm8mUp6tfSWVyQPVDF2j40q7A4xozJBJOpLvKA1uGF7MEjqOhConVczbgoa6K6xMQiJITlXXrSOEz07AX4bY2oDz//t8tndwy91PPXCcaq6J5sNHFA+pMrNxsIQGixAddheBHA+ClEDTYvSKYcJXLtKX9p3N+IkqLRos4+iOBsnOVpvj9kj8H1qtZ5zHQ8RtB8dpU/Fw9aL2JGlhjWWi5hceKcpz3GBF0hMbvxqmzvPQyXX97K2uI8iX7bEHoUScPYdW6c+HXtv3AxIUhERGkhdulVbZJv34t25UOrYlDk2Ntb4DynfBATfgnsnw3G7wKgdVwdcVF2aM1gJxtUOnTNPOciXXo0t0+aFx11Q5FuVIl+IUs0Vks9Gm1+uA4b8Lu2ciBubwesK7irsEyoi9FYx2G4IE3mSiR6bVbsl3FSint/I0pZjEQMEH+CDD33h1j1VCBOAigBfmVgsVokitQmhJBKV70qPY+JHCMX6/kknl01W8ZrLNekdV0TlGidm3L8BYQJQSIiMl7AjZ4hW4xWN4DYZS8yyLLYTfGQcPPW3D5ZGsfVXE7ZEcD4KenMiVaUyb70CEk5OcnDccCNpnT02wy4UW2qw1C7ZCxLixPd7X7FAOMBuDviDSieSKySrjHKGW+9HYjdk0zrnAn/tq3orsJSoUHGh4TJRGJ/5ASuTVLXnvJO2u5PRMIzRziREXCjWlGpB9w9cbq36rg/xKqnjHrWGaqT3IfE+4q4Xz33bshbuxlRr2qdR7VjBNxwq91PU40n4Ea1OOtwrP9PWILPruKPf7HqsKjlXrgVYy7Kr6vi8wfcqJYt19jevhftkI8BGHA3weW3obHeknidq4xfa/8FjglBIiJKE+UYK8JLvB/bB4PwlIvdfoVf/s7JMhHxt0+W1nG146LMEceCtOJU46ykO45yvJgx7J3tj3RPsThxsh+R8tMEnDSiy7B08HeTCSbrBXQHo1ul2geD8LQPhQevNpmsOFUWI+mUVKx2DIqzN0rj6SlD7Ofl+OdMHIDbHxpwXddMgfnOvhftUJ9MBEBS1yaha095LD33JypAsvuKohWUZQfKFfcd7TErte8P9sGgbIIF8R5rxLOOrd8jjIMoDueinGQk3r0bCE/QUSe5/6Rcr+o4j1HHsJ5CrDFKcrGej//sKnS3jYyFC3iC5yQ//mkttwKnpM8GdZjpV5SXGUl5s7pQ7glKlmttb8dgUD4GoNUF9M9KY4hX52rFr2f/hcv00ksvBR988EFs3Lgx27EQEVEeuX79OiwWC9ra2nD06NFsh0MrwIEDB1iWKGUsR2QUliUyQqGUI2+HCT1lxiQWSV2hlCVKrwMHDuDYsWPYs2cPWwgSEREREREREREVEiYEiYiIiIiIiIiICsjqbAdARERERERERPnLPhjkBGxEeYYtBImIiIiIiIiIiAoIE4JEREREREREREQFhAlBIiIiIiIiIiKiAsKEIBERERERERERUUDL8hsAACAASURBVAExvfTSS8EHH3wQGzduzHYsRESUR65fvw6LxYK2trZsh0JEREREREQ6HDt2DHv27OEsw0RElLqjR49mOwRaAQ4cOMCyRCljOSKjsCyREViOyCgsS2SEAwcOhP+fXYaJiIiIiIiIiIgKCBOCREREREREREREBYQJQSIiIiIiIiIiogLChCAREREREREREVEBYUKQiIiIiIiIiIiogHCWYcoLwWAQt2/fznYYRAXn5s2bKCoqwpo1a7IdChERERERERmECUHKC8vLy1i/fj1Wr2aRJcqk999/H0tLS9kOg4iIiIiIiAzE7ArlhWAwiNWrV8NkMmU7FKKCwiQ8ERERERHRysMxBImIKD28HTCZTJFXh1dlFcnyajcCCW4vX7ca7kDsVXQf18i4yBDC9Yh3fb3oMOBaCMfpQKpXNOCulpcRyT69HSZU6y2oBpKV6QItt1HnwGRCNk9DtsoCGYD3ATJA9L1CvU5IpP72diReHiNxpH7/ywSj7tXx9x/jlcN/6/GfbQNwV2t9DsU6WvuQLtddJwr7iHsa1Z7pFfvX/DuJF1uMZwCt7wYrFROCRESUBgG4x8owGwwiGAwiGPSgfahOdgMPuKtRN9MfWmcW/XDBGr4za28vO1bPkP7I4h7XyLjIWH6cGlc/zwF3D2ZstpSPYB8MIhgchD3pPQgPulZXOTzhMhJE0AOMZe07hBBTHTyReIJBeMouGvew6+3Im4dnW/+s7DwMJn+xqWDxPkAGapfUzbP9gMsqSVJkoP4OuNHkAvpnU73/pYnK/SX1e3V8wv5D57od8muUozcNzWfXaitc5eLnmEX/TJ0iaSesc6pRco8854RF13J9daKQcLPC5Y/7SVSf6b1jkDxXeVAu+zvR+Pz2Qdnfj/Bc1g7Y+nHILtl+qD18DE+5/LvBSsaEIBERpYEFzkHpg4Qdh/pt8J8aDz3UeXHY5Ud7t7iOBc6T/bAN9YR+EdTaPiLgboKrvB3tuuLSOq5xcZGxbDYb/K7DKi0CAhg/FffpMmMC7ia40I9Z5RcV+2D2Ek+BcZzy29B/SB6A3Sktx0SkH+8DlCYWJ7rbgSHxF6SM1d/l2MEbQh7TeHYNjOOUvx2e8IOIuHws/EwlPEt7cM6pXhDiL9dRJ3o7Qgk3T9zn9VjP9PZB6XOVHXulfyeaz+5RR4G7Z0iyvvAc2e6JHMN+SH5+VrKi5eXlbMdAREQFwLKjPPKPwEXMoB177bIVUA4/Lszq2D68HzeaXOXwDO7VF4TWcY2Ki4zX2I1+21B0SzvvYbjQj+5GxfsBN6pNsbp/iF1WQl2NQ12Porpwxt2HkvKBVKck4kwoLo3yqz8GaVehSFceb4cJprohwO+CVdFNKKo7nPLXdlk3Hv1d/tNFHq88HqFseGXdpTq8UJw7RRe2hMqPdgyUu3gfICPZyqzC/+ipv+OKX38H3NUwWV3wYwh1CdXf8e6hxtWTse4vasMt6ItX/TwkdWY16mplPGltbKb17Dp7AVE/m1p2oBwzuBgAwgmxvbF+udRaHi2qTrQParfqTPCZPvx3kuize+i58VBuNvbMuKK1a9dmOwYiIioA3rEhoHyHkCyZvQC/rQxW2RpWlMXp9SnbHgAQgLvJhXJPAt1GtI5rSFyUHlbUN9ow1CNPqnjHhmBrrFdcMyAwfgGNs8FI9xhEd/+Y6RlDWZxuUnr2IQkEQ8oHUh2SiTOhuEK/1A/VxR6vTs/+huqagJNiFyo/XE3CdbAPRrrezEq6UwXc1Yqu04ouSgE3qutmQt3Uggh6lBndzAq4q2E91Rjp8uQph8sq/+Lqd/WEz8Fs6JyamoCT4uezDaFO+oU6oeukLwbKTbwPkCFCrai6w62wtOtvPWLV3xbnOQRn+2FDqKuk3vo7RO0eamQ9Gev+oqQ33ljnIVFadXVUPLP9KEviOLppPbtay6D+GCv+GC60RC2DNDkrSXJqLVeReJ2YwDO98u8kwWd38bkxEpsFzu52DNVJxns+7IK/fW/udaFPgyLO2kpEROkWHptDR7/JmYvRTxhq23s7hPFQjOqKqXbcZOKi9LE4u9HuP4XwUIIBN3pkX56k6w4i8rbwsIcZxbhLjYcQo3eM/n2kKJk4E41L/NIHl1V1MG49+7P1nwyvYz/UD5v/AmI3WvHisAvon5U+2Ed3UZJ1U7M7414Lo/hD50DeUiUU70lJ6077oegWqe3d4Rgtzm60A/IuSorzlth10hkD5RzeByglQ3WROqluSNZtEdCuv/VIT/0N9XtoWuvJ1OJN7DxoHC9mXR3qLSC9jhYnnFmqHmYuBgBLPRoViVhvRx3kI/X5IeRyxWQuFD9IaS2PSKZO1H6mF1ujmmDqKYsemiWGqGf3WM+N9kHM9s8ILWVNoXE7C6RO5xiCRHlkesQBR58PC9kOhCgB3g5xkgV9N+9yxUA2qtt7O4TBg2PerCUPDjpnzlMeN6m4KM3s2NsemVwkMH4q7i+4si47ddGDVGtdcz37MEIycSYcl8WJc6GBtP0ua1TLicRjELsaqfCOYUhtTCppFyXxC0qGZ/qVTyoS+tv1jmEIfris0jojeuDzcPekyDuIektB93XSGQPlFt4HKGXSCSuCsyjrURleQaP+1mJ4/R1zv2muJw2PN855iHu8OHV1kr0F0kX4zBY4zwkTfYgxj+31oF12bWyyJKfFeRL9tiH0hBPQWssFSdWJms/0AGDHoPh3chJo0pkcV15z9efG0IRwF7rDf4uzZT26vjusBEwIUh5bgK/PAcfIdLYDibbgQ5/DAYfKq8+XW+m8BV+fSpx9yLEwKS9JZ8dTeTCI+mV2FhdkX35jbR+agUwcU8ZkgslUF3lA6/BC9uAQlHdn0Txu0nFRJtgP9QOuw/AigPFTiBpsXSAkhOVdevRNO5P0PqxlsCX85SKZOFP8bPZBoYuYZCKd1M9VMixwnhO6Us3U6Uvap1e7fGbolGchTua8Gh0DpQ/vA5QOGpMhRNXf+S5b959U5WBdrfnsKn8uHrRexIyhk8kkWyfqeaZXsDhxztMun2hO8/MLx1IdC9F7GC6/vEVjrITnSsSEIFHamFHfNYCBAemrFVvGe+FwOJD9POY0RhwO9I5vQeuAPM7WqmzHRiuB2Pxftcm9fS/alckTxaDAsbcPJRJkD2LCL539s7HHmNF13JTioowItSwb6zgMFxpRr/YwG7pmnnORX7MDF2cSO06i+7DUo9Hmh+twAmmtZOI04rOpTKST0v6UYiVHAypfQCxOnAuNK5W1B++kkrkaEj2v6YiB0ob3AUqvOImalCca0ZBI/Z0qI+4/mYw33vH0Lk8HHc+uSrKWcqHnF7UyVb7Dor0cqdSJKTzTi/R+/tBsy7nSejNX5G1CcMJZjOLaI5iL8W+i3FSB/aGE2+TxbLbCm8aI4zgmq1oxMLAfFYqlFfs7UVuSlcBopQi40TNki9F6CxC7fkYGdBYGE0b/IeHhRHP7ZGkcN2txkX6hwZ+HlINCK0keDgNuNCXV9zKRfUi65Chnk/V2xOkWm0ycCWwTcKM6qntwj6JLkwHnSvrrvMWJ7na/Ynwhxd+SyjnR04U7LWLF25HcgPMRCZzXtMVAhuN9gNJGqCfDiRpd9bfB9NTfhtJRT8Yb6y/T8WrV1WrLA264w7MthybjiPX/SdF6tlXwdsDqkvawsAiTttVJJ0ZpkszEq7E87XWiF27ZyfGio24INr3P7mLM46dUJh9BKKGomOzG3QSX34ZG1V+dV5bMJgQnnCguLlZ9OScyGglRVlXsb0UV5jH+QnaaCS74PJhEFVr3K1OBREZSjrEivMT7rX0wCE+52EVA+GXxnGyQ3/jbJ0vruNmKixJg34t2qE8mAgCwOHGyH5Hr1AScTLQbUlL7sGNQnCVRWj56yqD6nJzMMRLdxrID5dJB602K8X2MOFehAdXrTJHuPfbBoGyAbpPJilONs5G/JWtZqKtwZFk2G1vZB4PwtA/J4y2Ll3DWkMR5NTwGSiPeB8ggsvpZ0cpKq/5OE8362yh66kmV+0vW4pUcL15dHbXcegrRWag0xBTz2VXozhsZpxHwBM8pJis7JzuHVle5rOWm1vL01olW4JR0QrA6zPTPJvjsDsxe8Mf4IdmOwaB8jEWrC+ifPZeRyc6yzfRP//RPwY0bN2Ljxo3pP9qEE8UNb6FvyoeDpanuqhgNb/VhyncQpSr/ppXl1q1buO+++yCfFXsBvr5ejG9pxcD+CpV/x1pP8t68ZLUq+XbTIw4cv1qPrhbgRO84xFXN9V3o1Go+t+BDX+8kqrpit7SbHnHg+GQVWqUt9BZ86JMcC+Z6dHXWokS6zVXpe9qfQyW4GOcpTpxX69FVN4/e45OhmHbivJ5zrfw8ErrOI2Xdhx9+iBs3bmDt2rVRy65fvw6LxYK2tjYcPXo0C9HRSnPgwAGWJUoZyxEZhWWJjMByREZhWSIjHDhwAMeOHcOePXuwOtvBEGXF9AuYrOrCQDghJXSh7TMrklTz4+g9UY+ugQEhATc9AsfxXoxsHkCqjes2m83yN0LJM9SLcQnJtd6RzbETd3o/h+w45zE5D5irNusPdn4cvW8I3YtDO8F5PduV1KJzoFZ6cCFhiHq0MBlIRERERERElBV5O4YgUUoq9isSZhV4uAqYnzwP+bB+ZtS3RFrooWIP6s3A5BtGdfW9imsLALAA34lxzFe1SuIqQW1dFTDpiT3WoO7PEW3L5kQScsZ0L17wncD4vOKcEhEREREREVFG5VhCcA5HaotRHDWgYKz3ExOeeGTuCGol4xfWHlFORRI6nnScQ8Wx547UorjYiQlMwKm2nuIYqrEr1+GkKBm2AF+fAw6H8Do+qbKKuQo7ZZmrEmzeAuDqNc2Emz5bsLkE4VZ7VQ8rkm6bzTBjHvPX4u1Dx+dIldmMBNoTqlvw4cT4PMz1LZywhIiIiIiIiCiLCq/L8GudqHyyD1OLi8JYgxNOFDdUwmlZhLsmtM7EAM78/+zdX0xbd773+w9uNM2Ti5aTnXkCkTqjUrOjZJ6UCiQk8vQ5UnUOZiBcpBdEM0dVcA8TaM6FH3MRaYx2pCNlC28pF1i+odByCrnp3uEiORLgCehoLk6fMEICDc1uqgwu1cxIgRxFHTqjmd2dncbnwjastbzstQzGxqz3S0Iz8frz+66fV71+/vr3590Vbc1nZyNcULi2R4HTK5o3TX44qZ5aaXprSzEpneBr7lHgYauWls5qemtL7cbXjcevjyrQHJGiK9q62qB0ErJZzWG/trYDwX5Jz9+XnscuO9w2PVde+WJ4srEh1beYEm3LEyHZ5fNO5TnHrq6j7qTSOc1NqWz99DI9IOu7NUQ2EAAAAACAiqpAD8ElRZotve/K2jOuVdEPDQuPtIcUbZUmZw09+NpjlsRfuy4EpaU79yxxtiq6EtN2+q7hqq4FpaUl2b++ffy6Rj+IaCk4bSinQVevBaXJm8rpsIjS2pzX3LLU0hev3KIWmRjqW940peRa+uKKx3P/bEfr7vo63A8rLhWGCgMAAAAAcHD4/vmf/7nMRbYqurKlrS3DXzlXBm59Vx2mwhrkPyvpYdKS7DMPG+6ZtDvZWfktgb9xujX/60uP9JUkrd/TnSUpeKHdupNataRHXxV/Wd70RBumYbb5hvOm9ytsU0/K1jtwp7fc9sIadW+qpSRzE7q7jqaObtVvzOiTvJMTOimirjNDhVv68q+4DAAAAAAAysf3s5/9rNIxHDgL4VrV1janhw1nkpbTwdKXM9lj6SnZHNFS6Ys5tDbn57Rc360OQ++5prdapI0Z3dvOq21qPjphHoabGTJrTL6tTg1rxjFpWAKb84qG0qvsDkWMveWyC4hMaMqUE1zVVHTeviffXq6jLqBIX4s2ZoYVsjn/6lQ0/0ImGa7q2rBYSgnWJAEAAAAAACXgvTkEnayP6uakFJw2zCm4T8pRxmE0FcrOs9eivrhlCGpTr4a6H2vYMBdfS9+QuueGNbOzk3qHuvV4eEKhzE713UPqaxku8RyCG5oZDhnKlaR6dQ/F7XvKNfUq3ieFLPMItvTF8wyz3eN1NPUqHu/QfHRYw6EZy8YW9fU6H+9U19sJyo2dGLPqu4cqN2QbJXflypVKh4BDgnsJpcB9hFLhXkIpcB+hVLiXUEoHLCFoHL7bbhhG/JUeLUk6W6m41pV8WMLTNXTo3daIIrMLirWTESxWbzyuQrmqukBE8YDlxaa4AuadFMnZKa648ZBe87+dXrcEYXN+F5p6FY/nv7qcsl1cR2F1CkQsdeNUpqn4wnXd1BtXgcvBIfLRRx9VOgQcAleuXOFewp5xH6FUuJdQCtxHKBXuJZSCMansk/5cwVBytV8ISksRxbfX+FjXaKBHk+UKoMGvszIvMrIQblakpGN5swuI9Ci8YHx9QeGyLrACAAAAAAAAr/H9+eH/qHQMZu0xrURbDfPrNevRtRVFW8sWgGIrUbVO9mzP7Xfz9Erp5xBsj2lrOmiZR7BHulbGBVYAAAAAAADgOUf+x+ffquF/LlNp7TFtbTnv1nB1XltXrcduyfhSe2xLWwX+bV+8/T45rzdc1XxOAOZ9bGMs9vX2mLa2Yg5RAwAAAAAAAKXj+/bHb1c6BgAAAAAAAABl4tPvP6t0DAAAAAAAAADK5MjPfvazSscAuPL111/r9ddfr3QYgKc8fvxYx44dq3QYAAAAAIASOlLpAAA3fD6fZmdn9e2331Y6FMBTXn31Vb333nuVDgMAAAAAUEIkBFEVfD6fLl++XOkwAAAAAAAAqp6v0gEAAA6pxIBqamp2/gYSNrsYtp+PKVnM8dbtecqwD61AuUXGdT5mPRr7JRk7b3nPB+TmHU8M7M/7lL5P3MWQllTsfI1c3qbuY8hzwv267mqVfr/OK3+VJDRQxOdI9pzUsQe5eL4BTnKfafafJ6Y2icv7bbfPy8NsN/W4c9zBr7/Cbdt0+8N1m9q43a69nfkbSLjYbhNHzuuOn6kO8TtdfzHfGRIDDm2Fw4WEIABgHyQVu3tGa6mUUqmUUqk59Y93mRq6ydh5dT0YyeyzphENqnH74ex8vCSpfy6zPfM31ukcWcFynbcn7kpzhrjODTaWNMEDO+mGYOPgOUPdp5Sak+5WsO47x1JKpcbkfNfh4FjU7Rn7Vn4ydkMP2trKHA+qj8vnE+CGsR2zNiKZ2hTpZ1+XzG2duTOPcn7I3HEwn5euJQZsf6jdm93U445qeNY7tqnPN2rwXPb61zTyoMuQEHP4TOscM7e1Uyml5vqlthFd63SxPSOdsGvU4GJO9A6fqU7xO7fdJbn8zpBU7Mb4bt6CqkVCEACwD/wKj4Xl3/53p66NtGnx9kym8ZXQzcFF9V/P7uNX+NaI2sZvZH6RczpeSj56sIu4nMp12i51jhkbhZ262C+NV0Uru3olY5c1qBGtWRvknWNykQMGtrW1tWlx8KZNT4+kZm7nfEsBbDg/n4Bd8Yd13dimSM7o9mKbRq6ZH3SdYeP9Z8bz0sYu6rG6OLRdkzO6vdivue0bILv9buZZWOxnWjpptlOei+2JAXWN92suNaf+nP0dyneM37nt7vY7QzJ2WYPn+m1iPLx8qVSq0jEAADzAf/rczj+Sj/RA/brYadpB57SoL9dcHL9bTuXuIi5JajvTuPfYkIe1oWezh82w2WTsfE4vA9MQKpseCOYhVsbhItkhLpkhpZmhQ3bDRXOGadl2HzUOfbErJ9/2PUrGdL6mwJAam/iN4RdbPwfSpesaaRvP7SmTuKlBjej6JcvrLurMKn894bAqyfMJyNhuU7hof5g5Py+znJ5V6edbwjRMcyAhy2ei+bM++0zM/6xNaMD6mZiM6bzhmVrTNS4tDqrREtOenj8u6zHf88/5WV/G57ht4A5t17UvlfNzl/+0zumBHuWJq+BnWuZ5eS1fgtlue+dYUb0sTeU7xb/LtnuOZEyXB89pbuxiEQdVP18icWCbbACAQyRxd1w6dzrdSF37UottZ2ROozXqTIHReqbjs8a7ipsLxqncYuPK/OJ5PXw4fmM+kBJ3NW5t6Fl0XuyXHhiH/qR7exm/FC0ONuqybu0MN7EZKt54+9LOkJW5cxpsNH+xeHDjrs6s5R86lIydtwzTyh3WIknjXZelW5khS/2LGrxsTjI5bd+t5MyXurSWKlwHxvjXRnSmhPVzMDSq+1Kbxm+Y6zRxd1xtl7plTe071ZmVm3rC4WP7fAKKldOmSPeUGu9yOVepi+el5P5ZtTh4Y/tZtJaJo+aydCt7TNu4unKOKfysLaRzbGeo6ZphSOfenz/O9Vjo+We7r0M8+/Uct+XUdm08I/tmbP6EWaHPtOzzMu+PtA7b3TCV7xS/27Z7we8MScUuD+rc3EFuv+wP3zvvvFPpGAAAh1wydj49VMDFeJUHNj9X2h3vD983zAWSnm9kLxO725Vrvz37K3SNam6cyR2Wg/LrvKj+xdvanhouM7zE9KWof073t79k2Q0Vl0ZuGXpVdF7L7Ul26Zry534z51gz3g/WYS1pbSO3ts/TeW1EbYtfaq2I7bvlD48Z4vcrfN2YSM30LDE2hv1hhTsN17an+jk4/OHrlvslpht5EvuF68zKZT3hUCnm+QbkMCYpusbNn8HKtHUycwuWZiEz988q9V/f/vzzh6+rXzIPy7T7PCz4rN1DvHt8/hSux0LPv93Fs1/P8WI9eJSU/N26ZEneJga6lG+mvIKfaQWel662u5BTfpHxG2Xb7k7fGRID6TkKvfgxzhyCAIB9lRjITm7tLnF27rS5EeHu+E6NzfVLhvlEBoxDYVwMYbSWm397p8ayjYpb0mVWGj4AOnWxf2exiOTMbS32XzTdLznDuv2ntT0gJXFX41rUYKPxnsmd+LrgPZK4q3GdU84uNsNycs9T3Pa9MA1z6jI0pwv1LClF/RwozveLUd46s3JZTzg8in2+ATlMCx2s6cwNm95L/rDuZxZqWBxs3Nuq1kU8q3KnQ2mT0wwpBZ+1u1HK50++enTZs3Jv8ZTuOV6MdBx+he9nkmCZmO9enFO/zfvp9Jnm+Lx02O7Evnz38VvZ3xeW7wyJgfSCJF7MBoqEIABg3xhXdbNpWOT8WrqmL00NKofjrUxDCgxJu5RlCIlTuY5xGfjDuj/Xn2eRApRE4xm1uWhId17sz0xAnRku7Kplb9RvXpEx83d42ofpJLl5mFMx02YfrvrpvDYiDd5UQknN3FbOZPNpu6mzw1VPyKfI5xPgikOPus4xpdYKbHf5vKw+Jf5cdarHcsdTCo5tV3O7eKzxkR6YEsNuPtOc2le7bX+5Kd8h/mLa7pLhO0NmVeHsvJU1Naqp6dpJ+u4l+V4lSAgCAPZFtvt9yq6F1HlR/dZGq2VS4ILH27GbdLjYcl3EhTLzd+tS26IGbzo0yrLDhhM2w4UlLVonyjH2kijFl6h850haG90VkrmP5+7vDHMyrbpXqA4O45fMzBCkuwM3NahL6rZ7f5zqzOow1hNsFf18AopS4JlRaLEEN8/LfX5WFXzW2nFqu+3X56qxHosp4yB+zu+i7WrtyefqM81uOpZithdQ7GeqKf7dtN237zu/wvetyd1078ORtZQnPuNJCAIASi8Z043xtjy9bqTskL2dSZbTk/lq5Fr64e54fFKxAcMEzcmYzneNqy17fF4O5TpuTyhmmXdmwFW52D3DUBHrCq+JAcMquJlhoDfyDFcZ7zLsa3nf/GFd71+0TApuucccw8xzDtP9U2mGBnMypsvGMU528SdjiiXybCu2fg6c9PxX4+NOk58XqLOcUx7GekIOx+cTsFvpZ8b2MywZ03lLD6Vk7EaB4a0unpf7/awq9KxVo86YEpbp7TmMvb1K8bnqVI+Fnn9We40nGdP57KrD+f5/0ZzarhaJATUOGnrGu/xMS87ctlm8w/32/Ccu8jPVGr/j9e/2O4M3kBAEAOwT6xwr6b9sm6xzLKW5c9ku+ulfBu+bJiEufLweGLr3Nw7q3FzKcrw9p3ILb2+Ubjca4unSg5E1V+ViLzo1ll2t0Hg/3DgjY/ux89qItGg//LNtZC49N1N2OEi/zfveP64uw5xAt88Ut0pe51hKayMPzOe4VIb7wzgpfU1N7hdBSfKHdWtEO/9NXZZuWYa/5tRB421lW/alqJ8Dp/Oi+lVg8nMXdZZzysNYT7Dh8HwC3DJ9flt6SflP65zl893VnMoOz8v9fFYVftZa54K7q4trI+YVZDMLdHQZVoLd8+eqi3os9PyzOoif84XbrunhuDtz4UpzqfuWRVicP9PWvlws+AOa0/bCCpXvHL/jd4pdfmfwgppf//rXqddee00nTpyodCwAgCry9OlT+f1+/eIXv9BHH31U6XBwCFy5cmVv91JiIL3ys2GI535KDNToxhkSwgfNnu8jIIN7CaXglfuIZ+L+88q9hP115coVffzxx+ro6NCRSgcDAACwd+mJodsurZXnV/rMEJdLa3zxAQAAQPVhyDAAAKhqiYF8w873pTDDkBPrkBsAAACgOtBDEAAAVLXOsZRSY2UrTKmyFQYAQHXoHEuxSANQZeghCAAAAAAAAHgICUEAAAAAAADAQ0gIAgAAAAAAAB5CQhAAAAAAAADwkJpf//rXqddee00nTpyodCwAgCry9OlT+f1+/eIXv6h0KAAAAAAAFz7++GN1dHSwyjAAYO8++uijSoeAQ+DKlSvcS9gz7iOUCvcSSoH7CKXCvYRSuHLlyvb/Z8gwAAAAAAAA4CEkBAEAAAAAAAAPISEIAAAAAAAAeAgJQQAAAAAAAMBDSAgCAAAAAAAAHsIqw6gKf/vb3/TNN9/oxYsXlQ4F8BSfz6fjx4/r2LFjlQ4FAAAAAFAiJARRFb755hu9/vrrOnr0aKVDATzlu+++09dff01CEAAAAAAOEYYMoyq8ePGCZCBQAUePHqVnLgAAAAAcMiQEAQD7fPSMFwAAIABJREFUIzGgmpqanb+BhM0uhu3nY0oWebyUVOx8gXPkDa3wMU7bzTGeV8xNodi1ZOy8+V6oqSlpvaff7wHZ3WFFnig3Ttv7Nn8c53dxUcXG776czH9fLv+7OujS9VTovklooEzvGaqcq+cTUJjds83u88TUJnF5v+WeuwTPuCq3m3rcOe7g11/htqulvZxz7Q7bLZ95OfepU/un0PF2x2b+tk9R5PldXaNt2ya9j5c+0kkIAgD2QVKxu2e0lkoplUoplZpT/3iXqQGQjJ1X14ORzD5rGtGgGrefwM7Hpx/ajbp9aS2zT0qp+2H5nSIrWK7zdlP5N8Z3W0EoVv/czvucSimVuq+w05vtUudYSqnUmDp3fYZMI7NLmjPFOKf+B4/2PZm29/jzSM7ottrUtnhbM4cm57Wo23kuJhm7oQdtbWWOB9XHzfMJcMn4bFsbkQYbDcmI9LOlS+bn39yZQs+V9DGNg+fMz6M56W41JDkSA/vwI9Ru6nHHvj1jS8ixTX2+UYPnste/ppEHXYaEmdN2KXHX2L6Z0znTfZphbaeNdbo7vnPM0r5LKTXXL7WN6Fqnu/M7b3f+zpBOqDZqcLHo6q9qJAQBAPvAr/CY8UHbqWsjbVq8PZNpfCV0c3BR/dez+/gVvjWitvEbmd47TsdLydhlDZ6b0/2iskJO5Tpt35Euv1/9RZSOwykZu6xBjWgt5wtDp8ZcJKkPqsTNQenSLV3vX9TgzWr4Jumsra1Ni4M3bXp6JDVz22PfArBLzs8nYFf8YV3vl8azmbvkjG4vtmnkmuXJEs7/XMn7POockzV/4hm7qMfq4tB2Tc7o9mK/5rZvgOz2u+lnodN2SZ1jxvupUxeN96mk5KMHBSN0Ot4s/YP7zvU4n99xu9N3hsSAusb7NZea81y73vfNN99UOgYAgAf4T5/b+UfykR6oXxc7TTvonBb15ZqL4zNf3vsvFtm6dSrXbVzJmC4PntPc2MXiysc+yA7vyAz3rBnQwIB1qEh6m/GlZOz89j7mYZ/Z8xmHlhQeZmpuiBcKNabzNU7DVSxDvUz75F5rIid+m3Psanh1QnfH23Sp26/Oa+YvBqa9LEOUEoZ6Leaay+bSdY20jef2lEnc1KBGdP2S5fVdxL/3uke1MT+fgL1pO9OY/j8O7aJc7p9HOUOKLd290s+VhGmI5UBCls9E8zDa7LMo/zMsoQHrZ2IypvOGZ1lN17i0OKhGS0z5P1ftn4smLuvRWifZ4ot7xhbbhigBp7br2pfK+bnLf1rn9ECPki6257F9n+5S3uMzz+NrJUtgu/jO0Dl24HuB7hffqVOnKh0DAMADEnfHpXOn043UtS+12HZG5qZAo84UGK1nOj7za+8ZGRumLhpcTuW6iiup2OVBnZvzZsPhoHpw467OrKWH9Yxd7JeMQ3UTdzUu86/Ra18WbhyOd12WbmWGFfUvavBynkRQ4q7GrQ3xPJIzX+rSWmpnSI7NcPTFwUZd1q2C+xiv1a7YZOy8Gm9f2hnSOHdOg41Fzn+UuKvxtkvq9kvyd+uSTRItMVBjGKKUUur6l+qyjLVxc83l1ajuS20av2F+PxN3x9V2qVvWryfFxl+SukfVMT2fgN3K9FK6vt2LKd37dLzL5VylLp9Hydh5y5Di3CGikrQ4eGP7ObiWiaPmsnQre0zbuLp28QzLp3NsZ6jommHIp5vP1cLPRed6zKmTtRGdKVR/DvG4bkOUglPbtfGM7JvXmYSh03arnPs0Y7zL3fyM+Y7Pbs48j3O2Op0/3/bdfmfwCIYMAwD2XTJ2Pt0V38V4lQc2P0faH7+odFs121jVnr5425Vrtz0xkJ5nxbNDbyrF2NCz66l16drOnIKNZ0zz3iXujqt/ZERt20nCdO+3Qj9ut43c2j5f57URtS1+KbedNMw9B3buSX94zDDvoV/h65bEpST1G4e05BmybrzWHAndHJRGbhl6iHRes+8VV4C5Qe5PJ9FMJ0jXobmcMc1Zxtq4uuYy84evq984L2Iypht5vpwUF39p6h7VpZjnG5DD+GzrGle/5cdGf/j+9tyC+RYdKU7mc2rNWE7uEFFJUv/17c8/f/i6+iXzsNTdPsN2E6/T52rB56JTPWZ6Vhrr3h9W2PY/aXfx7KUNUUoPHiW3f9QzJm8TA13angXbaXv6lUwPzBrV3DiTMyTdH75vnj953JpgLnz8tjzPY6fzO5df2u8MhwkJQQDAvkoMZCe3dtej7txpcyMg//HmZIQ/fEsjbeO6EUvK1PBwubqetVzb7YmBdI8ovviVn3WyaMvcfKb3z9+tS23ZX7YTujver4vh0zqXTQIZe7/lkXs/FB46Y7TdMF0byfnV3ZQs7MpdlCZnCI3/tKyDEQveq4m7GteiBhuN93+Rk2QnY7qRGS68HUb3JfOXuuQjPdA5WUNptOnm63TN5depi/07i4skZ25rsf9i3s8n1/GXou5RVYp9vgE5TM+2NZ25YdP7yR/W/cxCC4uDjXtb1TpxV+M2n912Q0Rzh3QW/iHN9hibZ1hRXH6uOrXh0rHkqccievrvPh73bYhSSsfhV/h+JkmWifnuxTn1b7+fTtslqVNj2fv0lnS5YHK6U2Nz/ZIpwezueKfncf7zO20v9J3B20gIAgD2iXFVN5svSzm/lq7pS1ODyuH4ggwNj5RlCIlTuXm3Z1YVzs5tU1OjmpqunYZhRYdBwszQoy35SA/azqgxkwT6ci09+bTtcJTdaDyjNlcN/XSS2jzMaL+mru63rHac/nObx07O3Nai9QtP46AWjSv02s05lKOc11yczmsj0uBNJZTUzG3lTDaftpv491b3qBZ7eT4B+Tj0qOscS//QlG+76+dRtSnx56pTPZY7nlJwbFOb28VjjdYf9Zy2G/jDuj/Xn2eBroy8w5ALHV/E/OCFzu9mO7aREAQA7Ivs0NqUXQup86L6rY1Wy6TIBY839QAzK/grsVO5Bbf7Fb5vbQCmf0EdWUvZx4mK8XdfUtuDR0rM3JYyyb/Oi/0avxvTzO1Fd70JXBUUdrcKb+Y+mrtfeNW8RetNna83Rz57/kKYbpC3jazlfNlZM66kmqecNeM3EJfXXBHZeREHbmpQeXqLFhv/of0yDquCzydgzwp85hdaICPTNir4PMr3OZWn13exin6GOf24tF+fq8Z6LKaMg/g576JNbeXYM95VT70CXP1omFOobi+67KnpdH7j9t1+Z/AIEoIAgNLLDDm073UjZYfs7UyynF6oQyPX0o0Px+MzPcC6doYCJ2OXXaxK5lCu43ZUDf9pnVscVNegdoa+Np5R24Pb7hucLnWOZYbaOK5Aa2iwJ2O6bDeWdLzLsBpyQgNd42or5v7LJihNc+MkFRtwOaF5ZvLtSzYZMn/3JbUtDupmQjtfPI0TpScGlDui1sU1V0R6/qvx8TyTl28rIv691j2qg+PzCditdJtjOxGTjOm8ZfRBMnajwPBWw9BP6/MoMZB+tuT7nCpVW6fgM6xRZ0wJy/T2HMbebqX4XHWqR7sykjHF7PKqe37GxnQ+u6BFvv9ftCLbrokBNQ7m6xlvtz2hmGXORfP7arn+ZEznTdudjs8cNnPbZnEUN+d32r7b7wzeQEIQALBPrHOspP+ybbLOsZTmzmWH36Z7W9w3TSJc+Hh/+L7WRh6oK/N64+A5U0+efJzKdY4LFWFdVMRwL9jr1MV+Sca5Av3duqTFvf3qnaessZTxvtkZZru9GrU/rFsj2rmnL0u3bIafto3MpeeQyg5J7y/+/uscS2muf3z7v42amkbdPuNuiHTi5qAW882v6O/Wpbbsas1+he9nVpDMlnP3otZGDIN0XF5zxXReVL/yr3S4m/j3UveoJoWfT4Brpmebpeep/7TOWZ59znNWdmosZflszizkkE1+dI6lTO2nmppG3b60VpK2TuFnmHWuuru6aJ1rN7NAR5dhpdg9f666qMecMhpvyyYzVZp49kHhtmt6ioOduXCludR9wyIsTtsbpduNhvrr0oMRy/3ywHC/NQ7q3FzKsN3F8UqPMMj7A13B8ztv3+13Bi+oWVxcTP3whz/UiRMnKh1LhSwoXNujh9EVzV9tqHQwyOMPf/iDfvKTn1Q6DKCq9ff365e//KUaGnI/69bX1/VP//RPGh/P/aX2iy++0I9+9KOc158+fSq/369f/OIX+uijj/YlZnjLlStXuJeqXGKgRjfOlOaL5W5xH6FUuJdQCl65jw7C5/9h55V7CfvrypUr+vjjj9XR0VG5HoLrowHV1tbm/IUXKhURABxuv/zlL3Xjxg2tr6+bXl9fX9eNGzf0y1/+skKRATgUEgPqGi/Q4w4AAAAHRgUSggsK19aqOXJW01tb2jL+TQc1OUtGEAD2Q0NDg65fv25KCmaTgdevX7ftOQgA+SQGLEMmu+QwlA0AAAAHxZHyFpcenjsZnNZWrD13c3tMWzYvAwBKw5gUvHz5sm7dukUyEMCudI6llBqrdBQAgIOgcyzFD0JAlSlrD8H10ZuaVFDTdslAAEBZZJOC//Iv/0IyEAAAAAA8qIwJwQXFI0tS8IKKSgeujypgnGcwMCrj7FcL4cxrlv0Co+t2J9NowDhnYUC2uxVT7kLYdjsAHGQNDQ368MMPSQYCAAAAgAeVLyG4ntRDScELRaQD10cVaI5I0ZXMPIMriiqiZuvKI0sRNX8gfWiYi3Ap0mxeoGR9VIHaZkXOThvmLbymR809mtxLubMX0vvMXxVfqwEAAAAAAHDQVWyV4W3ZHnY5PfHWNfpBREvBac1fzabaGnT1WlCavGnp2deq6IeGhFx7SNFWmRYoWYhHtNQa1YppuHK7YitRtZoCKqZchj8DAAAAAACgupR5UREb7TFtbcUkpYfh9jzMvL5+T3eWpOA1S8LtjdNq1aQefSVtZwBb31WHqXteg/xnJT1Mal3tatCCZiel1mhHbi++Br/OSsoWW1y5p/XGri4aAA6XK1euVDoEHBLcSygF7iOUCvcSSoH7CKXCvYRSKl9CMJt4S65L7e4H10721OYO6ZV0tlRxHbByAaDavP3225UOAQAAAADgwscffyyprD0E23UhKE3euaf1q+7n2wtOb6kSo3IrVS4AAAAAAACwn8o6h2B7KKrWpYg+yLu0r0FDh961zAO4e2/odKu0dOde7krAC7PmnoAlLRcAAAAAAAA4WMq7qEjDVc1nVgCuta7Yq3UlH5p2zizk0WNeLVgLCm8vPOK64PS5liwrBa+PKtAzab9vScoFAAAAAAAADpbyLyrSHtPWVkijgWbV1lo3tiq6YlwtOKataanWMp9fcHrL9ZBjU7krpxVo7lFt9mStUa1sTSte26OH1n1LVS4AAAAAAABwgNQsLi6mfvjDH+rEiROVjgXI6w9/+IN+8pOfVDoMwJO++OIL/ehHP8p5/enTp/L7/ZqcnCx/UAAAAACAogWDQXV0dJR5yDAAAAAAAACAiiIhCAAAAAAAAHgICUFUBZ/Pp++++67SYQCe891338nn41EBAAAAAIdJ+RcVAXbh+PHjWl5e1rNnzyodCuApP/jBD+T3+ysdBgAAAACghEgIoiocO3ZMb775ZqXDAAAAAAAAqHqMAwMAAAAAAAA8hIQgAAAAAAAA4CEkBAEAAAAAAAAPISEIAAAAAAAAeIjv0aNHlY4BAAAAAAAAQJn4fvzjH1c6BgAAAAAAAABlwpBhAAAAAAAAwENICAIAAAAAAAAeQkIQAAAAAAAA8BASggAAAAAAAICHkBAEAAAAAAAAPISEIAAAAAAAAOAhJAQBAAAAAAAADyEhCAAAAAAAAHgICUEAAAAAAADAQ0gIAgAAAAAAAB5CQhAAAAAAAADwEBKCAAAAAAAAgIeQEAQAAAAAAAA8hIQgAAAAAAAA4CEkBAEAAAAAAAAPISEIAAAAAAAAeAgJQQAAAAAAAMBDSAgCAAAAAAAAHkJCEAAAAAAAAPAQEoIAAAAAAACAh5AQBAAAAAAAADyEhCAAAAAAAADgIUcqHQDgRiqV0vfff1/pMADPefbsmXw+n44ePVrpUAAAAAAAJUJCEFXhxYsXeuWVV3TkCLcsUE5//etf9Ze//KXSYQAAAAAASojsCqpCKpXSkSNHVFNTU+lQAE8hCQ8AAAAAhw9zCAIAAAAAAAAeQkIQAAAAAAAA8BASggAAAAAAAICH+F68eFHpGAAAAAAAAACUie/YsWOVjgEAAAAAAABAmfhYtRUAAAAAAADwDuYQBAAAAAAAADzkSKUDAHZrcz6q4ZmNnRfquzUUCaiuciEBAAAAAAAceCQEUZXSycBT6otH1JR+RfPRYQ1HRVIQAAAAAACgAM8PGV4I16o2MKp1j5Vd9U52aSjem0kGSlKdAu93q35jRvdWKxgXAAAAAADAAVe2hOBCuFa1tQGN2ma/FhSurVVteKFc4aDK1TU15fYCrDupU5IeP9msQEQAAAAAAADVoWwJwfbYtIJa0p17uRnB9dGbmlRQ07H2coWDw2jziR5LOnWSAcMAAAAAAAD5lHHIcLtC0VYtReIy9wNc1707S2qNhkQ6EHux+fmyNtSit5qc9wUAAAAAAPCqss4h2HD1moKa1E3juOGFuCJLQV272lDOUHDYrE5peGZD9d0dIh8IAAAAAACQX5kXFbH2ElzX6M1Jc+/A9VEFamtVm/3LWXRjXaMBw3abuQe3F+tYCOc5h4MCMeRfCCQTl3Gb47WgFFanQgpNLKu+e0iRAMOFAQAAAAAACin7KsPZXoKzC8rtHbg+qkBzRIquaGtrS1tbK4oqomZjwm8hrjvvZrdvaWtrWsHJHgWsq5UsRdQ8eyG9z/xVue5/6BBD+4WgtBRR3Lr+yfo93VmSgtcyZbm5FuzRqqZCIU0s16t7KE4yEAAAAAAAwIWyJwSzvQQnb4YVNvUOXNfoBxEtBac1vz18uEFXrwWlyZs7qxO3xwzb0+e7EJSW7tyz9L7bzSIlLmJoDynaKk3OWmZCvHdHS61RhdqLuBbswaqmQhNaru/WUDwicoEAAAAAAADuVCAhmOkluDSpSVPvwEwPuwuWJN4bp9WqJT36yviiedhwz6RNIa2n9UaxgbmKoUEd77ZKk7OGxVEWFI8sqfXdjkzvwGKuBbuxOjWhZbWoLxIQuUAAAAAAAAD3jlSm2Dd0ulXS2Qs5KwtP9tRq0uaIs5n/XQinE4Ct0RVtzTfsvPawdNE5xdDQ8a5aIxHNLsTU3i5pYVaTCmrasjCK03mwW6v67bJYQAQAAAAAAGAXKpQQzC84vaW8I33XR3Vz0mGf/Y5Bkhqu6lowop6bowq1X9VXs5NScDonubnfcXrdxsywQjN2W1rUF+8lWQgAAAAAAGDj4CQEGzr0bmtEkdkFxdqLyaKtK1mq3oFFxNB+IShN3tG9BenOZKuiK4b9d30tcKdJvfG4eisdBgAAAAAAQBWqyByC9rKLbvTIvBDvgsKB0fSCIQ1+nZV5QY+FcLMiS2WMIas9pGjrku7cvKOl1nfV0bDL8wAAAAAAAABldHB6CEpSe0xb01KtZe694PRWerEOtSu2EtXD5h7VZnZoja5oOthcujkEHWPISi8uEoksKTg9b9lWzHkAAAAAAACA8qn5zW9+kzpx4oROnDhR6ViAvJ4/f67jx4+rpqam0qEAnvLdd9/pT3/6k44dO5az7enTp/L7/ZqcnCx/YAAAAACAogWDQXV0dBykIcMAAAAAAAAA9hsJQQAAAAAAAMBDDtYcgkABX3/9tV5//fVKhwF4yuPHj22HCwMAAAAAqhcJQVQFn8+n2dlZffvtt5UOBfCUV199Ve+9916lwwAAAAAAlBAJQVQFn8+ny5cvVzoMAAAAAACAqsccggAAAAAAAICHkBAEAAAAAAAAPISEIAAAAAAAAOAhvlQqVekYAAAAAAAAAJSJL5FIVDoGAAAAAAAAAGXie+eddyodAwAAAAAAAIAyYQ5BAAAAAAAAwENICAIAAAAAAAAeQkIQAAAAAAAA8BASggAAAAAAAICHkBAEAAAAAAAAPISEIAAAAAAAAOAhJAQBAAAAAAAADyEhCAAAAAAAAHgICUEAAAAAAADAQ0gIAgAAAAAAAB5CQhAAAAAAAADwEBKCAAAAAAAAgIeQEAQAAAAAAAA8hIQgAAAAAAAA4CEkBAEAAAAAAAAPISEIAAAAAAAAeAgJQQAAAAAAAMBDSAgCAAAAAAAAHkJCEAAAAAAAAPAQEoIAAAAAAACAh5AQBAAAAAAAADyEhCAAAAAAAADgIUcqHQDgRiqV0vfff1/pMADPefbsmXw+n44ePVrpUAAAAAAAJUJCEFXhxYsXeuWVV3TkCLcsUE5//etf9Ze//KXSYQAAAAAASojsCqpCKpXSkSNHVFNTU+lQAE8hCQ8AAAAAhw9zCAIAAAAAAAAeQkIQAAAAAAAA8BASggAAAAAAAICH+F68eFHpGAAAAAAAAACUie/YsWOVjgEAAAAAAABAmfhYtRUAAAAAAADwDuYQBAAAAAAAADzkSKUDAHZldUqhiWXLi/XqHoooUGfdeVPz0WHNbFj27h5SJHdnW5vzUQ1bT5C3PBS21/cjc7y6NRQJiOoHAAAAAKA4JARRxVrUF+9VU+Zfq1MhTQxHJWOSLpM4rO8eUtyYbFqdUvSJmzJWNRWa0LJa1BePbJeVPkVUrk5RFdLXqb64epuc9959MXt9PwAAAAAAwF6REMSh0dTbp5blCS1/vqlAXZ2kTc3PLUstfbk9z5p6FXE8YyYZ2NKnuE2WrKnX+QxVY/OJHks6tb+F7PH9yKpTIBJXoMTRAQAAAADgFeWdQ3AhrNra2py/wOh6WcOAVzzRhnWUbxE25+fSPQP3tcucl+zt/QAAAAAAAKVRgR6CrYquzOtqQ+af66MKNDer9tG0tmLt5Q8Hh0e2l9vJbO+zJr3VIi0vz2m+o6nIuf429fnyhtTSpWLSgatTIZmnNjQPa5ay8xGeUl/8Lf02NKHt3bM9ETfnFR2e0Yb19ZzjO/TEMhdfi2nIb2auvVPWHo7m140xb0yE0vEYy7TGU2+eu291KqSJx90a6trQ8MRyzvYdxb4fNnMNthhifmwpx22c70ufGPazn7swf9luygIAAAAA4CCr/JDhhqv6MHpHzZGbGg217yQKgaJsav6TGW209CliyH1lhxHPDIc0U0zSZvNzLW9I9S0nXZafGV5c362huCUJFXpss/jIsiZCUl88rl4pk2CaUPRxvTY2TqkvHk8nEbOv11uTVsuZ88YVz7y8OR/VcPqkRc0D2NQbV7wjneA6ZT02k/jS9px/6UTZ8NRJc5JxY0bDv+1TPN7rUJbL9yObcGvpU3z7DV3V1FSeExcT5yfdGorH0+WuTik0Maypk4brdirbbVkAAAAAABxQ5R0ynEdDx7tq1ZIefVXpSFBdljURCikUCikUGtbMRr26O6wJmSb1xuMa6q5PJ4NCIYWi89p0WcJOb8PCVqcyyUBLgqupd0jd9RuaubdqOaJe3UOGnoN1AXW1SBsbsn99+fOcmFv6zEnGukBEfS3S8pz76yvMkGTdLqhOga4WaXlO86ZC3A6tdvd+rN6b0UZ9t4ZM52xSr20ZxcRZr+73De9RU4e666Xl3+68P4XLLqYsAAAAAAAOpgORENRXj7Rk+OdCuFa1gVGtZ+ccDIxq3brdNA9hWAu2J15Q2LRfQKPr6deM8xbmL29dowFLWWFzSeujgUz5lrKy+62PKlDgeOxFi/riccWzf0MtWh4OKTRlTb6lk2VxUyIqWsLkzap+uyzVt7xp09utTm+21EvLv5U5qlOy5hpP1tfnf31jw7KicYvessmN2e+7S5leki3Wgk7Wq14b2jAWUl8vt30pJaf3I12fLV3F9eZ0F2eL3jSdtE4nT0l6/CSTlHQou5iyAAAAAAA4oCo/ZFjSevKhpKAuGKcQXIqoeXZaW1sxw4sLCtf2aLI1qpWtq8qOLl4I16qn9qHN3IQRLQWNcxNmjpfUag3CrryFuO68u6Kt+QbT8YHTK5o3jW2eVE+tNL21pdh22T0KPGzV0tJZTW9tqd34es7xKIm6gN7vXtbwTP456uoCEcUD6eG9M5/M6818Q1brTiqdJ9qU9jgzXN3J/V27d78tZ+cVtCjFVdm+H7tc8bgkcbosez/rBAAAAACA/Vb5hOBCWM2RJQWn52VeUiSoacsiIwvhTDJwficZKEntsRVFHzYrEl/Q1cwxC/GIllqjWjGdo12xlageNkdsAsktT+0xzZteateFoDR5557WrxpjaFV0JbYTf8NVXQtG1DMp+9dzjkeppJNvjx32alJHd72WZ9I96ezTfdkFMD7XZqBuTynBzSe7SW8dHC1FzklYPDfvh7P9j7MyZQEAAAAAUGoVGDK8pEizYQhtz0NFV7aUs8Bw62m9YXphQbOTUuu7HTaJtAZ1vNsqTc5mhg4X2LfBr7N2YeWUl2UeNtwzabfPWfktBb1xujX/60uPxHSJ+yObfHOa+u/JxkbhHSQ1dXSrfmNGnziOLU4nD+3m+dtZrfitolYrdvZYT3IKs5ZlHQ6b9UQuLl+qe1Mtlvn19ovp/Si23FLG6XSuMtYJAAAAAAD7pQIJwVZFV7a0tZX9my/JysINfts0356k5ypsTg8bzsQ7HSx5MSiV1SkNz2yovrsjkxBb1VRoSjmpm9UpTSzLsF8edQFF+lq0MTNsv/DF1M68d9nk4bBlv9WpYc1suF1woxgbmhk2X5tdWU1vtUgbM9pZ02RT89GJ3OGupiHS2y9mFsuYkHlaxlVNFbEwi+k4V+/HTrnm+SBXNWUzP2Rp43Qqu9R1AgAAAABA+VV+yHCJpOchLGFScH1UNyel4LRN70UcEMuaCJlTW7lDOXP3Sa/wG7edYzBHU6/i8Q7NR4c1HJqxbGxRX2/m/9YFFIm/mbtffbeG4i4XxyhKi/qG6jUXCmnC+FrWpMDKAAAgAElEQVS815zkbOrVUPdjDRvmvGvpG1L33LDMV9Ok3r4WhSaGFZqR1NKneG9T+vr7pJBlzryWvvgur8nl+9HUq3j8LU2FJmTcvaUvbn/aUsbpVHbJ6wQAAAAAgPKq+c1vfpM6ceKETpw4sf+lLYQzQ4QL9wpcCNeq52HuXIH5Xk8P621W5Gx2AZHMv2Wz70JYtT2Tao3uLOxhe97MoiRnTQnB3POujwbUHDmr6a2YaQ7EYl9HYc+fP9fx48dVU1NT6VAqbnM+quGZU7nJP2AffPfdd/rTn/6kY8eO5Wx7+vSp/H6/Jicnyx8YAAAAAKBowWBQHR0dlRgyvHvtoahalyJqDoxq3fD6QrhZkSXjoiANunotmF45OLyws+P6qAL2kwDmysw1ODm7c3y6nL1dAwAAAAAAAFBJVZUQVMNVzW+tKKqImmsNC308jGrF2uOuPaatlahaJ3t2FjD5QPpwa1pBV4WlVyQ2Hn/z9ApzCAIAAAAAAKCqlXfI8IGwoHBtj8TcgFWFIcM7GDKMcmLIMAAAAAAcHtkhw4dmURHXFmY1qVZF36h0IMDu1AUiigcqHQUAAAAAAKhW1TVkuAjrowEFRtfNL24vKPJhwUVNAAAAAAAAgMPq0PYQbOh4V2puVm3E+GqroitbJAOr1Ndff63XX3+90mEAnvL48WPb4cIAAAAAgOp1aBOC6QVIrlY6CpSIz+fT7Oysvv3220qHAnjKq6++qvfee6/SYQAAAAAASujwJgRxqPh8Pl2+fLnSYQAAAAAAAFS9QzuHIAAAAAAAAIBcJAQBAAAAAAAADyEhCAAAAAAAAHiIL5VKVToGAAAAAAAAAGXiSyQSlY4BAAAAAAAAQJn43nnnnUrHAAAAAAAAAKBMmEMQAAAAAAAA8BASggAAAAAAAICHkBAEAAAAAAAAPISEIAAAAAAAAOAhJAQBAAAAAAAADyEhCAAAAAAAAHgICUEAAAAAAADAQ0gIAgAAAAAAAB5CQhAAAAAAAADwEBKCAAAAAAAAgIeQEAQAAAAAAAA8hIQgAAAAAAAA4CEkBAEAAAAAAAAPISEIAAAAAAAAeAgJQQAAAAAAAMBDSAgCAAAAAAAAHkJCEAAAAAAAAPAQEoIAAAAAAACAh5AQBAAAAAAAADyEhCAAAAAAAADgISQEAQAAAAAAAA8hIQgAAAAAAAB4yJFKBwC4kUql9P3331c6DMBznj17Jp/Pp6NHj1Y6FAAAAABAiZAQRFV48eKFXnnlFR05wi0LlNNf//pX/eUvf6l0GAAAAACAEiK7gqqQSqV05MgR1dTUVDoUwFNIwgMAAADA4cMcggAAAAAAAICHkBAEAAAAAAAAPISEIAAAAAAAAOAhvhcvXlQ6BgAAAAAAAABl4jt27FilYwAAAAAAAABQJj5WbQUAAAAAAAC8gzkEAQAAAAAAAA85UukAgN3b1Hx0WDMb2X/Xq3sookCddbd5RYdntL2bWtQX71VTzunc7LeqqdCElo0vtfQp3ms9mzW2fDG6PZ/dOe2vY3M+qmFjwfXdGooEZK0W1/XislxrDJ/ofUVy3gwAAAAAAFBpJARRpTKJtJY+xSPp1NTmfFTDw1HJmHBbnVJoYln13UOKZ15cnQppIiRzUsvlfpvzc1JfXPGdFxQdnlBI1iTeE21sSC19cdnm9oo+X+712scX1fDMKfXFI5nX0sm8dLUYkoJu68VluYYr2k4e1nfnv24AAAAAAFA5DBmGyfpoQLW1YS1UOhAHm/NzWlaL+gxJs7rA++qu39DMvdXsXpqfW5Za+kw91Zp6+9SiZc3Nbxa5n1QXiJgTfHUBvd9dLy3/Vqsqntvz2V2vXXw62aUhU6KuToH3u1W/MaPtainiel2Xq3SiMBSy6xUJAAAAAAAOkoolBNOJp1rLX0Cj65WKqIwWwunrDYzK/nIXFK6tVcATlbEbm/p8eUNqecvSQ61Ob7YYkmmbnyu9m7UfW5PeapE2lj/XZjH75VF38pSkx3pi3GnziR6rXvUni7862/NJUn29zKc7qfp6aWPjyc6xTU25Q4PrTuqUpMfZExZ7vS7KlTb15LHSPQ7jQ+qud3OlAAAAAACgEiqQEEwnu5ojZzW9taUtw990sDxlh/el+9suzr0UUfygd8U7kNLDcettsm15k2kWJ9MZLT0pvJur/TafPJbqW/RmiabLsztf3clTNnHkrwfLCfVY0qmTzgFar9d9uXUKROLMGQgAAAAAQBUoc0JwQeHaHk0Gp7W1FVO7ZWt7bF5XG/ax+PWkHh6YcwcVDEqTPQd/eO6B4zbBlekZt/zb3MG8TzY2it/PzuqUhmek7vcti3Y82dCGNjQzHFIolPmLzhfsaVjwfE0d6q5f1sTUqmHXCS2rRV0OSbjNz5e1oRZtdwgs5nr3UC4AAAAAADiYyrqoyProTU0qqOmYNRXoTRdi09Jkj3rCF7RFneyDJnV012t5ZkJTb+0s7rE5H9XE8m72S1udCu28Xt+toXhv7jDdpl7F473GozQVmtBwaCNnMQ5X51OdApEhKTqsUCj7mvNqv+kE44bqu9837FfM9e6yXAAAAAAAcGCVsYfguu7dWZKCF3J6BhayELbOM5jbo24hnJmPb31UAcO+xjn4FsK1qm2OaEnSZE9mn+3xvesaDVjKsR37a79f4XMX0q5QtFWavOkwd2Km3Jxz5r6+syhIeghzzvVY6ih/nNZrzTO/o/V8lnkRt98bx3kT90ddIKJ4X4uWJ3Z66n2i9zVkmeTO7X6S1NQbVzye+Xtf+sRV778m9cbtF+Nwdb7VKYVCw9roMuzbJ02EQprKs5rJ6lRoeyVh61Be19e7i3IBAAAAAMDBVr6E4Po93VmSWk+/4fKAdEKr52FUK6Z5BifVY5ecWoqo+QPpw+y+00EtRZq35/Rrj21payWqVknB6cw+2V55C3HdeXfFMJ/htIKTPeZFPdZHFahtVuTstHk/p3M7aLj6oaKtS4p8UMpE2aR6amd1IRvnSlStkz0KBAKqbX6ka9bXcypzUj21H0gf7tT7SlSKNFvmSFwfVaA5IkWzdbeiqCJqtiYZlyJqnr2Q3mf+qvZzVLitpt6dZFY8Pc/dk/QkeObFMtzuZ1QXUGQovYrvJ/NOA4LtFuNwc75VTU2kVwU2rUjc1Kuh7notT0xZVjhe1VQopInlenUPFZjXz/F6iy0XAAAAAABUg7IvKnLW7y4dtBDu0WRrVCuWBFJ7bCWdQMtZjaNV0Q8N+7aHFG2VJmdd9NRrj2neNHlhuy4EpaU797aTdAvxiJZao1oxJfraFdvzUN8GXf0wqtaSLjDSquiKYY7Ghqu6FpSWlmT/uuE6s4LT5vkcG67OazooTd7MJi7XNfpBREvBaUPdNejqtaBNj8cSDxOve1Mt9YZVcw3cLfCRWRG35U2bobm72C8zJ1/JWM+XmTPR3SIq6aHJy/XdGopHVNw0f5brLapcAAAAAABQLSqwyrAbC5qdlFrf7bDpTdagjndbpclZ89Dh1nfV0WDez39W0sOky5535iGyPZO58QSv7VPvtkxirnQLjJyVNe/6xunW/K8vPdJXpleDumCTvzPtm+nxGbTu+MZptWpJj4wnbD0tt/1C3anTyVPSxvLnlmG6m/p8ecM5gbd6TzMbLhbFcLuf20VONj/X8m5WBc4kCO16Fm4+eWwOObPgR18k4JDstGG93iLKBQAAAAAA1aN8CcEGv9L5ub0PjG3wn917PAbpeQqbTcOGp4OGHfZzdeKM9ti0gprUzcKTCR4423MmZv8ycynut6bePrVszGjYMJHd5vwnOQm8zfkpmUbyrk4pNLGslj7zohju9lvVVM5cgauaGp7RRn23OgwnzDmfYb/3t+Nze770IiBanjDP22dYMCR9ylX9dlmq7+5wXPDD3fW6LRcAAAAAAFSTMq4ynB6GO3nnntav7q2n3XryoaQSJQXXR3VzMj33X2UX+k0vMNIc+UCjHdcqGUhRKldv6UU6FJpQyLRCr7Vn3GPNDIc0s/3vFvXF4zYJMzf7NemtUyENh2ZMr9Z3Dymekxmzns9uP/fnqwtEFD85pdBESMaFgFv64ub5/SRtzAzLckrDNWUTfu7qpZhyAQAAAABAdShjQlBqD0XV2hzRB6Mdljn7cvYskDzMrlZ8rajViouzrqSxS2BDh95tjSgyu6BY+/6V2nD1Q0XvNCvywU21mrcYhj+3G+rjKz1aUslyozseKrkutZsq3lLvZaqTwprUG4+rt8AedYGI4gHnM7ndr6k3rnihAvfpfJmdFS+4s3N9FBufu3Jzzq5AJC63pwcAAAAAAOVV3jkEG65qPrP6b20gd1XdhfDO6sHtofRCG82W/RbCzYos7XKRCrthy5nXjIuPpMswHZhZLKNHtaYVdBcUzv67JEOiswuMLOUMu22/EJRMC4+sazTQo8k9lJbfkiLN5vkMc+t9p07MiwovKGzz3gIAAAAAAOBgKP+iIu0xbW2tKKqImmvN88/1TBoWvWi4qnmb/XoeRrWyFdtl78B2xbIJydraTHKvXbGVqFone7bLuHl6xTyH4Hbc0woa9qut7dHO6ht2596FzAIjuaHHtBJtNczZ16xH11YUbbXZd8+Cml45rZum9yaoaWu9t8e0NR20zCPYI+3X4isAAAAAAADYs5rf/OY3qRMnTujEiROVjgXI6/nz5zp+/LhqamoqHQrgKd99953+9Kc/6dixYznbnj59Kr/fr8nJyfIHBgAAAAAoWjAYVEdHRwV6CAIAAAAAAACoGBKCAAAAAAAAgIeUdZVhYC++/vprvf7665UOA/CUx48f2w4XBgAAAABULxKCqAo+n0+zs7P69ttvKx0K4Cmvvvqq3nvvvUqHAQAAAAAoIRKCqAo+n0+XL1+udBgAAAAAAABVjzkEAQAAAAAAAA8hIQgAAAAAAAB4CAlBAAAAAAAAwEN8qVSq0jEAAAAAAAAAKBNfIpGodAwAAAAAAAAAysT3zjvvVDoGAAAAAAAAAGXCHIIAAAAAAACAh5AQBAAAAAAAADyEhCAAAAAAAADgISQEAQAAAAAAAA8hIQgAAAAAAAB4CAlBAAAAAAAAwENICAIAAAAAAAAeQkIQAAAAAAAA8BASggAAAAAAAICHkBAEAAAAAAAAPISEIAAAAAAAAOAhJAQBAAAAAAAADzlSjkL+8O33+j9mv9GD/+8/9O13L8pRZNW50PifFP1fa/WjV19ytX8qldLz58+VSqWUSqX2Obrq5PP5dOTIEdXU1Ljanzp1VmydPn/+XE+fPtWzZ8/04gX/7ds5duyYjh8/riNHyvJxDAAAAADA/icE//Dt9/pvnzxR+L/+nf7v3uOqPUqnRKut715oamVL/+3/eqL/938/6ZgUTKVS+o//+A+9/PLLevnll10nZ7wklUrp2bNn+rd/+zf94Ac/cKwj6tRZsXX6/PlzPX78WD/84Q914sQJ+Xz8t2/14sULffPNN3r8+LFOnTpFUhAAAAAAUBb7/u0z8v9s6f/8X/6zQuf/p/0uqmrVHvXpv58/rq1/S/eknPnfflhw/+fPn+vo0aN6+eWXyxRh9ampqdHLL7+sVCqlf//3f9cPfvCDgvtTp86KrdNvvvlGdXV1+ru/+7syRVh9fD6fTpw4oe+//15Pnz5VXV1dpUMCAAAAAHjAvnfZmf3dv+ly86v7Xcyh8N//63E9ePIfjvu9ePHCMRmDtGwCywl16p7bOv3b3/6m2traMkRU/U6cOKFnz55VOgwAAAAAgEeUZQwfw4TdqT36kr79d3fzrDGk1Z1i6ok6daeYenrpJXdzYnrdSy+9xByLAAAAAICyIVMHAAAAAAAAeIjvm2++qXQMAAAAAAAAAMrEV19fX+kYAAAAAAAAAJSJj3nTAAAAAAAAAO9gDkEAAAAAAADAQ0gIAgAAAAAAAB7i8YTgr/TBSy/p7fhXJd7Xq/6o+59+qsQXf650IFXtj/c/1aeJL0Qt7s6vPnhJL70dF/+lAgAAAABg70ilA9i7X+mDly7oI13R7Pcf6qeVDueA+PMXCc3+4Ue60PkTvZK7VV8kZvX5q2/r5+dfq0B0h8Sfv1Bi9nNt2WyqffOCOn+SW/PYu6/ib+vvBxctr7Zp5HefKfRGRUICAAAAAKCqVH9C8Fd39VFbm9oWP9LdX32on5IRrEJ/1P1PP5Pe/rmqLz9ZqzcvdMqc+/uj7n86q08/l35ctmuq5jp0y5j8/8yU/P/VB2/rdxWLCwAAAACA6lLlQ4a/UvwfP1LbpSn9wxXpo39kmGBV+vOf9W2lYyip13T+5z/X2z+Wfv9ZQmUZQX3o6tAqkwy8MqvvbXoC//RDegcCAAAAAOBWdScEv5rV7cU2Xbrwhn568Yq0eFuzZARxQLx2/m39WFv6/F//WOlQqt5X8X9M9wz8kC7AAAAAAADsVVUPGf5q9rYW2y5p6g1Jb1zUFX2k27NfKWTbVegrxd/+e+1MPdamkd/9Q74zF7Hv4fDnLxKa/fxVvf3z/6I/J2b1uWFiPPthr5l5CLf3q9WbF/6L3Zkt+0n68c7chX+8/6k++3365a3PPtXvLdtz5umrfTPPvIgH0Wt67cfS73//R/3x/GvarsLdXFOBYw53HUrSV5q9vShd+YfdzxH6VVxv//2gdv6THtHvPgtp55PC+t+8pCuz+t6QgPzVBy/pwr+O6Hf/8FB/f+Ejm3MAAAAAAFAdqjgh+CvdHFxU28hU5gv5T3VtpE1/P3hTvwpZhhRmkwFXZvX9Zz/dPj49H5nUttt9D53f67NPv9WbF36un2eyRX/+IqHZzz41z02XTTD9+G39vDP7YnoOu99LqjWe8o//qj/86IJ+3vmKab/Eq+lFN147//P/v727CY37Wu8A/M6MpMhxPTNKnVzXXFmKFYvUTry4ixa5KqWr2MyigUBApZBkYfAq4EK4t7Sk3HILLVmYeFEMXjSBFtGs0sVgUbxpo1gUUgcUuwVdGyIrpMGVrz6wLUtk5C5GY+vLtixbMx6d5wEtPDrzn/d/RiPsn895Twy8Vr1eYXXwuPQ6cbgUA4fyUQsXyxfyTXMYSqFQXPnAZu7pEc/Z7nNYXQkc0ff2gU0+v/qZjlNjUXm/J2rhX++J3vuB39BH8dnbY1EZrsV71c98/8GxGF7+HwwjJ6P38+q2ZQAAAGhWzbtleOjzOBvV7cI1PaW3oy/OxudDq4Z+dDJG+k7F2IrthkfjzNipNQHf44zdjrr6Vx6QkT90rNoL79LlqLXCm7g0GtPFw1FaESh1xpHS4VgVf0V0Hll12m511dz0tYl4eGu92bj8ZTV0vP/8fBx6rSti/FJ9+vI9NTMxOxuxuXt6knnYTnMY8VrvZtbiXY3T71QD/vvBXk+8X206GqdrLQaOnlkZ/MXRqHYhKK/qS2rbMgAAAM2vaQPBoc/PRvS9HaXl/4bvKcXbfRFnVySCQ1EdWlq7ta+nN1Zucn2csdtRV3Sus2isUChGTM8sHVoxERPjEcV9nWu3nObzUVj3urNx+dxgDA5Wv2rbWx9qdiKuTUd0rS6oUIhiTMdMU52gUYh8PjZ3T08yD9tqDjdpaXXh8TdXhXgHDkZfjMR//3rF4Djdn4tcrvpVOrvO9foOxibXKQIAAMAzo0m3DFeDu4iT0Zs7ufbbI7+K0x8cderoUojXyF5xtf52xcP3tw1PXBiM4Q2GUeO1nnirrB88PntmZqYjivtW1LuZe3qSeWj2OayF8ZfGrkYc3dyH+mwpF+vle7WQf+hENQDsO3V/23C1Z+CmXg4AAACeaU0ZCN47cbRyZu0hA0v9wh58uAgRM1HNqbY4Epq9HJfGH3QoycY8yXMbbun+i4dXrqbczD0lO4cRUdu+e/azclx9f3OHeBwvV+KBO32vno5fnX3EGAAAANhGmnDLcO3E0TfXP3F0advw/d5fB+Jg33q9wGKpD+FyjzP22Zbv3BfFGI+JiXW+OTER41GMfZ2r1w7Wet0tNxsT1X2nS6fkFqJQfEAPwImJdVeirb7e7EZWB+Y7Y18xYnzdG2gGS/37iofjD2r9+zZzT08yD00/h/cd/eBU9I2cjHdOr/lkPty6bQQ24mqMWR0IAADANtV8geCDeoLds3RgwMhnUb66/M8no/fEslDg6unoX9Mk7HHGPuPyh+K1rojx4XMrD4+YvRznhscjul5bcXhI1XSMli/E8vho4kI5Rqe7ov/eErOlQymmR6N8YdnI2nVX1FDtKbg8kKpeb3Wt1XEzK9LI2uEXw3FhRZ41ERfOXX7EgSQNNns5zg2WYzQOR+nYoWWrAzdzTxt8znabw9V63o/h8vEYOdkbuf7TawL7oRP9sX5WWDtApBQnVmSCQ3Gidp2lLcnLQ8OhE71xcuQp3wMAAAA8I5puy/DQRydjJI7HXz1sa9/RN+N4nI2THw3F+2eORhw9E5Wxg9HfW4pcLdfrOxVjlXJ8lCvFioVAjzP2Gdd5ZCAGOi/EYHkwRpc93tU/EMfW3ULaFf2lQlwaHIzh5Y8NHIkVwzuPxECpEOfKwzFYywCLh6M00B+XBofj/gLA6snDM8vGFQ+Xor+rvKqHYGcc6e+KweFyDI5GRFd/DBzprL5Of8Tgqh54Xf0DDe2LuNJ0jK6a34hiHC4NxLH1itzMPW3oOc08hxt09ExUKh/E6f7edXqHHo/ymYc8rxyRW9VH8Hi5srT9uHqK+KVln/m+U2NRPt6rhyAAAADbUmZkZOTuiy++GLt3796SFyj+3XdR+dvf3ZJrb0e5v/yfmP7FTx86Zn5+PorF4lN93dnL56I8Wlgb/m0D09PT8dxzzz10zFbM6Xa2kTn99ttv4/XXX69TRc3vm2++ie7u7kaX8VgmJyfjlVdeiU8++aTRpQAAALAB7777brzxxhtNuGUYAAAAANg0gSAAAAAAJEQgCAAAAAAJabpDRdga+UPHYuBQo6sAAAAAYKtZIQgAAAAACdnyQLDQno3pO4tb/TLbwvSdyobGZTKZuHv37hZXsz1sdJ7M6cZtdJ6y2WxUKhv7mU6deQIAAKCetjwQfP2l1vj4y99s9ctsC5/+10yUDux45LhMJhPz8/N1qKj5LSwsRCaTeeQ4c7pxG53Ttra2mJycrENFzW9qaiqef/75RpcBAABAIra8h+A/lDriD//xehR3ZOOdnxWj2G6X8mrTdxbj4y9vxMcXfhNfvPfSI8e3tLTE/Px8ZDKZaGtr21A4k5q7d+/G/Px8zM/PR2tr6yPHm9NHe9w53b17d3z//feRy+Wio6MjcrlcHapsLpVKJSYnJ2NycjL27t3b6HIAAABIxJYHgvsKLfHFey/FX5S/iz//l0sRtmWuUWjPxes/zccX73XGvsKj35JMJhOtra0xPz8fc3Nzdaiw+dQCvdbW1g2vEDSnD/e4c9rS0hJ79+6N8fHxGB0dtSV7HblcLgqFQnR3d0dLizOeAAAAqI+6/At0X6El/vlPuyOiux4vl4RagMXTY06fvpaWlujp6Ymenp5GlwIAAAAssX8XAAAAABIiEAQAAACAhAgEAQAAACAh2cXFxUbXAAAAAADUSXZsbKzRNQAAAAAAdZLt7u5udA0AAAAAQJ3oIQgAAAAACREIAgAAAEBCBIIAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJAQgSAAAAAAJEQgCAAAAAAJEQgCAAAAQEIEggAAAACQEIEgAAAAACREIAgAAAAACREIAgAAAEBCBIIAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJCQ7IcfftjoGgAAAACAOrFCEAAAAAASIhAEAAAAgIQIBAEAAAAgIQJBAAAAAEiIQBAAAAAAEiIQBAAAAICECAQBAAAAICECQQAAAABISLZUKjW6BgAAAACgTqwQBAAAAICECAQBAAAAICHZcrnc6BoAAAAAgDqxQhAAAAAAEiIQBAAAAICECAQBAAAAICECQQAAAABIiEAQAAAAABIiEAQAAACAhAgEAQAAACAhAkEAAAAASEj22B//stE1AAAAAAB1kv23//ibRtcAAAAAANSJLcMAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJAQgSAAAAAAJEQgCAAAAAAJye7Zs6fRNQAAAAAAdZKdmppqdA0AAAAAQJ3YMgwAAAAACREIAgAAAEBCBIIAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJAQgSAAAAAAJEQgCAAAAAAJEQgCAAAAQEIEggAAAACQEIEgAAAAACREIAgAAAAACREIAgAAAEBCBIIAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJAQgSAAAAAAJEQgCAAAAAAJEQgCAAAAQEIEggAAAACQEIEgAAAAACREIAgAAAAACREIAgAAAEBCBIIAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJAQgSAAAAAAJEQgCAAAAAAJEQgCAAAAQEIEggAAAACQEIEgAAAAACREIAgAAAAACREIAgAAAEBCBIIAAAAAkBCBIAAAAAAkRCAIAAAAAAkRCAIAAABAQgSCAAAAAJAQgSAAAAAAJEQgCAAAAAAJEQgCAAAAQEIEggAAAACQkOzi4mJMT083ug4AAAAAYAu1t7fH4uJiZCuVSly7dq3R9QAAAAAAWyifz0elUonswsJCTExMNLoeAAAAAGAL5fP5WFhYiOzc3JwVggAAAACwzeXz+Zibm4vsrVu34quvvorz5883uiYAAAAAYAtcuXIldu3aFbdu3aqeMjw1NRWffvppXL9+vdG1AQAAAABP0c2bN+PixYsxNTUVEVENBBcWFuL69etCQQAAAADYRm7evBlff/113LhxIxYWFiIioqX2zZmZmTh//nyMjo7GW2+9Ff39/X7enIkAAAFoSURBVA0rFAAAAAB4MleuXImLFy/GjRs3YmZm5t7jmVdfffXu8oFtbW3R0dERR44cif3798f+/fvj5ZdfjhdeeKHuRQPwbCsWi40uAQAAgCXt7e2Rz+fvfe3atSumpqburQysWRMI1uzcuTN27NgRbW1tkcvlIpvN1qVwNm73gd+LvXcuxejE7bq95o4dO+Lu3XV/ZNhCmUwm5ubmGl0GCevo6IgffvjhoWP27Nlzrx+F3xWkYvXv5507d8atW7dWjPmj3/95/Pt//v0jr9WazUb3878VP2l/Pva074hsZOKHO7fjhzu347s7t+P2jz8+9fqbxeo5fJJ5ZuN+9me/jD85sPyRX8e//vU/xcVNXGu992e993Ejsi1tsfMn3fFcx+/Ejt/eG5lMNu5M/W/M3fg+5v7vWvw4X7+/Gz9Lnub7tRmr389GfCaf5s8ZPC2P+/doeFKLi4tRqVRiYWEh5ubmHvg78P8BaNXnlMURdQgAAAAASUVORK5CYII=</encoded_png>
+    </node>
+    <node unique_id="22" master_id="0" name="Startup &amp; Load" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792739747">
+      <rich_text>FLOW
+  Program.Main -&gt; ApplicationConfiguration.Initialize() -&gt; Application.Run(new Form1())
+  Form1 constructor: InitializeComponent(), then attaches Load, btnClear.Click, btnUpdate.Click, btnDelete.Click handlers.
+  (btnAdd is wired inside Form1.Designer.cs to button1_Click.)
+
+Form1_Load
+  1. StudentRepository.EnsureSchema()  - confirms a student table exists
+  2. LoadStudents()                            - fills dgvStudents from the database
+  3. ClearForm()                                - empties the inputs
+
+Any exception shows a "Database Error" MessageBox.
+</rich_text>
+    </node>
+    <node unique_id="23" master_id="0" name="Feature - Add Student" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>Handler: button1_Click (wired to btnAdd in the designer)
+
+STEPS
+  1. BuildStudentFromForm() validates the inputs. If invalid, a warning is shown and nothing happens.
+  2. StudentRepository.AddStudent(student) runs a parameterized INSERT.
+  3. Success MessageBox, then LoadStudents() refreshes the grid and ClearForm() resets the inputs.
+
+ERRORS
+  MySqlException -&gt; "Database error while adding the student."
+  Any other exception -&gt; "Unable to add student."
+  (Duplicate Student ID or contact number comes back as a MySqlException.)
+</rich_text>
+    </node>
+    <node unique_id="24" master_id="0" name="Feature - Update Student" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>Handler: btnUpdate_Click
+
+STEPS
+  1. Click a grid row (or type an existing Student ID) so the form holds the record.
+  2. Edit the fields. The Student ID is the lookup key and is not changed.
+  3. Click Update. BuildStudentFromForm() validates, then UpdateStudent() runs UPDATE ... WHERE Student_ID = @Student_ID.
+  4. If 0 rows are affected, it throws "Student ID was not found for update."
+
+On success: message box, grid refresh, form cleared.
+</rich_text>
+    </node>
+    <node unique_id="25" master_id="0" name="Feature - Delete Student" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>Handler: btnDelete_Click
+
+STEPS
+  1. Needs a Student ID in the form (select a row or type one). Otherwise: "Select a student or enter a Student ID to delete."
+  2. Confirmation dialog: "Delete student '&lt;id&gt;'?" (Yes / No, warning icon). No cancels.
+  3. StudentRepository.DeleteStudent(id) runs DELETE ... WHERE Student_ID = @Student_ID.
+  4. If 0 rows are affected, it throws "Student ID was not found for deletion."
+
+On success: message box, grid refresh, form cleared.
+</rich_text>
+    </node>
+    <node unique_id="26" master_id="0" name="Feature - Clear Form" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>Handler: btnClear_Click -&gt; ClearForm()
+
+Clears txtStudentId, txtFullName, txtYearLevel, txtProgram, txtContactNumber, resets cboGender to no selection (-1), clears the grid selection and puts focus back in txtStudentId.
+</rich_text>
+    </node>
+    <node unique_id="40" master_id="0" name="Feature - Button States" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792738860" ts_lastsave="1792739422">
+      <rich_text weight="heavy">Button States (ADD / UPDATE / DELETE / CLEAR)</rich_text>
+      <rich_text>
+
+The four action buttons enable or disable automatically based on whether an entry is selected in the list. This prevents invalid actions, such as updating a record that doesn’t exist yet or adding a duplicate of one already loaded.
+
+Use this state to start a new record. Fill in the fields and click ADD to save it.
+</rich_text>
+      <rich_text weight="heavy">State 1: No entry selected, fields empty</rich_text>
+      <rich_text>
+• ADD: enabled
+• CLEAR: enabled
+• UPDATE: grayed out
+• DELETE: grayed out
+
+You have typed data, but it hasn’t been saved yet. Click ADD to save it as a new entry, or CLEAR to discard what you typed.
+</rich_text>
+      <rich_text weight="heavy">State 2: No entry selected, fields filled</rich_text>
+      <rich_text>
+• ADD: enabled
+• CLEAR: enabled
+• UPDATE: grayed out
+• DELETE: grayed out
+
+The selected entry’s data loads into the fields. Edit them and click UPDATE to save changes, or click DELETE to remove the entry. ADD and CLEAR are disabled so you can’t accidentally create a duplicate or wipe the loaded record.
+</rich_text>
+      <rich_text weight="heavy">State 3: Entry selected</rich_text>
+      <rich_text>
+• ADD: grayed out
+• CLEAR: grayed out
+• UPDATE: enabled
+• DELETE: enabled
+
+</rich_text>
+      <rich_text weight="heavy">Quick Reference Table</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text justification="left"></rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text weight="heavy">Notes</rich_text>
+      <rich_text>
+- To return to State 1 or 2 from State 3, deselect the entry in the list.
+- The buttons depend only on selection, not on field content. Whether the fields are empty or filled makes no difference when nothing is selected.
+- If a button is grayed out, check the selection state first, since that is the most common reason.
+
+</rich_text>
+      <table char_offset="1070" justification="left" col_min="90" col_max="90" col_widths="0,0,0,0,0,0,0" is_light="1">
+        <row>
+          <cell>1</cell>
+          <cell>None</cell>
+          <cell>Empty</cell>
+          <cell>✔</cell>
+          <cell>✘</cell>
+          <cell>✘</cell>
+          <cell>✔</cell>
+        </row>
+        <row>
+          <cell>2</cell>
+          <cell>None</cell>
+          <cell>Filled</cell>
+          <cell>✔</cell>
+          <cell>✘</cell>
+          <cell>✘</cell>
+          <cell>✔</cell>
+        </row>
+        <row>
+          <cell>3</cell>
+          <cell>Selected</cell>
+          <cell>Filled</cell>
+          <cell>✘</cell>
+          <cell>✔</cell>
+          <cell>✔</cell>
+          <cell>✘</cell>
+        </row>
+        <row>
+          <cell>State</cell>
+          <cell>Selection</cell>
+          <cell>Fields</cell>
+          <cell>ADD</cell>
+          <cell>UPDATE</cell>
+          <cell>DELETE</cell>
+          <cell>CLEAR</cell>
+        </row>
+      </table>
+    </node>
+    <node unique_id="27" master_id="0" name="Feature - Select Row to Edit" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>Handler: dvgStudents_CellContentClick (note the dvg spelling in the method name)
+
+When a row is clicked, the form fields are filled from that row's cells: Student_ID, Full_Name, Gender (matched in cboGender), Year_Level, Program, and Contact_Number if the column exists.
+
+KNOWN ISSUE
+CellContentClick only fires when you click the actual cell content (the text). Clicking empty space in the cell does nothing. Using CellClick would make the whole row clickable.
+</rich_text>
+    </node>
+    <node unique_id="28" master_id="0" name="Feature - Input Validation" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792737899">
+      <rich_text>Method: Form1.BuildStudentFromForm()
+Shows a "Validation Error" warning MessageBox and stops on the first failure.
+
+Field                 Rule
+----------------     -----------------------------------------------------------
+Student ID          Required, at least 3 characters
+Full name           Required
+Gender              Must be Male, Female or Other (case-insensitive check)
+Year level           Integer from 1 to 8   (database only accepts 1 to 4)
+Program             Required
+Contact number   Required, digits only, exactly 11 characters
+
+All text is trimmed before use.
+The contact number check only runs if the table has a Contact_Number column (HasColumn).
+</rich_text>
+    </node>
+    <node unique_id="41" master_id="0" name="Feature - Live Search" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792739098" ts_lastsave="1792739123">
+      <rich_text weight="heavy">Live Search</rich_text>
+      <rich_text>
+The search field filters the data view as you type. There is no search button to click: every keystroke updates the results immediately.
+
+</rich_text>
+      <rich_text weight="heavy">What it searches</rich_text>
+      <rich_text>
+• ID
+• Name
+
+Only these two fields are scanned. Text that appears in any other field (such as address, notes, or dates) will not produce a match.
+
+</rich_text>
+      <rich_text weight="heavy">How it behaves</rich_text>
+      <rich_text>
+- Typing a character narrows the list to entries whose ID or Name contains that text.
+- Deleting a character widens the list again to show more matches.
+- Clearing the search field restores the full list.
+- If nothing matches, the data view appears empty.</rich_text>
+    </node>
+    <node unique_id="29" master_id="0" name="Feature - Error Handling" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792739211">
+      <rich_text>Every database action is wrapped in try/catch.
+
+  catch (MySqlException)  -&gt; "Database error while &lt;adding|updating|deleting&gt; the student."
+  catch (Exception)          -&gt; "Unable to &lt;add|update|delete&gt; student."
+  Form load                    -&gt; "Unable to connect to the database."
+  Grid load                     -&gt; "Unable to load student records."
+
+All messages show the exception message below the title line, so the app does not crash on a dropped connection or constraint failure.
+</rich_text>
+    </node>
+    <node unique_id="30" master_id="0" name="Feature - SQL Safety" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>All values are passed as MySqlCommand parameters (@Student_ID, @Full_Name, @Gender, @Year_Level, @Program, @Contact_Number) using AddWithValue, which prevents SQL injection through the form fields.
+
+Table and column names are wrapped in backticks and come from internal constants, not user input.
+
+Credentials are kept in appsettings.json, which is gitignored.
+</rich_text>
+    </node>
+    <node unique_id="31" master_id="0" name="Data Layer - StudentRepository API" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792738655">
+      <rich_text>static class StudentRepository  (namespace Interface)
+
+  GetConnectionString()         Finds appsettings.json by walking up from AppContext.BaseDirectory and returns ConnectionStrings:StudentDb.
+  IsAllowedGender(string)      True for Male / Female / Other (case-insensitive).
+  GetStudentTableName()      Checks information_schema for the first existing candidate table name.
+  HasColumn(string)              Checks information_schema for a column in the student table.
+  EnsureSchema()                Calls GetStudentTableName() to confirm the table exists.
+  LoadStudents()                  Returns a DataTable with all students ordered by Student_ID.
+  AddStudent(Student)          INSERT.
+  UpdateStudent(Student)      UPDATE by Student_ID; throws if no row matched.
+  DeleteStudent(string)         DELETE by Student_ID; throws if no row matched.
+
+Model: Student (StudentId, FullName, Gender, YearLevel, Program, ContactNumber).
+</rich_text>
+    </node>
+  </node>
+  <node unique_id="39" master_id="0" name="5. Source Code" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+    <rich_text>Full source of every file on the main branch (Interface project).</rich_text>
+    <node unique_id="33" master_id="0" name="Student.cs" prog_lang="c-sharp" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>namespace Interface;
+
+public class Student
+{
+    public string StudentId { get; set; } = string.Empty;
+    public string FullName { get; set; } = string.Empty;
+    public string Gender { get; set; } = string.Empty;
+    public int YearLevel { get; set; }
+    public string Program { get; set; } = string.Empty;
+    public string ContactNumber { get; set; } = string.Empty;
+}
+</rich_text>
+    </node>
+    <node unique_id="34" master_id="0" name="StudentRepository.cs" prog_lang="c-sharp" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>using System.Data;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
+
+namespace Interface;
+
+public static class StudentRepository
+{
+    private const string DefaultConnectionName = "StudentDb";
+    private static readonly string[] AllowedGenders = ["Male", "Female", "Other"];
+    private static readonly string[] CandidateTableNames = ["Student", "students", "student", "student_information", "student_information_system"];
+
+    public static string GetConnectionString()
+    {
+        var directory = new DirectoryInfo(AppContext.BaseDirectory);
+
+        while (directory != null)
+        {
+            var appSettingsPath = Path.Combine(directory.FullName, "appsettings.json");
+            if (File.Exists(appSettingsPath))
+            {
+                var configuration = new ConfigurationBuilder()
+                    .SetBasePath(directory.FullName)
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                    .Build();
+
+                var connectionString = configuration.GetConnectionString(DefaultConnectionName);
+                if (!string.IsNullOrWhiteSpace(connectionString))
+                {
+                    return connectionString;
+                }
+
+                throw new InvalidOperationException($"Connection string '{DefaultConnectionName}' was not found in appsettings.json.");
+            }
+
+            directory = directory.Parent;
+        }
+
+        throw new FileNotFoundException("appsettings.json was not found. Place the file in the project root or output folder.");
+    }
+
+    public static bool IsAllowedGender(string gender)
+    {
+        return AllowedGenders.Contains(gender, StringComparer.OrdinalIgnoreCase);
+    }
+
+    public static string GetStudentTableName()
+    {
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        foreach (var tableName in CandidateTableNames)
+        {
+            using var checkCommand = new MySqlCommand(
+                "SELECT 1 FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = @tableName LIMIT 1",
+                connection);
+            checkCommand.Parameters.AddWithValue("@tableName", tableName);
+
+            var exists = checkCommand.ExecuteScalar();
+            if (exists != null)
+            {
+                return tableName;
+            }
+        }
+
+        throw new InvalidOperationException("No student table was found in the configured database. Verify the table name matches Student_ID, Full_Name, Gender, Year_Level, and Program.");
+    }
+
+    public static bool HasColumn(string columnName)
+    {
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        using var command = new MySqlCommand(
+            "SELECT 1 FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = @tableName AND column_name = @columnName LIMIT 1",
+            connection);
+
+        command.Parameters.AddWithValue("@tableName", GetStudentTableName());
+        command.Parameters.AddWithValue("@columnName", columnName);
+
+        var exists = command.ExecuteScalar();
+        return exists != null;
+    }
+
+    public static void EnsureSchema()
+    {
+        GetStudentTableName();
+    }
+
+    public static DataTable LoadStudents()
+    {
+        var tableName = GetStudentTableName();
+        var hasContactColumn = HasColumn("Contact_Number");
+
+        var table = new DataTable();
+        table.Columns.Add("Student_ID");
+        table.Columns.Add("Full_Name");
+        table.Columns.Add("Gender");
+        table.Columns.Add("Year_Level", typeof(int));
+        table.Columns.Add("Program");
+
+        if (hasContactColumn)
+        {
+            table.Columns.Add("Contact_Number");
+        }
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var columns = new[] { "Student_ID", "Full_Name", "Gender", "Year_Level", "Program" };
+        if (hasContactColumn)
+        {
+            columns = columns.Concat(new[] { "Contact_Number" }).ToArray();
+        }
+
+        var selectQuery = $"SELECT {string.Join(", ", columns.Select(c =&gt; $"`{c}`"))} FROM `{tableName}` ORDER BY Student_ID";
+
+        using var command = new MySqlCommand(selectQuery, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            var row = table.NewRow();
+            row["Student_ID"] = reader["Student_ID"]?.ToString() ?? string.Empty;
+            row["Full_Name"] = reader["Full_Name"]?.ToString() ?? string.Empty;
+            row["Gender"] = reader["Gender"]?.ToString() ?? string.Empty;
+            row["Year_Level"] = reader.GetInt32("Year_Level");
+            row["Program"] = reader["Program"]?.ToString() ?? string.Empty;
+            if (hasContactColumn)
+            {
+                row["Contact_Number"] = reader["Contact_Number"]?.ToString() ?? string.Empty;
+            }
+
+            table.Rows.Add(row);
+        }
+
+        return table;
+    }
+
+    public static void AddStudent(Student student)
+    {
+        var tableName = GetStudentTableName();
+        var hasContactColumn = HasColumn("Contact_Number");
+        var columns = new List&lt;string&gt; { "Student_ID", "Full_Name", "Gender", "Year_Level", "Program" };
+        var parameters = new List&lt;string&gt; { "@Student_ID", "@Full_Name", "@Gender", "@Year_Level", "@Program" };
+
+        if (hasContactColumn)
+        {
+            columns.Add("Contact_Number");
+            parameters.Add("@Contact_Number");
+        }
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        using var command = new MySqlCommand($"INSERT INTO `{tableName}` ({string.Join(", ", columns.Select(c =&gt; $"`{c}`"))}) VALUES ({string.Join(", ", parameters)})", connection);
+
+        command.Parameters.AddWithValue("@Student_ID", student.StudentId.Trim());
+        command.Parameters.AddWithValue("@Full_Name", student.FullName.Trim());
+        command.Parameters.AddWithValue("@Gender", student.Gender);
+        command.Parameters.AddWithValue("@Year_Level", student.YearLevel);
+        command.Parameters.AddWithValue("@Program", student.Program.Trim());
+        if (hasContactColumn)
+        {
+            command.Parameters.AddWithValue("@Contact_Number", string.IsNullOrWhiteSpace(student.ContactNumber) ? DBNull.Value : student.ContactNumber.Trim());
+        }
+
+        command.ExecuteNonQuery();
+    }
+
+    public static void UpdateStudent(Student student)
+    {
+        var tableName = GetStudentTableName();
+        var hasContactColumn = HasColumn("Contact_Number");
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var setClauses = new List&lt;string&gt;
+        {
+            "`Full_Name` = @Full_Name",
+            "`Gender` = @Gender",
+            "`Year_Level` = @Year_Level",
+            "`Program` = @Program"
+        };
+
+        if (hasContactColumn)
+        {
+            setClauses.Add("`Contact_Number` = @Contact_Number");
+        }
+
+        using var command = new MySqlCommand($"UPDATE `{tableName}` SET {string.Join(", ", setClauses)} WHERE `Student_ID` = @Student_ID", connection);
+
+        command.Parameters.AddWithValue("@Student_ID", student.StudentId.Trim());
+        command.Parameters.AddWithValue("@Full_Name", student.FullName.Trim());
+        command.Parameters.AddWithValue("@Gender", student.Gender);
+        command.Parameters.AddWithValue("@Year_Level", student.YearLevel);
+        command.Parameters.AddWithValue("@Program", student.Program.Trim());
+        if (hasContactColumn)
+        {
+            command.Parameters.AddWithValue("@Contact_Number", string.IsNullOrWhiteSpace(student.ContactNumber) ? DBNull.Value : student.ContactNumber.Trim());
+        }
+
+        var rowsAffected = command.ExecuteNonQuery();
+        if (rowsAffected == 0)
+        {
+            throw new InvalidOperationException("Student ID was not found for update.");
+        }
+    }
+
+    public static void DeleteStudent(string studentId)
+    {
+        var tableName = GetStudentTableName();
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        using var command = new MySqlCommand($"DELETE FROM `{tableName}` WHERE `Student_ID` = @Student_ID", connection);
+        command.Parameters.AddWithValue("@Student_ID", studentId.Trim());
+
+        var rowsAffected = command.ExecuteNonQuery();
+        if (rowsAffected == 0)
+        {
+            throw new InvalidOperationException("Student ID was not found for deletion.");
+        }
+    }
+}
+</rich_text>
+    </node>
+    <node unique_id="35" master_id="0" name="Form1.cs" prog_lang="c-sharp" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>using System.Data;
+using MySql.Data.MySqlClient;
+
+namespace Interface;
+
+public partial class Form1 : Form
+{
+    public Form1()
+    {
+        InitializeComponent();
+        Load += Form1_Load;
+        btnClear.Click += btnClear_Click;
+        btnUpdate.Click += btnUpdate_Click;
+        btnDelete.Click += btnDelete_Click;
+    }
+
+    private void Form1_Load(object? sender, EventArgs e)
+    {
+        try
+        {
+            StudentRepository.EnsureSchema();
+            LoadStudents();
+            ClearForm();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to connect to the database.\n\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void LoadStudents()
+    {
+        try
+        {
+            var table = StudentRepository.LoadStudents();
+            dgvStudents.DataSource = table;
+            dgvStudents.ClearSelection();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to load student records.\n\n{ex.Message}", "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void ClearForm()
+    {
+        txtStudentId.Clear();
+        txtFullName.Clear();
+        cboGender.SelectedIndex = -1;
+        txtYearLevel.Clear();
+        txtProgram.Clear();
+        txtContactNumber.Clear();
+        dgvStudents.ClearSelection();
+        txtStudentId.Focus();
+    }
+
+    private Student? BuildStudentFromForm(bool validateStudentId = true)
+    {
+        var studentId = txtStudentId.Text.Trim();
+        if (validateStudentId &amp;&amp; string.IsNullOrWhiteSpace(studentId))
+        {
+            ShowValidationError("Student ID is required.");
+            return null;
+        }
+
+        if (validateStudentId &amp;&amp; studentId.Length &lt; 3)
+        {
+            ShowValidationError("Student ID must be at least 3 characters long.");
+            return null;
+        }
+
+        var fullName = txtFullName.Text.Trim();
+        if (string.IsNullOrWhiteSpace(fullName))
+        {
+            ShowValidationError("Full name is required.");
+            return null;
+        }
+
+        var selectedGender = cboGender.SelectedItem?.ToString();
+        if (string.IsNullOrWhiteSpace(selectedGender) || !StudentRepository.IsAllowedGender(selectedGender))
+        {
+            ShowValidationError("Please select a valid gender: Male, Female, or Other.");
+            return null;
+        }
+
+        if (!int.TryParse(txtYearLevel.Text.Trim(), out var yearLevel) || yearLevel &lt; 1 || yearLevel &gt; 8)
+        {
+            ShowValidationError("Year level must be a number from 1 to 8.");
+            return null;
+        }
+
+        var program = txtProgram.Text.Trim();
+        if (string.IsNullOrWhiteSpace(program))
+        {
+            ShowValidationError("Program is required.");
+            return null;
+        }
+
+        var contactNumber = txtContactNumber.Text.Trim();
+        if (StudentRepository.HasColumn("Contact_Number"))
+        {
+            if (string.IsNullOrWhiteSpace(contactNumber))
+            {
+                ShowValidationError("Contact number is required.");
+                return null;
+            }
+
+            if (!contactNumber.All(char.IsDigit))
+            {
+                ShowValidationError("Contact number must contain exactly 11 digits only.");
+                return null;
+            }
+
+            if (contactNumber.Length != 11)
+            {
+                ShowValidationError("Contact number must contain exactly 11 digits only.");
+                return null;
+            }
+        }
+
+        return new Student
+        {
+            StudentId = studentId,
+            FullName = fullName,
+            Gender = selectedGender,
+            YearLevel = yearLevel,
+            Program = program,
+            ContactNumber = contactNumber
+        };
+    }
+
+    private void ShowValidationError(string message)
+    {
+        MessageBox.Show(message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+
+    private void label2_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label4_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label5_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void groupBox1_Enter(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label3_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label6_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+    {
+
+    }
+
+    private void cboGender_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var student = BuildStudentFromForm();
+            if (student is null)
+            {
+                return;
+            }
+
+            StudentRepository.AddStudent(student);
+            MessageBox.Show("Student record added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadStudents();
+            ClearForm();
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show($"Database error while adding the student.\n\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to add student.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void btnUpdate_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var student = BuildStudentFromForm();
+            if (student is null)
+            {
+                return;
+            }
+
+            StudentRepository.UpdateStudent(student);
+            MessageBox.Show("Student record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadStudents();
+            ClearForm();
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show($"Database error while updating the student.\n\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to update student.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void btnDelete_Click(object sender, EventArgs e)
+    {
+        var studentId = txtStudentId.Text.Trim();
+        if (string.IsNullOrWhiteSpace(studentId))
+        {
+            ShowValidationError("Select a student or enter a Student ID to delete.");
+            return;
+        }
+
+        var confirm = MessageBox.Show($"Delete student '{studentId}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        if (confirm != DialogResult.Yes)
+        {
+            return;
+        }
+
+        try
+        {
+            StudentRepository.DeleteStudent(studentId);
+            MessageBox.Show("Student record deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadStudents();
+            ClearForm();
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show($"Database error while deleting the student.\n\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to delete student.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void btnClear_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
+
+    private void textBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBox6_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBox3_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBox2_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void dvgStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.RowIndex &lt; 0)
+        {
+            return;
+        }
+
+        var row = dgvStudents.Rows[e.RowIndex];
+        txtStudentId.Text = row.Cells["Student_ID"].Value?.ToString() ?? string.Empty;
+        txtFullName.Text = row.Cells["Full_Name"].Value?.ToString() ?? string.Empty;
+        var gender = row.Cells["Gender"].Value?.ToString() ?? string.Empty;
+        cboGender.SelectedIndex = cboGender.Items.IndexOf(gender);
+        txtYearLevel.Text = row.Cells["Year_Level"].Value?.ToString() ?? string.Empty;
+        txtProgram.Text = row.Cells["Program"].Value?.ToString() ?? string.Empty;
+
+        if (dgvStudents.Columns.Contains("Contact_Number"))
+        {
+            txtContactNumber.Text = row.Cells["Contact_Number"].Value?.ToString() ?? string.Empty;
+        }
+        else
+        {
+            txtContactNumber.Clear();
+        }
+    }
+}</rich_text>
+    </node>
+    <node unique_id="36" master_id="0" name="Form1.Designer.cs" prog_lang="c-sharp" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>namespace Interface
+{
+    partial class Form1
+    {
+        /// &lt;summary&gt;
+        ///  Required designer variable.
+        /// &lt;/summary&gt;
+        private System.ComponentModel.IContainer components = null;
+
+        /// &lt;summary&gt;
+        ///  Clean up any resources being used.
+        /// &lt;/summary&gt;
+        /// &lt;param name="disposing"&gt;true if managed resources should be disposed; otherwise, false.&lt;/param&gt;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing &amp;&amp; (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// &lt;summary&gt;
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// &lt;/summary&gt;
+        private void InitializeComponent()
+        {
+            groupBox1 = new GroupBox();
+            cboGender = new ComboBox();
+            txtContactNumber = new TextBox();
+            txtProgram = new TextBox();
+            txtYearLevel = new TextBox();
+            txtFullName = new TextBox();
+            txtStudentId = new TextBox();
+            btnClear = new Button();
+            btnDelete = new Button();
+            btnUpdate = new Button();
+            btnAdd = new Button();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            dgvStudents = new DataGridView();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
+            SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(cboGender);
+            groupBox1.Controls.Add(txtContactNumber);
+            groupBox1.Controls.Add(txtProgram);
+            groupBox1.Controls.Add(txtYearLevel);
+            groupBox1.Controls.Add(txtFullName);
+            groupBox1.Controls.Add(txtStudentId);
+            groupBox1.Controls.Add(btnClear);
+            groupBox1.Controls.Add(btnDelete);
+            groupBox1.Controls.Add(btnUpdate);
+            groupBox1.Controls.Add(btnAdd);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Dock = DockStyle.Left;
+            groupBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(0, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(400, 553);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Student Details";
+            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // cboGender
+            // 
+            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGender.FormattingEnabled = true;
+            cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
+            cboGender.Location = new Point(169, 172);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(225, 33);
+            cboGender.TabIndex = 25;
+            cboGender.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // txtContactNumber
+            // 
+            txtContactNumber.Location = new Point(169, 354);
+            txtContactNumber.Name = "txtContactNumber";
+            txtContactNumber.PlaceholderText = "09935382981";
+            txtContactNumber.Size = new Size(225, 31);
+            txtContactNumber.TabIndex = 24;
+            // 
+            // txtProgram
+            // 
+            txtProgram.Location = new Point(169, 294);
+            txtProgram.Name = "txtProgram";
+            txtProgram.PlaceholderText = "BS Computer Science";
+            txtProgram.Size = new Size(225, 31);
+            txtProgram.TabIndex = 23;
+            txtProgram.TextChanged += textBox3_TextChanged;
+            // 
+            // txtYearLevel
+            // 
+            txtYearLevel.Location = new Point(169, 234);
+            txtYearLevel.Name = "txtYearLevel";
+            txtYearLevel.PlaceholderText = "2";
+            txtYearLevel.Size = new Size(225, 31);
+            txtYearLevel.TabIndex = 22;
+            txtYearLevel.TextChanged += textBox2_TextChanged;
+            // 
+            // txtFullName
+            // 
+            txtFullName.Location = new Point(169, 114);
+            txtFullName.Name = "txtFullName";
+            txtFullName.PlaceholderText = "Juan Dela Cruz";
+            txtFullName.Size = new Size(225, 31);
+            txtFullName.TabIndex = 21;
+            // 
+            // txtStudentId
+            // 
+            txtStudentId.Location = new Point(169, 54);
+            txtStudentId.Name = "txtStudentId";
+            txtStudentId.PlaceholderText = "2025-01-0001";
+            txtStudentId.Size = new Size(225, 31);
+            txtStudentId.TabIndex = 20;
+            // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(277, 403);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(79, 37);
+            btnClear.TabIndex = 15;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(192, 403);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(79, 37);
+            btnDelete.TabIndex = 14;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(107, 403);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(79, 37);
+            btnUpdate.TabIndex = 13;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(22, 403);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(79, 37);
+            btnAdd.TabIndex = 12;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += button1_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(20, 360);
+            label6.Name = "label6";
+            label6.Size = new Size(143, 25);
+            label6.TabIndex = 5;
+            label6.Text = "Contact Number";
+            label6.Click += label6_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 300);
+            label5.Name = "label5";
+            label5.Size = new Size(81, 25);
+            label5.TabIndex = 4;
+            label5.Text = "Program";
+            label5.Click += label5_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(20, 240);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 25);
+            label4.TabIndex = 3;
+            label4.Text = "Year level";
+            label4.Click += label4_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(20, 180);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 25);
+            label3.TabIndex = 2;
+            label3.Text = "Gender";
+            label3.Click += label3_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(20, 120);
+            label2.Name = "label2";
+            label2.Size = new Size(88, 25);
+            label2.TabIndex = 1;
+            label2.Text = "Full name";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 60);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Student ID";
+            label1.Click += label1_Click;
+            // 
+            // dgvStudents
+            // 
+            dgvStudents.AllowUserToAddRows = false;
+            dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStudents.Dock = DockStyle.Fill;
+            dgvStudents.Location = new Point(400, 0);
+            dgvStudents.MultiSelect = false;
+            dgvStudents.Name = "dgvStudents";
+            dgvStudents.ReadOnly = true;
+            dgvStudents.RowHeadersVisible = false;
+            dgvStudents.RowHeadersWidth = 51;
+            dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStudents.Size = new Size(882, 553);
+            dgvStudents.TabIndex = 1;
+            dgvStudents.CellContentClick += dvgStudents_CellContentClick;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1282, 553);
+            Controls.Add(dgvStudents);
+            Controls.Add(groupBox1);
+            MinimumSize = new Size(1300, 600);
+            Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Student Information System";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private GroupBox groupBox1;
+        private DataGridView dgvStudents;
+        private Label label1;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label6;
+        private Button btnAdd;
+        private Button btnClear;
+        private Button btnDelete;
+        private Button btnUpdate;
+        private TextBox txtStudentId;
+        private TextBox txtContactNumber;
+        private TextBox txtProgram;
+        private TextBox txtYearLevel;
+        private TextBox txtFullName;
+        private ComboBox cboGender;
+    }
+}
+</rich_text>
+    </node>
+    <node unique_id="37" master_id="0" name="Program.cs" prog_lang="c-sharp" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>namespace Interface
+{
+    internal static class Program
+    {
+        /// &lt;summary&gt;
+        ///  The main entry point for the application.
+        /// &lt;/summary&gt;
+        [STAThread]
+        static void Main()
+        {
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
+            ApplicationConfiguration.Initialize();
+            Application.Run(new Form1());
+        }
+    }
+}</rich_text>
+    </node>
+    <node unique_id="38" master_id="0" name="Interface.csproj" prog_lang="xml" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1792703477" ts_lastsave="1792703477">
+      <rich_text>&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;UseWindowsForms&gt;true&lt;/UseWindowsForms&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.13" /&gt;
+    &lt;PackageReference Include="MySql.Data" Version="26.10.0" /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;</rich_text>
+    </node>
+  </node>
+</cherrytree>

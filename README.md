@@ -54,10 +54,11 @@ The **Student Information System (SIS)** is a centralized digital directory for 
 | **Error handling** | `try-catch` around every database operation, with clear message boxes instead of crashes. |
 | **Safe SQL** | All values are passed as `MySqlCommand` parameters. |
 | **External config** | The connection string is read from a local `appsettings.json`, which is git-ignored so passwords are never committed. |
+| **Live Search** | The search field filters the data view as you type. There is no search button to click: every keystroke updates the results immediately. |
+| **Button Status** | The four action buttons enable or disable automatically based on whether an entry is selected in the list. This prevents invalid actions, such as updating a record that doesn’t exist yet or adding a duplicate of one already loaded. |
 
 ### Planned
 
-- Live search by Student ID or name
 - Quick filters for year level and program
 - Custom color palette and typography
 

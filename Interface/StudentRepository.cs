@@ -113,7 +113,7 @@ public static class StudentRepository
             columns = columns.Concat(new[] { "Contact_Number" }).ToArray();
         }
 
-        var selectQuery = $"SELECT {string.Join(", ", columns.Select(c => $"`{c}`"))} FROM `{tableName}` WHERE `Is_Active` = 1 ORDER BY Student_ID";
+        var selectQuery = $"SELECT {string.Join(", ", columns.Select(c => $"`{c}`"))} FROM `{tableName}` ORDER BY Student_ID";
 
         using var command = new MySqlCommand(selectQuery, connection);
         using var reader = command.ExecuteReader();
@@ -140,8 +140,8 @@ public static class StudentRepository
     {
         var tableName = GetStudentTableName();
         var hasContactColumn = HasColumn("Contact_Number");
-        var columns = new List<string> { "Student_ID", "First_Name", "Last_Name", "Gender", "Year_Level", "Program" };
-        var parameters = new List<string> { "@Student_ID", "@First_Name", "@Last_Name", "@Gender", "@Year_Level", "@Program" };
+        var columns = new List<string> { "Student_ID", "Full_Name", "Gender", "Year_Level", "Program" };
+        var parameters = new List<string> { "@Student_ID", "@Full_Name", "@Gender", "@Year_Level", "@Program" };
 
         if (hasContactColumn)
         {
@@ -155,8 +155,7 @@ public static class StudentRepository
         using var command = new MySqlCommand($"INSERT INTO `{tableName}` ({string.Join(", ", columns.Select(c => $"`{c}`"))}) VALUES ({string.Join(", ", parameters)})", connection);
 
         command.Parameters.AddWithValue("@Student_ID", student.StudentId.Trim());
-        command.Parameters.AddWithValue("@First_Name", student.FirstName.Trim());
-        command.Parameters.AddWithValue("@Last_Name", student.LastName.Trim());
+        command.Parameters.AddWithValue("@Full_Name", student.FullName.Trim());
         command.Parameters.AddWithValue("@Gender", student.Gender);
         command.Parameters.AddWithValue("@Year_Level", student.YearLevel);
         command.Parameters.AddWithValue("@Program", student.Program.Trim());
@@ -178,8 +177,7 @@ public static class StudentRepository
 
         var setClauses = new List<string>
         {
-            "`First_Name` = @First_Name",
-            "`Last_Name` = @Last_Name",
+            "`Full_Name` = @Full_Name",
             "`Gender` = @Gender",
             "`Year_Level` = @Year_Level",
             "`Program` = @Program"
@@ -193,8 +191,7 @@ public static class StudentRepository
         using var command = new MySqlCommand($"UPDATE `{tableName}` SET {string.Join(", ", setClauses)} WHERE `Student_ID` = @Student_ID", connection);
 
         command.Parameters.AddWithValue("@Student_ID", student.StudentId.Trim());
-        command.Parameters.AddWithValue("@First_Name", student.FirstName.Trim());
-        command.Parameters.AddWithValue("@Last_Name", student.LastName.Trim());
+        command.Parameters.AddWithValue("@Full_Name", student.FullName.Trim());
         command.Parameters.AddWithValue("@Gender", student.Gender);
         command.Parameters.AddWithValue("@Year_Level", student.YearLevel);
         command.Parameters.AddWithValue("@Program", student.Program.Trim());
@@ -216,7 +213,7 @@ public static class StudentRepository
         using var connection = new MySqlConnection(GetConnectionString());
         connection.Open();
 
-        using var command = new MySqlCommand($"UPDATE `{tableName}` SET `Is_Active` = 0, `Deleted_At` = NOW() WHERE `Student_ID` = @Student_ID", connection);
+        using var command = new MySqlCommand($"DELETE FROM `{tableName}` WHERE `Student_ID` = @Student_ID", connection);
         command.Parameters.AddWithValue("@Student_ID", studentId.Trim());
 
         var rowsAffected = command.ExecuteNonQuery();
@@ -253,7 +250,7 @@ public static class StudentRepository
         var query = $@"
         SELECT {string.Join(", ", columns)}
         FROM `{tableName}`
-        WHERE (`Student_ID` LIKE @term OR `Full_Name` LIKE @term) AND `Is_Active` = 1
+        WHERE `Student_ID` LIKE @term OR `Full_Name` LIKE @term
         ORDER BY `Student_ID`;";
 
         using var command = new MySqlCommand(query, connection);
@@ -276,5 +273,62 @@ public static class StudentRepository
         }
 
         return table;
+    }
+
+    public static Dictionary<string, int> CountByProgram()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<string, int>(StringComparer.Ordinal);
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Program`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Program` ORDER BY `Program`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[reader["Program"]?.ToString() ?? string.Empty] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
+
+    public static Dictionary<string, int> CountByGender()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Gender`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Gender` ORDER BY `Gender`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[reader["Gender"]?.ToString() ?? string.Empty] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
+
+    public static Dictionary<(int Year, string Gender), int> CountByYearLevelAndGender()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<(int Year, string Gender), int>();
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Year_Level`, `Gender`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Year_Level`, `Gender` ORDER BY `Year_Level`, `Gender`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[(reader.GetInt32("Year_Level"), reader["Gender"]?.ToString() ?? string.Empty)] = reader.GetInt32("Total");
+        }
+
+        return counts;
     }
 }

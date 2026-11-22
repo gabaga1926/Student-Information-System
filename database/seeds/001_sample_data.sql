@@ -13,3 +13,4 @@ VALUES
     ('2024-002', 'Maria Clara Santos', 'Female', 2, 'BS Information Technology', '09662143078')
 ON DUPLICATE KEY UPDATE
     Full_Name = VALUES(Full_Name);
+    

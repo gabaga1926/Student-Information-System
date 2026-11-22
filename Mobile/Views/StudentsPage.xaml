@@ -25,7 +25,7 @@
                         <DataTemplate>
                             <Border Margin="0,0,0,10" Padding="14">
                                 <VerticalStackLayout Spacing="4">
-                                    <Label Text="{Binding FullName}" FontAttributes="Bold" FontSize="18" />
+                                    <Label Text="{Binding FullName}" FontFamily="ConsolasBold" FontSize="18" />
                                     <Label Text="{Binding StudentId}" />
                                     <Label Text="{Binding Program}" />
                                     <HorizontalStackLayout Spacing="4">

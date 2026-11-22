@@ -5,21 +5,21 @@
              Title="Student details">
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="12">
-            <Label Text="Student ID" FontAttributes="Bold" />
+            <Label Text="Student ID" FontFamily="ConsolasBold" />
             <Label Text="{Binding StudentId}" />
-            <Label Text="First name" FontAttributes="Bold" />
+            <Label Text="First name" FontFamily="ConsolasBold" />
             <Label Text="{Binding FirstName}" />
-            <Label Text="Last name" FontAttributes="Bold" />
+            <Label Text="Last name" FontFamily="ConsolasBold" />
             <Label Text="{Binding LastName}" />
-            <Label Text="Full name" FontAttributes="Bold" />
+            <Label Text="Full name" FontFamily="ConsolasBold" />
             <Label Text="{Binding FullName}" />
-            <Label Text="Gender" FontAttributes="Bold" />
+            <Label Text="Gender" FontFamily="ConsolasBold" />
             <Label Text="{Binding Gender}" />
-            <Label Text="Year level" FontAttributes="Bold" />
+            <Label Text="Year level" FontFamily="ConsolasBold" />
             <Label Text="{Binding YearLevel}" />
-            <Label Text="Program" FontAttributes="Bold" />
+            <Label Text="Program" FontFamily="ConsolasBold" />
             <Label Text="{Binding Program}" />
-            <Label Text="Contact number" FontAttributes="Bold" />
+            <Label Text="Contact number" FontFamily="ConsolasBold" />
             <Label Text="{Binding ContactNumber}" />
         </VerticalStackLayout>
     </ScrollView>

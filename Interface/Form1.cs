@@ -117,13 +117,6 @@ public partial class Form1 : Form
             return null;
         }
 
-        var lastName = txtLastName.Text.Trim();
-        if (string.IsNullOrWhiteSpace(lastName))
-        {
-            ShowValidationError("Last name is required.");
-            return null;
-        }
-
         var selectedGender = cboGender.SelectedItem?.ToString();
         if (string.IsNullOrWhiteSpace(selectedGender) || !StudentRepository.IsAllowedGender(selectedGender))
         {
@@ -389,10 +382,5 @@ public partial class Form1 : Form
     {
         using var form2 = new Form2();
         form2.ShowDialog(this);
-    }
-
-    private void label7_Click(object sender, EventArgs e)
-    {
-
     }
 }

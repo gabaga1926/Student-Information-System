@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             cboGender = new ComboBox();
             txtContactNumber = new TextBox();
             txtProgram = new TextBox();
             txtYearLevel = new TextBox();
-            txtFullName = new TextBox();
+            txtFirstName = new TextBox();
+            txtLastName = new TextBox();
             txtStudentId = new TextBox();
             btnClear = new Button();
             btnDelete = new Button();
@@ -45,18 +47,25 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            lblFirstName = new Label();
             dgvStudents = new DataGridView();
+            txtSearch = new TextBox();
+            lblSearch = new Label();
+            btntoGraph = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btntoGraph);
+            groupBox1.Controls.Add(lblFirstName);
+            groupBox1.Controls.Add(txtLastName);
+            groupBox1.Controls.Add(txtFirstName);
             groupBox1.Controls.Add(cboGender);
             groupBox1.Controls.Add(txtContactNumber);
             groupBox1.Controls.Add(txtProgram);
             groupBox1.Controls.Add(txtYearLevel);
-            groupBox1.Controls.Add(txtFullName);
             groupBox1.Controls.Add(txtStudentId);
             groupBox1.Controls.Add(btnClear);
             groupBox1.Controls.Add(btnDelete);
@@ -83,7 +92,7 @@
             cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
             cboGender.FormattingEnabled = true;
             cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
-            cboGender.Location = new Point(169, 172);
+            cboGender.Location = new Point(169, 232);
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(225, 33);
             cboGender.TabIndex = 25;
@@ -91,7 +100,7 @@
             // 
             // txtContactNumber
             // 
-            txtContactNumber.Location = new Point(169, 354);
+            txtContactNumber.Location = new Point(169, 414);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PlaceholderText = "09935382981";
             txtContactNumber.Size = new Size(225, 31);
@@ -99,7 +108,7 @@
             // 
             // txtProgram
             // 
-            txtProgram.Location = new Point(169, 294);
+            txtProgram.Location = new Point(169, 354);
             txtProgram.Name = "txtProgram";
             txtProgram.PlaceholderText = "BS Computer Science";
             txtProgram.Size = new Size(225, 31);
@@ -108,20 +117,28 @@
             // 
             // txtYearLevel
             // 
-            txtYearLevel.Location = new Point(169, 234);
+            txtYearLevel.Location = new Point(169, 294);
             txtYearLevel.Name = "txtYearLevel";
             txtYearLevel.PlaceholderText = "2";
             txtYearLevel.Size = new Size(225, 31);
             txtYearLevel.TabIndex = 22;
             txtYearLevel.TextChanged += textBox2_TextChanged;
             // 
-            // txtFullName
+            // txtFirstName
             // 
-            txtFullName.Location = new Point(169, 114);
-            txtFullName.Name = "txtFullName";
-            txtFullName.PlaceholderText = "Juan Dela Cruz";
-            txtFullName.Size = new Size(225, 31);
-            txtFullName.TabIndex = 21;
+            txtFirstName.Location = new Point(169, 114);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.PlaceholderText = "Juan";
+            txtFirstName.Size = new Size(225, 31);
+            txtFirstName.TabIndex = 21;
+            // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(169, 174);
+            txtLastName.Name = "txtLastName";
+            txtLastName.PlaceholderText = "Dela Cruz";
+            txtLastName.Size = new Size(225, 31);
+            txtLastName.TabIndex = 22;
             // 
             // txtStudentId
             // 
@@ -133,7 +150,7 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(277, 403);
+            btnClear.Location = new Point(277, 463);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(79, 37);
             btnClear.TabIndex = 15;
@@ -142,7 +159,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(192, 403);
+            btnDelete.Location = new Point(192, 463);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(79, 37);
             btnDelete.TabIndex = 14;
@@ -151,7 +168,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(107, 403);
+            btnUpdate.Location = new Point(107, 463);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(79, 37);
             btnUpdate.TabIndex = 13;
@@ -160,7 +177,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(22, 403);
+            btnAdd.Location = new Point(22, 463);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 37);
             btnAdd.TabIndex = 12;
@@ -171,7 +188,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(20, 360);
+            label6.Location = new Point(20, 420);
             label6.Name = "label6";
             label6.Size = new Size(143, 25);
             label6.TabIndex = 5;
@@ -181,7 +198,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 300);
+            label5.Location = new Point(20, 360);
             label5.Name = "label5";
             label5.Size = new Size(81, 25);
             label5.TabIndex = 4;
@@ -191,7 +208,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(20, 240);
+            label4.Location = new Point(20, 300);
             label4.Name = "label4";
             label4.Size = new Size(84, 25);
             label4.TabIndex = 3;
@@ -201,7 +218,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 180);
+            label3.Location = new Point(20, 240);
             label3.Name = "label3";
             label3.Size = new Size(69, 25);
             label3.TabIndex = 2;
@@ -215,7 +232,7 @@
             label2.Name = "label2";
             label2.Size = new Size(88, 25);
             label2.TabIndex = 1;
-            label2.Text = "Full name";
+            label2.Text = "First name";
             // 
             // label1
             // 
@@ -227,22 +244,61 @@
             label1.Text = "Student ID";
             label1.Click += label1_Click;
             // 
+            // lblFirstName
+            // 
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(20, 180);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(82, 25);
+            lblFirstName.TabIndex = 26;
+            lblFirstName.Text = "Last name";
+            // 
             // dgvStudents
             // 
             dgvStudents.AllowUserToAddRows = false;
             dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudents.Dock = DockStyle.Fill;
-            dgvStudents.Location = new Point(400, 0);
+            dgvStudents.Location = new Point(400, 50);
             dgvStudents.MultiSelect = false;
             dgvStudents.Name = "dgvStudents";
             dgvStudents.ReadOnly = true;
             dgvStudents.RowHeadersVisible = false;
             dgvStudents.RowHeadersWidth = 51;
             dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudents.Size = new Size(882, 553);
+            dgvStudents.Size = new Size(882, 503);
             dgvStudents.TabIndex = 1;
             dgvStudents.CellContentClick += dvgStudents_CellContentClick;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Dock = DockStyle.Top;
+            txtSearch.Location = new Point(400, 23);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search by Student ID or Full Name...";
+            txtSearch.Size = new Size(882, 27);
+            txtSearch.TabIndex = 2;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // lblSearch
+            // 
+            lblSearch.Dock = DockStyle.Top;
+            lblSearch.Location = new Point(400, 0);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Padding = new Padding(8, 3, 0, 0);
+            lblSearch.Size = new Size(882, 23);
+            lblSearch.TabIndex = 3;
+            lblSearch.Text = "Search:";
+            // 
+            // btntoGraph
+            // 
+            btntoGraph.Location = new Point(20, 505);
+            btntoGraph.Name = "btntoGraph";
+            btntoGraph.Size = new Size(166, 39);
+            btntoGraph.TabIndex = 29;
+            btntoGraph.Text = "Graphs";
+            btntoGraph.UseVisualStyleBackColor = true;
+            btntoGraph.Click += button1_Click_1;
             // 
             // Form1
             // 
@@ -250,15 +306,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1282, 553);
             Controls.Add(dgvStudents);
+            Controls.Add(txtSearch);
+            Controls.Add(lblSearch);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1300, 600);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Student Information System";
+            Load += Form1_Load_1;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -279,7 +340,12 @@
         private TextBox txtContactNumber;
         private TextBox txtProgram;
         private TextBox txtYearLevel;
-        private TextBox txtFullName;
+        private TextBox txtFirstName;
         private ComboBox cboGender;
+        private TextBox txtSearch;
+        private Label lblSearch;
+        private Label lblFirstName;
+        private TextBox txtLastName;
+        private Button btntoGraph;
     }
 }

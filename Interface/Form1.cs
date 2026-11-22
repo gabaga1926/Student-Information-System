@@ -1,5 +1,5 @@
 using System.Data;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace Interface;
 
@@ -35,6 +35,7 @@ public partial class Form1 : Form
             var table = StudentRepository.LoadStudents();
             dgvStudents.DataSource = table;
             dgvStudents.ClearSelection();
+            UpdateActionButtons();
         }
         catch (Exception ex)
         {
@@ -42,15 +43,48 @@ public partial class Form1 : Form
         }
     }
 
+    private void ApplySearchFilter()
+    {
+        try
+        {
+            var searchText = txtSearch.Text.Trim();
+            dgvStudents.DataSource = string.IsNullOrWhiteSpace(searchText)
+                ? StudentRepository.LoadStudents()
+                : StudentRepository.SearchStudents(searchText);
+            dgvStudents.ClearSelection();
+            UpdateActionButtons();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to search student records.\n\n{ex.Message}", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private bool IsEditMode()
+    {
+        return !string.IsNullOrWhiteSpace(txtStudentId.Text.Trim());
+    }
+
+    private void UpdateActionButtons()
+    {
+        var isEditMode = IsEditMode();
+        btnAdd.Enabled = !isEditMode;
+        btnClear.Enabled = !isEditMode;
+        btnUpdate.Enabled = isEditMode;
+        btnDelete.Enabled = isEditMode;
+    }
+
     private void ClearForm()
     {
         txtStudentId.Clear();
-        txtFullName.Clear();
+        txtFirstName.Clear();
+        txtLastName.Clear();
         cboGender.SelectedIndex = -1;
         txtYearLevel.Clear();
         txtProgram.Clear();
         txtContactNumber.Clear();
         dgvStudents.ClearSelection();
+        UpdateActionButtons();
         txtStudentId.Focus();
     }
 
@@ -69,10 +103,17 @@ public partial class Form1 : Form
             return null;
         }
 
-        var fullName = txtFullName.Text.Trim();
-        if (string.IsNullOrWhiteSpace(fullName))
+        var firstName = txtFirstName.Text.Trim();
+        if (string.IsNullOrWhiteSpace(firstName))
         {
-            ShowValidationError("Full name is required.");
+            ShowValidationError("First name is required.");
+            return null;
+        }
+
+        var lastName = txtLastName.Text.Trim();
+        if (string.IsNullOrWhiteSpace(lastName))
+        {
+            ShowValidationError("Last name is required.");
             return null;
         }
 
@@ -121,7 +162,8 @@ public partial class Form1 : Form
         return new Student
         {
             StudentId = studentId,
-            FullName = fullName,
+            FirstName = firstName,
+            LastName = lastName,
             Gender = selectedGender,
             YearLevel = yearLevel,
             Program = program,
@@ -291,6 +333,11 @@ public partial class Form1 : Form
 
     }
 
+    private void txtSearch_TextChanged(object sender, EventArgs e)
+    {
+        ApplySearchFilter();
+    }
+
     private void dvgStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0)
@@ -300,7 +347,10 @@ public partial class Form1 : Form
 
         var row = dgvStudents.Rows[e.RowIndex];
         txtStudentId.Text = row.Cells["Student_ID"].Value?.ToString() ?? string.Empty;
-        txtFullName.Text = row.Cells["Full_Name"].Value?.ToString() ?? string.Empty;
+        var fullName = row.Cells["Full_Name"].Value?.ToString() ?? string.Empty;
+        var nameSeparator = fullName.IndexOf(' ');
+        txtFirstName.Text = nameSeparator < 0 ? fullName : fullName[..nameSeparator];
+        txtLastName.Text = nameSeparator < 0 ? string.Empty : fullName[(nameSeparator + 1)..].Trim();
         var gender = row.Cells["Gender"].Value?.ToString() ?? string.Empty;
         cboGender.SelectedIndex = cboGender.Items.IndexOf(gender);
         txtYearLevel.Text = row.Cells["Year_Level"].Value?.ToString() ?? string.Empty;
@@ -314,5 +364,23 @@ public partial class Form1 : Form
         {
             txtContactNumber.Clear();
         }
+
+        UpdateActionButtons();
+    }
+
+    private void Form1_Load_1(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label7_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button1_Click_1(object sender, EventArgs e)
+    {
+        using var form2 = new Form2();
+        form2.ShowDialog(this);
     }
 }

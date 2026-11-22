@@ -1,6 +1,6 @@
 using System.Data;
 using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace Interface;
 
@@ -221,5 +221,114 @@ public static class StudentRepository
         {
             throw new InvalidOperationException("Student ID was not found for deletion.");
         }
+    }
+    public static DataTable SearchStudents(string searchText)
+    {
+        var tableName = GetStudentTableName();
+        var hasContactColumn = HasColumn("Contact_Number");
+
+        var table = new DataTable();
+        table.Columns.Add("Student_ID");
+        table.Columns.Add("Full_Name");
+        table.Columns.Add("Gender");
+        table.Columns.Add("Year_Level", typeof(int));
+        table.Columns.Add("Program");
+        if (hasContactColumn)
+        {
+            table.Columns.Add("Contact_Number");
+        }
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var columns = new List<string> { "`Student_ID`", "`Full_Name`", "`Gender`", "`Year_Level`", "`Program`" };
+        if (hasContactColumn)
+        {
+            columns.Add("`Contact_Number`");
+        }
+
+        var query = $@"
+        SELECT {string.Join(", ", columns)}
+        FROM `{tableName}`
+        WHERE `Student_ID` LIKE @term OR `Full_Name` LIKE @term
+        ORDER BY `Student_ID`;";
+
+        using var command = new MySqlCommand(query, connection);
+        command.Parameters.AddWithValue("@term", $"%{searchText.Trim()}%");
+
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            var row = table.NewRow();
+            row["Student_ID"] = reader["Student_ID"]?.ToString() ?? string.Empty;
+            row["Full_Name"] = reader["Full_Name"]?.ToString() ?? string.Empty;
+            row["Gender"] = reader["Gender"]?.ToString() ?? string.Empty;
+            row["Year_Level"] = reader.GetInt32("Year_Level");
+            row["Program"] = reader["Program"]?.ToString() ?? string.Empty;
+            if (hasContactColumn)
+            {
+                row["Contact_Number"] = reader["Contact_Number"]?.ToString() ?? string.Empty;
+            }
+            table.Rows.Add(row);
+        }
+
+        return table;
+    }
+
+    public static Dictionary<string, int> CountByProgram()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<string, int>(StringComparer.Ordinal);
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Program`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Program` ORDER BY `Program`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[reader["Program"]?.ToString() ?? string.Empty] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
+
+    public static Dictionary<string, int> CountByGender()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Gender`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Gender` ORDER BY `Gender`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[reader["Gender"]?.ToString() ?? string.Empty] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
+
+    public static Dictionary<(int Year, string Gender), int> CountByYearLevelAndGender()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<(int Year, string Gender), int>();
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Year_Level`, `Gender`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Year_Level`, `Gender` ORDER BY `Year_Level`, `Gender`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[(reader.GetInt32("Year_Level"), reader["Gender"]?.ToString() ?? string.Empty)] = reader.GetInt32("Total");
+        }
+
+        return counts;
     }
 }

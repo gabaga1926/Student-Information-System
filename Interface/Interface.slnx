@@ -1,3 +1,6 @@
 <Solution>
+  <Folder Name="/StudentSystem.mobile/">
+    <Project Path="StudentSystem.mobile/StudentSystem.Mobile.csproj" />
+  </Folder>
   <Project Path="Interface.csproj" />
 </Solution>

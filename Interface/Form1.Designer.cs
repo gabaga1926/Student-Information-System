@@ -34,7 +34,7 @@
             txtContactNumber = new TextBox();
             txtProgram = new TextBox();
             txtYearLevel = new TextBox();
-            txtFullName = new TextBox();
+            txtFirstName = new TextBox();
             txtStudentId = new TextBox();
             btnClear = new Button();
             btnDelete = new Button();
@@ -49,17 +49,23 @@
             dgvStudents = new DataGridView();
             txtSearch = new TextBox();
             lblSearch = new Label();
+            txtLastName = new TextBox();
+            lblFirstName = new Label();
+            label8 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(lblFirstName);
+            groupBox1.Controls.Add(txtLastName);
             groupBox1.Controls.Add(cboGender);
             groupBox1.Controls.Add(txtContactNumber);
             groupBox1.Controls.Add(txtProgram);
             groupBox1.Controls.Add(txtYearLevel);
-            groupBox1.Controls.Add(txtFullName);
+            groupBox1.Controls.Add(txtFirstName);
             groupBox1.Controls.Add(txtStudentId);
             groupBox1.Controls.Add(btnClear);
             groupBox1.Controls.Add(btnDelete);
@@ -86,7 +92,7 @@
             cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
             cboGender.FormattingEnabled = true;
             cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
-            cboGender.Location = new Point(169, 172);
+            cboGender.Location = new Point(169, 205);
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(225, 33);
             cboGender.TabIndex = 25;
@@ -94,7 +100,7 @@
             // 
             // txtContactNumber
             // 
-            txtContactNumber.Location = new Point(169, 354);
+            txtContactNumber.Location = new Point(169, 387);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PlaceholderText = "09935382981";
             txtContactNumber.Size = new Size(225, 31);
@@ -102,7 +108,7 @@
             // 
             // txtProgram
             // 
-            txtProgram.Location = new Point(169, 294);
+            txtProgram.Location = new Point(169, 327);
             txtProgram.Name = "txtProgram";
             txtProgram.PlaceholderText = "BS Computer Science";
             txtProgram.Size = new Size(225, 31);
@@ -111,20 +117,20 @@
             // 
             // txtYearLevel
             // 
-            txtYearLevel.Location = new Point(169, 234);
+            txtYearLevel.Location = new Point(169, 267);
             txtYearLevel.Name = "txtYearLevel";
             txtYearLevel.PlaceholderText = "2";
             txtYearLevel.Size = new Size(225, 31);
             txtYearLevel.TabIndex = 22;
             txtYearLevel.TextChanged += textBox2_TextChanged;
             // 
-            // txtFullName
+            // txtFirstName
             // 
-            txtFullName.Location = new Point(169, 114);
-            txtFullName.Name = "txtFullName";
-            txtFullName.PlaceholderText = "Juan Dela Cruz";
-            txtFullName.Size = new Size(225, 31);
-            txtFullName.TabIndex = 21;
+            txtFirstName.Location = new Point(169, 114);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.PlaceholderText = "Juan";
+            txtFirstName.Size = new Size(225, 31);
+            txtFirstName.TabIndex = 21;
             // 
             // txtStudentId
             // 
@@ -136,7 +142,7 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(277, 403);
+            btnClear.Location = new Point(277, 436);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(79, 37);
             btnClear.TabIndex = 15;
@@ -145,7 +151,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(192, 403);
+            btnDelete.Location = new Point(192, 436);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(79, 37);
             btnDelete.TabIndex = 14;
@@ -154,7 +160,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(107, 403);
+            btnUpdate.Location = new Point(107, 436);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(79, 37);
             btnUpdate.TabIndex = 13;
@@ -163,7 +169,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(22, 403);
+            btnAdd.Location = new Point(22, 436);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 37);
             btnAdd.TabIndex = 12;
@@ -174,7 +180,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(20, 360);
+            label6.Location = new Point(20, 393);
             label6.Name = "label6";
             label6.Size = new Size(143, 25);
             label6.TabIndex = 5;
@@ -184,7 +190,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 300);
+            label5.Location = new Point(20, 333);
             label5.Name = "label5";
             label5.Size = new Size(81, 25);
             label5.TabIndex = 4;
@@ -194,7 +200,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(20, 240);
+            label4.Location = new Point(20, 273);
             label4.Name = "label4";
             label4.Size = new Size(84, 25);
             label4.TabIndex = 3;
@@ -204,7 +210,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 180);
+            label3.Location = new Point(20, 213);
             label3.Name = "label3";
             label3.Size = new Size(69, 25);
             label3.TabIndex = 2;
@@ -214,11 +220,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(20, 120);
+            label2.Location = new Point(22, 114);
             label2.Name = "label2";
-            label2.Size = new Size(88, 25);
+            label2.Size = new Size(94, 25);
             label2.TabIndex = 1;
-            label2.Text = "Full name";
+            label2.Text = "First name";
             // 
             // label1
             // 
@@ -267,6 +273,32 @@
             lblSearch.TabIndex = 3;
             lblSearch.Text = "Search:";
             // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(170, 151);
+            txtLastName.Name = "txtLastName";
+            txtLastName.PlaceholderText = "Dela Cruz";
+            txtLastName.Size = new Size(224, 31);
+            txtLastName.TabIndex = 26;
+            // 
+            // lblFirstName
+            // 
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(22, 151);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(92, 25);
+            lblFirstName.TabIndex = 27;
+            lblFirstName.Text = "Last name";
+            lblFirstName.Click += label7_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(43, 160);
+            label8.Name = "label8";
+            label8.Size = new Size(0, 25);
+            label8.TabIndex = 28;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -307,9 +339,12 @@
         private TextBox txtContactNumber;
         private TextBox txtProgram;
         private TextBox txtYearLevel;
-        private TextBox txtFullName;
+        private TextBox txtFirstName;
         private ComboBox cboGender;
         private TextBox txtSearch;
         private Label lblSearch;
+        private Label label8;
+        private Label lblFirstName;
+        private TextBox txtLastName;
     }
 }

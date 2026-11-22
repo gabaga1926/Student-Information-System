@@ -38,6 +38,8 @@
             txtContactNumber = new TextBox();
             txtProgram = new TextBox();
             txtYearLevel = new TextBox();
+            txtFirstName = new TextBox();
+            txtLastName = new TextBox();
             txtStudentId = new TextBox();
             btnClear = new Button();
             btnDelete = new Button();
@@ -49,16 +51,17 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            lblFirstName = new Label();
             dgvStudents = new DataGridView();
             txtSearch = new TextBox();
             lblSearch = new Label();
+            btntoGraph = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = Color.FromArgb(15, 15, 15);
             groupBox1.Controls.Add(btntoGraph);
             groupBox1.Controls.Add(lblFirstName);
             groupBox1.Controls.Add(txtLastName);
@@ -151,9 +154,6 @@
             // 
             // txtContactNumber
             // 
-            txtContactNumber.BackColor = Color.FromArgb(15, 15, 15);
-            txtContactNumber.Font = new Font("Consolas", 10.5F);
-            txtContactNumber.ForeColor = Color.White;
             txtContactNumber.Location = new Point(169, 414);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PlaceholderText = "09935382981";
@@ -162,9 +162,6 @@
             // 
             // txtProgram
             // 
-            txtProgram.BackColor = Color.FromArgb(15, 15, 15);
-            txtProgram.Font = new Font("Consolas", 10.5F);
-            txtProgram.ForeColor = Color.White;
             txtProgram.Location = new Point(169, 354);
             txtProgram.Name = "txtProgram";
             txtProgram.PlaceholderText = "BS Computer Science";
@@ -174,15 +171,28 @@
             // 
             // txtYearLevel
             // 
-            txtYearLevel.BackColor = Color.FromArgb(15, 15, 15);
-            txtYearLevel.Font = new Font("Consolas", 10.5F);
-            txtYearLevel.ForeColor = Color.White;
             txtYearLevel.Location = new Point(169, 294);
             txtYearLevel.Name = "txtYearLevel";
             txtYearLevel.PlaceholderText = "2";
             txtYearLevel.Size = new Size(225, 28);
             txtYearLevel.TabIndex = 22;
             txtYearLevel.TextChanged += textBox2_TextChanged;
+            // 
+            // txtFirstName
+            // 
+            txtFirstName.Location = new Point(169, 114);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.PlaceholderText = "Juan";
+            txtFirstName.Size = new Size(225, 31);
+            txtFirstName.TabIndex = 21;
+            // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(169, 174);
+            txtLastName.Name = "txtLastName";
+            txtLastName.PlaceholderText = "Dela Cruz";
+            txtLastName.Size = new Size(225, 31);
+            txtLastName.TabIndex = 22;
             // 
             // txtStudentId
             // 
@@ -197,10 +207,7 @@
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.FromArgb(15, 15, 15);
-            btnClear.Font = new Font("Consolas", 10.5F);
-            btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(107, 463);
+            btnClear.Location = new Point(277, 463);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(79, 37);
             btnClear.TabIndex = 15;
@@ -209,10 +216,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.BackColor = Color.FromArgb(15, 15, 15);
-            btnDelete.Font = new Font("Consolas", 10.5F);
-            btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(315, 463);
+            btnDelete.Location = new Point(192, 463);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(79, 37);
             btnDelete.TabIndex = 14;
@@ -221,10 +225,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.BackColor = Color.FromArgb(15, 15, 15);
-            btnUpdate.Font = new Font("Consolas", 10.5F);
-            btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(230, 463);
+            btnUpdate.Location = new Point(107, 463);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(79, 37);
             btnUpdate.TabIndex = 13;
@@ -233,9 +234,6 @@
             // 
             // btnAdd
             // 
-            btnAdd.BackColor = Color.FromArgb(15, 15, 15);
-            btnAdd.Font = new Font("Consolas", 10.5F);
-            btnAdd.ForeColor = Color.White;
             btnAdd.Location = new Point(22, 463);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 37);
@@ -247,8 +245,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Consolas", 10.5F);
-            label6.Location = new Point(17, 417);
+            label6.Location = new Point(20, 420);
             label6.Name = "label6";
             label6.Size = new Size(150, 22);
             label6.TabIndex = 5;
@@ -258,7 +255,6 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Consolas", 10.5F);
             label5.Location = new Point(20, 360);
             label5.Name = "label5";
             label5.Size = new Size(80, 22);
@@ -269,7 +265,6 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Consolas", 10.5F);
             label4.Location = new Point(20, 300);
             label4.Name = "label4";
             label4.Size = new Size(110, 22);
@@ -280,7 +275,6 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Consolas", 10.5F);
             label3.Location = new Point(20, 240);
             label3.Name = "label3";
             label3.Size = new Size(70, 22);
@@ -309,6 +303,15 @@
             label1.TabIndex = 0;
             label1.Text = "Student ID";
             label1.Click += label1_Click;
+            // 
+            // lblFirstName
+            // 
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(20, 180);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(82, 25);
+            lblFirstName.TabIndex = 26;
+            lblFirstName.Text = "Last name";
             // 
             // dgvStudents
             // 
@@ -354,6 +357,16 @@
             lblSearch.Size = new Size(871, 23);
             lblSearch.TabIndex = 3;
             lblSearch.Text = "Search:";
+            // 
+            // btntoGraph
+            // 
+            btntoGraph.Location = new Point(20, 505);
+            btntoGraph.Name = "btntoGraph";
+            btntoGraph.Size = new Size(166, 39);
+            btntoGraph.TabIndex = 29;
+            btntoGraph.Text = "Graphs";
+            btntoGraph.UseVisualStyleBackColor = true;
+            btntoGraph.Click += button1_Click_1;
             // 
             // Form1
             // 

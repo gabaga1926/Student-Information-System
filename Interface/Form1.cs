@@ -348,9 +348,9 @@ public partial class Form1 : Form
         var row = dgvStudents.Rows[e.RowIndex];
         txtStudentId.Text = row.Cells["Student_ID"].Value?.ToString() ?? string.Empty;
         var fullName = row.Cells["Full_Name"].Value?.ToString() ?? string.Empty;
-        var nameParts = fullName.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
-        txtFirstName.Text = nameParts.Length > 0 ? nameParts[0] : string.Empty;
-        txtLastName.Text = nameParts.Length > 1 ? nameParts[1] : string.Empty;
+        var nameSeparator = fullName.IndexOf(' ');
+        txtFirstName.Text = nameSeparator < 0 ? fullName : fullName[..nameSeparator];
+        txtLastName.Text = nameSeparator < 0 ? string.Empty : fullName[(nameSeparator + 1)..].Trim();
         var gender = row.Cells["Gender"].Value?.ToString() ?? string.Empty;
         cboGender.SelectedIndex = cboGender.Items.IndexOf(gender);
         txtYearLevel.Text = row.Cells["Year_Level"].Value?.ToString() ?? string.Empty;

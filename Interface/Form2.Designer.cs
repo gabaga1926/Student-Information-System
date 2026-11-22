@@ -43,51 +43,39 @@
             // 
             // backbtnform1
             // 
-            backbtnform1.BackColor = Color.FromArgb(15, 15, 15);
-            backbtnform1.Font = new Font("Consolas", 10.2F);
-            backbtnform1.ForeColor = Color.White;
             backbtnform1.Location = new Point(12, 12);
             backbtnform1.Name = "backbtnform1";
             backbtnform1.Size = new Size(124, 37);
             backbtnform1.TabIndex = 1;
             backbtnform1.Text = "Back";
-            backbtnform1.UseVisualStyleBackColor = false;
+            backbtnform1.UseVisualStyleBackColor = true;
             // 
             // btntoexcl
             // 
-            btntoexcl.BackColor = Color.FromArgb(15, 15, 15);
-            btntoexcl.Font = new Font("Consolas", 10.2F);
-            btntoexcl.ForeColor = Color.White;
             btntoexcl.Location = new Point(12, 76);
             btntoexcl.Name = "btntoexcl";
             btntoexcl.Size = new Size(155, 54);
             btntoexcl.TabIndex = 2;
             btntoexcl.Text = "Export to EXCEL";
-            btntoexcl.UseVisualStyleBackColor = false;
+            btntoexcl.UseVisualStyleBackColor = true;
             // 
             // btntopdf
             // 
-            btntopdf.BackColor = Color.FromArgb(15, 15, 15);
-            btntopdf.Font = new Font("Consolas", 10.2F);
-            btntopdf.ForeColor = Color.White;
             btntopdf.Location = new Point(12, 136);
             btntopdf.Name = "btntopdf";
             btntopdf.Size = new Size(155, 54);
             btntopdf.TabIndex = 3;
             btntopdf.Text = "Export to PDF";
-            btntopdf.UseVisualStyleBackColor = false;
+            btntopdf.UseVisualStyleBackColor = true;
             // 
             // btnloadchart
             // 
-            btnloadchart.BackColor = Color.FromArgb(15, 15, 15);
-            btnloadchart.Font = new Font("Consolas", 10.2F);
-            btnloadchart.ForeColor = Color.White;
             btnloadchart.Location = new Point(538, 378);
             btnloadchart.Name = "btnloadchart";
             btnloadchart.Size = new Size(362, 58);
             btnloadchart.TabIndex = 4;
             btnloadchart.Text = "Load Charts";
-            btnloadchart.UseVisualStyleBackColor = false;
+            btnloadchart.UseVisualStyleBackColor = true;
             btnloadchart.Click += button2_Click;
             // 
             // tableLayoutPanel1
@@ -123,8 +111,6 @@
             // formsPlot1
             // 
             formsPlot1.Dock = DockStyle.Fill;
-            formsPlot1.Font = new Font("Consolas", 10.2F, FontStyle.Bold);
-            formsPlot1.ForeColor = Color.White;
             formsPlot1.Location = new Point(3, 3);
             formsPlot1.Name = "formsPlot1";
             formsPlot1.Size = new Size(343, 346);
@@ -133,8 +119,6 @@
             // formsPlot2
             // 
             formsPlot2.Dock = DockStyle.Fill;
-            formsPlot2.Font = new Font("Consolas", 10.2F, FontStyle.Bold);
-            formsPlot2.ForeColor = Color.White;
             formsPlot2.Location = new Point(352, 3);
             formsPlot2.Name = "formsPlot2";
             formsPlot2.Size = new Size(343, 346);
@@ -143,8 +127,6 @@
             // formsPlot3
             // 
             formsPlot3.Dock = DockStyle.Fill;
-            formsPlot3.Font = new Font("Consolas", 10.2F, FontStyle.Bold);
-            formsPlot3.ForeColor = Color.White;
             formsPlot3.Location = new Point(701, 3);
             formsPlot3.Name = "formsPlot3";
             formsPlot3.Size = new Size(344, 346);
@@ -154,7 +136,6 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(15, 15, 15);
             ClientSize = new Size(1261, 453);
             Controls.Add(btnloadchart);
             Controls.Add(tableLayoutPanel2);

@@ -34,7 +34,8 @@
             txtContactNumber = new TextBox();
             txtProgram = new TextBox();
             txtYearLevel = new TextBox();
-            txtFullName = new TextBox();
+            txtFirstName = new TextBox();
+            txtLastName = new TextBox();
             txtStudentId = new TextBox();
             btnClear = new Button();
             btnDelete = new Button();
@@ -46,6 +47,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            lblFirstName = new Label();
             dgvStudents = new DataGridView();
             txtSearch = new TextBox();
             lblSearch = new Label();
@@ -56,15 +58,14 @@
             // 
             // groupBox1
             // 
-groupBox1.Controls.Add(btntoGraph);
-groupBox1.Controls.Add(label8);
-groupBox1.Controls.Add(lblFirstName);
-groupBox1.Controls.Add(txtLastName);
-groupBox1.Controls.Add(cboGender);
+            groupBox1.Controls.Add(btntoGraph);
+            groupBox1.Controls.Add(lblFirstName);
+            groupBox1.Controls.Add(txtLastName);
+            groupBox1.Controls.Add(txtFirstName);
+            groupBox1.Controls.Add(cboGender);
             groupBox1.Controls.Add(txtContactNumber);
             groupBox1.Controls.Add(txtProgram);
             groupBox1.Controls.Add(txtYearLevel);
-            groupBox1.Controls.Add(txtFullName);
             groupBox1.Controls.Add(txtStudentId);
             groupBox1.Controls.Add(btnClear);
             groupBox1.Controls.Add(btnDelete);
@@ -91,7 +92,7 @@ groupBox1.Controls.Add(cboGender);
             cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
             cboGender.FormattingEnabled = true;
             cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
-            cboGender.Location = new Point(169, 172);
+            cboGender.Location = new Point(169, 232);
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(225, 33);
             cboGender.TabIndex = 25;
@@ -99,7 +100,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // txtContactNumber
             // 
-            txtContactNumber.Location = new Point(169, 354);
+            txtContactNumber.Location = new Point(169, 414);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PlaceholderText = "09935382981";
             txtContactNumber.Size = new Size(225, 31);
@@ -107,7 +108,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // txtProgram
             // 
-            txtProgram.Location = new Point(169, 294);
+            txtProgram.Location = new Point(169, 354);
             txtProgram.Name = "txtProgram";
             txtProgram.PlaceholderText = "BS Computer Science";
             txtProgram.Size = new Size(225, 31);
@@ -116,20 +117,28 @@ groupBox1.Controls.Add(cboGender);
             // 
             // txtYearLevel
             // 
-            txtYearLevel.Location = new Point(169, 234);
+            txtYearLevel.Location = new Point(169, 294);
             txtYearLevel.Name = "txtYearLevel";
             txtYearLevel.PlaceholderText = "2";
             txtYearLevel.Size = new Size(225, 31);
             txtYearLevel.TabIndex = 22;
             txtYearLevel.TextChanged += textBox2_TextChanged;
             // 
-            // txtFullName
+            // txtFirstName
             // 
-            txtFullName.Location = new Point(169, 114);
-            txtFullName.Name = "txtFullName";
-            txtFullName.PlaceholderText = "Juan Dela Cruz";
-            txtFullName.Size = new Size(225, 31);
-            txtFullName.TabIndex = 21;
+            txtFirstName.Location = new Point(169, 114);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.PlaceholderText = "Juan";
+            txtFirstName.Size = new Size(225, 31);
+            txtFirstName.TabIndex = 21;
+            // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(169, 174);
+            txtLastName.Name = "txtLastName";
+            txtLastName.PlaceholderText = "Dela Cruz";
+            txtLastName.Size = new Size(225, 31);
+            txtLastName.TabIndex = 22;
             // 
             // txtStudentId
             // 
@@ -141,7 +150,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(277, 403);
+            btnClear.Location = new Point(277, 463);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(79, 37);
             btnClear.TabIndex = 15;
@@ -150,7 +159,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(192, 403);
+            btnDelete.Location = new Point(192, 463);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(79, 37);
             btnDelete.TabIndex = 14;
@@ -159,7 +168,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(107, 403);
+            btnUpdate.Location = new Point(107, 463);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(79, 37);
             btnUpdate.TabIndex = 13;
@@ -168,7 +177,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(22, 403);
+            btnAdd.Location = new Point(22, 463);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 37);
             btnAdd.TabIndex = 12;
@@ -179,7 +188,7 @@ groupBox1.Controls.Add(cboGender);
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(20, 360);
+            label6.Location = new Point(20, 420);
             label6.Name = "label6";
             label6.Size = new Size(143, 25);
             label6.TabIndex = 5;
@@ -189,7 +198,7 @@ groupBox1.Controls.Add(cboGender);
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 300);
+            label5.Location = new Point(20, 360);
             label5.Name = "label5";
             label5.Size = new Size(81, 25);
             label5.TabIndex = 4;
@@ -199,7 +208,7 @@ groupBox1.Controls.Add(cboGender);
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(20, 240);
+            label4.Location = new Point(20, 300);
             label4.Name = "label4";
             label4.Size = new Size(84, 25);
             label4.TabIndex = 3;
@@ -209,7 +218,7 @@ groupBox1.Controls.Add(cboGender);
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 180);
+            label3.Location = new Point(20, 240);
             label3.Name = "label3";
             label3.Size = new Size(69, 25);
             label3.TabIndex = 2;
@@ -223,7 +232,7 @@ groupBox1.Controls.Add(cboGender);
             label2.Name = "label2";
             label2.Size = new Size(88, 25);
             label2.TabIndex = 1;
-            label2.Text = "Full name";
+            label2.Text = "First name";
             // 
             // label1
             // 
@@ -234,6 +243,15 @@ groupBox1.Controls.Add(cboGender);
             label1.TabIndex = 0;
             label1.Text = "Student ID";
             label1.Click += label1_Click;
+            // 
+            // lblFirstName
+            // 
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(20, 180);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(82, 25);
+            lblFirstName.TabIndex = 26;
+            lblFirstName.Text = "Last name";
             // 
             // dgvStudents
             // 
@@ -274,7 +292,7 @@ groupBox1.Controls.Add(cboGender);
             // 
             // btntoGraph
             // 
-            btntoGraph.Location = new Point(20, 490);
+            btntoGraph.Location = new Point(20, 505);
             btntoGraph.Name = "btntoGraph";
             btntoGraph.Size = new Size(166, 39);
             btntoGraph.TabIndex = 29;
@@ -322,11 +340,10 @@ groupBox1.Controls.Add(cboGender);
         private TextBox txtContactNumber;
         private TextBox txtProgram;
         private TextBox txtYearLevel;
-        private TextBox txtFullName;
+        private TextBox txtFirstName;
         private ComboBox cboGender;
         private TextBox txtSearch;
         private Label lblSearch;
-        private Label label8;
         private Label lblFirstName;
         private TextBox txtLastName;
         private Button btntoGraph;

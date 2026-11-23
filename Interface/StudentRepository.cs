@@ -277,4 +277,61 @@ public static class StudentRepository
 
         return table;
     }
+
+    public static Dictionary<string, int> CountByProgram()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<string, int>(StringComparer.Ordinal);
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Program`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Program` ORDER BY `Program`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[reader["Program"]?.ToString() ?? string.Empty] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
+
+    public static Dictionary<string, int> CountByGender()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Gender`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Gender` ORDER BY `Gender`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[reader["Gender"]?.ToString() ?? string.Empty] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
+
+    public static Dictionary<(int Year, string Gender), int> CountByYearLevelAndGender()
+    {
+        var tableName = GetStudentTableName();
+        var counts = new Dictionary<(int Year, string Gender), int>();
+
+        using var connection = new MySqlConnection(GetConnectionString());
+        connection.Open();
+
+        var query = $"SELECT `Year_Level`, `Gender`, COUNT(*) AS `Total` FROM `{tableName}` WHERE `Is_Active` = 1 GROUP BY `Year_Level`, `Gender` ORDER BY `Year_Level`, `Gender`";
+        using var command = new MySqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            counts[(reader.GetInt32("Year_Level"), reader["Gender"]?.ToString() ?? string.Empty)] = reader.GetInt32("Total");
+        }
+
+        return counts;
+    }
 }

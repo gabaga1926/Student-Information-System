@@ -3,12 +3,22 @@
     x:Class="StudentSystem.Mobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:StudentSystem.Mobile"
+    xmlns:views="clr-namespace:StudentSystem.Mobile.Views"
     Title="StudentSystem.Mobile">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Students">
+            <ShellContent
+                Title="Students"
+                ContentTemplate="{DataTemplate views:StudentsPage}"
+                Route="StudentsPage" />
+        </Tab>
+        <Tab Title="Charts">
+            <ShellContent
+                Title="Charts"
+                ContentTemplate="{DataTemplate views:ChartsPage}"
+                Route="ChartsPage" />
+        </Tab>
+    </TabBar>
 
 </Shell>

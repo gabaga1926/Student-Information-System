@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentSystem.Mobile.Views.StudentsPage"
+             Title="Student Information System by KKK">
+    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="12">
+        <SearchBar x:Name="StudentSearchBar"
+                   Placeholder="Search students"
+                   TextChanged="OnSearchTextChanged"
+                   Grid.Row="0" />
+        <RefreshView x:Name="StudentsRefreshView"
+                     Grid.Row="1"
+                     Refreshing="OnRefreshing">
+            <Grid RowDefinitions="Auto,*">
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   IsVisible="False"
+                                   IsRunning="False"
+                                   HorizontalOptions="Center"
+                                   Grid.RowSpan="2" />
+                <CollectionView x:Name="StudentsCollectionView"
+                                SelectionMode="Single"
+                                SelectionChanged="OnStudentSelected"
+                                Grid.Row="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,10" Padding="14">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="{Binding FullName}" FontFamily="ConsolasBold" FontSize="18" />
+                                    <Label Text="{Binding StudentId}" />
+                                    <Label Text="{Binding Program}" />
+                                    <HorizontalStackLayout Spacing="4">
+                                        <Label Text="Year" />
+                                        <Label Text="{Binding YearLevel}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Label x:Name="EmptyLabel"
+                       Text="No students found"
+                       IsVisible="False"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="1" />
+                <VerticalStackLayout x:Name="ErrorState"
+                                     IsVisible="False"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Spacing="12"
+                                     Grid.Row="1">
+                    <Label x:Name="ErrorLabel"
+                           HorizontalTextAlignment="Center" />
+                    <Button Text="Retry" Clicked="OnRetryClicked" />
+                </VerticalStackLayout>
+            </Grid>
+        </RefreshView>
+    </Grid>
+</ContentPage>

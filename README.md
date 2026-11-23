@@ -34,7 +34,7 @@ Built by **Klink Klank Klan** as a Computer Science Midterm Project.
 
 ## 📖 Overview
 
-The **Student Information System (SIS)** is a centralized digital directory for student data. The WinForms interface (`Form1`) talks to a MySQL database through a static `StudentRepository` class that uses parameterized queries, so user input is never concatenated into SQL.
+The **Klink Klank System (KKS)** is a centralized digital directory for student data. The WinForms interface (`Form1`) talks to a MySQL database through a static `StudentRepository` class that uses parameterized queries, so user input is never concatenated into SQL.
 
 ---
 
@@ -68,7 +68,7 @@ See [Known Issues & Roadmap](#-known-issues--roadmap).
 
 ## 🖥️ Screens & Controls
 
-The app has a single window, **Student Information System** (`Form1`).
+The app has a single window, **Klink Klank System** (`Form1`).
 
 | Control | Name | Purpose |
 | :--- | :--- | :--- |

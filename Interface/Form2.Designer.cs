@@ -43,39 +43,51 @@
             // 
             // backbtnform1
             // 
-            backbtnform1.Location = new Point(12, 12);
+            backbtnform1.BackColor = Color.Black;
+            backbtnform1.Font = new Font("Consolas", 10.2F);
+            backbtnform1.ForeColor = Color.White;
+            backbtnform1.Location = new Point(14, 12);
             backbtnform1.Name = "backbtnform1";
-            backbtnform1.Size = new Size(124, 37);
+            backbtnform1.Size = new Size(140, 37);
             backbtnform1.TabIndex = 1;
             backbtnform1.Text = "Back";
-            backbtnform1.UseVisualStyleBackColor = true;
+            backbtnform1.UseVisualStyleBackColor = false;
             // 
             // btntoexcl
             // 
-            btntoexcl.Location = new Point(12, 76);
+            btntoexcl.BackColor = Color.Black;
+            btntoexcl.Font = new Font("Consolas", 10.2F);
+            btntoexcl.ForeColor = Color.White;
+            btntoexcl.Location = new Point(14, 76);
             btntoexcl.Name = "btntoexcl";
-            btntoexcl.Size = new Size(155, 54);
+            btntoexcl.Size = new Size(174, 54);
             btntoexcl.TabIndex = 2;
             btntoexcl.Text = "Export to EXCEL";
-            btntoexcl.UseVisualStyleBackColor = true;
+            btntoexcl.UseVisualStyleBackColor = false;
             // 
             // btntopdf
             // 
-            btntopdf.Location = new Point(12, 136);
+            btntopdf.BackColor = Color.Black;
+            btntopdf.Font = new Font("Consolas", 10.2F);
+            btntopdf.ForeColor = Color.White;
+            btntopdf.Location = new Point(14, 136);
             btntopdf.Name = "btntopdf";
-            btntopdf.Size = new Size(155, 54);
+            btntopdf.Size = new Size(174, 54);
             btntopdf.TabIndex = 3;
             btntopdf.Text = "Export to PDF";
-            btntopdf.UseVisualStyleBackColor = true;
+            btntopdf.UseVisualStyleBackColor = false;
             // 
             // btnloadchart
             // 
-            btnloadchart.Location = new Point(538, 378);
+            btnloadchart.BackColor = Color.Black;
+            btnloadchart.Font = new Font("Consolas", 10.2F);
+            btnloadchart.ForeColor = Color.White;
+            btnloadchart.Location = new Point(605, 378);
             btnloadchart.Name = "btnloadchart";
-            btnloadchart.Size = new Size(362, 58);
+            btnloadchart.Size = new Size(407, 58);
             btnloadchart.TabIndex = 4;
             btnloadchart.Text = "Load Charts";
-            btnloadchart.UseVisualStyleBackColor = true;
+            btnloadchart.UseVisualStyleBackColor = false;
             btnloadchart.Click += button2_Click;
             // 
             // tableLayoutPanel1
@@ -83,12 +95,12 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Location = new Point(888, 465);
+            tableLayoutPanel1.Location = new Point(999, 465);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(8, 8);
+            tableLayoutPanel1.Size = new Size(9, 8);
             tableLayoutPanel1.TabIndex = 5;
             // 
             // tableLayoutPanel2
@@ -100,11 +112,11 @@
             tableLayoutPanel2.Controls.Add(formsPlot1, 0, 0);
             tableLayoutPanel2.Controls.Add(formsPlot2, 1, 0);
             tableLayoutPanel2.Controls.Add(formsPlot3, 2, 0);
-            tableLayoutPanel2.Location = new Point(188, 12);
+            tableLayoutPanel2.Location = new Point(212, 12);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
-            tableLayoutPanel2.Size = new Size(1048, 349);
+            tableLayoutPanel2.Size = new Size(1179, 349);
             tableLayoutPanel2.TabIndex = 6;
             tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
@@ -113,36 +125,38 @@
             formsPlot1.Dock = DockStyle.Fill;
             formsPlot1.Location = new Point(3, 3);
             formsPlot1.Name = "formsPlot1";
-            formsPlot1.Size = new Size(343, 346);
+            formsPlot1.Size = new Size(387, 346);
             formsPlot1.TabIndex = 0;
             // 
             // formsPlot2
             // 
             formsPlot2.Dock = DockStyle.Fill;
-            formsPlot2.Location = new Point(352, 3);
+            formsPlot2.Location = new Point(396, 3);
             formsPlot2.Name = "formsPlot2";
-            formsPlot2.Size = new Size(343, 346);
+            formsPlot2.Size = new Size(387, 346);
             formsPlot2.TabIndex = 1;
             // 
             // formsPlot3
             // 
             formsPlot3.Dock = DockStyle.Fill;
-            formsPlot3.Location = new Point(701, 3);
+            formsPlot3.Location = new Point(789, 3);
             formsPlot3.Name = "formsPlot3";
-            formsPlot3.Size = new Size(344, 346);
+            formsPlot3.Size = new Size(387, 346);
             formsPlot3.TabIndex = 2;
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1261, 453);
+            BackColor = Color.Black;
+            ClientSize = new Size(1419, 453);
             Controls.Add(btnloadchart);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(btntopdf);
             Controls.Add(btntoexcl);
             Controls.Add(backbtnform1);
+            Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;

@@ -38,8 +38,6 @@
             txtContactNumber = new TextBox();
             txtProgram = new TextBox();
             txtYearLevel = new TextBox();
-            txtFirstName = new TextBox();
-            txtLastName = new TextBox();
             txtStudentId = new TextBox();
             btnClear = new Button();
             btnDelete = new Button();
@@ -51,17 +49,16 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            lblFirstName = new Label();
             dgvStudents = new DataGridView();
             txtSearch = new TextBox();
             lblSearch = new Label();
-            btntoGraph = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.FromArgb(15, 15, 15);
             groupBox1.Controls.Add(btntoGraph);
             groupBox1.Controls.Add(lblFirstName);
             groupBox1.Controls.Add(txtLastName);
@@ -83,7 +80,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Dock = DockStyle.Left;
             groupBox1.Font = new Font("Consolas", 10.5F);
-            groupBox1.ForeColor = SystemColors.ButtonHighlight;
+            groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(411, 553);
@@ -97,7 +94,7 @@
             btntoGraph.BackColor = Color.FromArgb(15, 15, 15);
             btntoGraph.Font = new Font("Consolas", 10.5F);
             btntoGraph.ForeColor = Color.White;
-            btntoGraph.Location = new Point(122, 506);
+            btntoGraph.Location = new Point(20, 505);
             btntoGraph.Name = "btntoGraph";
             btntoGraph.Size = new Size(166, 39);
             btntoGraph.TabIndex = 29;
@@ -140,10 +137,10 @@
             // 
             // cboGender
             // 
-            cboGender.BackColor = Color.White;
+            cboGender.BackColor = Color.FromArgb(15, 15, 15);
             cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
             cboGender.Font = new Font("Consolas", 10.5F);
-            cboGender.ForeColor = Color.Black;
+            cboGender.ForeColor = Color.White;
             cboGender.FormattingEnabled = true;
             cboGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
             cboGender.Location = new Point(169, 232);
@@ -154,6 +151,8 @@
             // 
             // txtContactNumber
             // 
+            txtContactNumber.BackColor = Color.FromArgb(15, 15, 15);
+            txtContactNumber.ForeColor = Color.White;
             txtContactNumber.Location = new Point(169, 414);
             txtContactNumber.Name = "txtContactNumber";
             txtContactNumber.PlaceholderText = "09935382981";
@@ -162,6 +161,8 @@
             // 
             // txtProgram
             // 
+            txtProgram.BackColor = Color.FromArgb(15, 15, 15);
+            txtProgram.ForeColor = Color.White;
             txtProgram.Location = new Point(169, 354);
             txtProgram.Name = "txtProgram";
             txtProgram.PlaceholderText = "BS Computer Science";
@@ -171,28 +172,14 @@
             // 
             // txtYearLevel
             // 
+            txtYearLevel.BackColor = Color.FromArgb(15, 15, 15);
+            txtYearLevel.ForeColor = Color.White;
             txtYearLevel.Location = new Point(169, 294);
             txtYearLevel.Name = "txtYearLevel";
             txtYearLevel.PlaceholderText = "2";
             txtYearLevel.Size = new Size(225, 28);
             txtYearLevel.TabIndex = 22;
             txtYearLevel.TextChanged += textBox2_TextChanged;
-            // 
-            // txtFirstName
-            // 
-            txtFirstName.Location = new Point(169, 114);
-            txtFirstName.Name = "txtFirstName";
-            txtFirstName.PlaceholderText = "Juan";
-            txtFirstName.Size = new Size(225, 31);
-            txtFirstName.TabIndex = 21;
-            // 
-            // txtLastName
-            // 
-            txtLastName.Location = new Point(169, 174);
-            txtLastName.Name = "txtLastName";
-            txtLastName.PlaceholderText = "Dela Cruz";
-            txtLastName.Size = new Size(225, 31);
-            txtLastName.TabIndex = 22;
             // 
             // txtStudentId
             // 
@@ -207,6 +194,8 @@
             // 
             // btnClear
             // 
+            btnClear.BackColor = Color.FromArgb(15, 15, 15);
+            btnClear.ForeColor = Color.White;
             btnClear.Location = new Point(277, 463);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(79, 37);
@@ -216,6 +205,8 @@
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.FromArgb(15, 15, 15);
+            btnDelete.ForeColor = Color.White;
             btnDelete.Location = new Point(192, 463);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(79, 37);
@@ -225,6 +216,8 @@
             // 
             // btnUpdate
             // 
+            btnUpdate.BackColor = Color.FromArgb(15, 15, 15);
+            btnUpdate.ForeColor = Color.White;
             btnUpdate.Location = new Point(107, 463);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(79, 37);
@@ -234,6 +227,8 @@
             // 
             // btnAdd
             // 
+            btnAdd.BackColor = Color.FromArgb(15, 15, 15);
+            btnAdd.ForeColor = Color.White;
             btnAdd.Location = new Point(22, 463);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 37);
@@ -304,15 +299,6 @@
             label1.Text = "Student ID";
             label1.Click += label1_Click;
             // 
-            // lblFirstName
-            // 
-            lblFirstName.AutoSize = true;
-            lblFirstName.Location = new Point(20, 180);
-            lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(82, 25);
-            lblFirstName.TabIndex = 26;
-            lblFirstName.Text = "Last name";
-            // 
             // dgvStudents
             // 
             dgvStudents.AllowUserToAddRows = false;
@@ -350,23 +336,13 @@
             lblSearch.BackColor = Color.FromArgb(15, 15, 15);
             lblSearch.Dock = DockStyle.Top;
             lblSearch.Font = new Font("Consolas", 10.5F);
-            lblSearch.ForeColor = SystemColors.ButtonHighlight;
+            lblSearch.ForeColor = Color.White;
             lblSearch.Location = new Point(411, 0);
             lblSearch.Name = "lblSearch";
             lblSearch.Padding = new Padding(8, 3, 0, 0);
             lblSearch.Size = new Size(871, 23);
             lblSearch.TabIndex = 3;
             lblSearch.Text = "Search:";
-            // 
-            // btntoGraph
-            // 
-            btntoGraph.Location = new Point(20, 505);
-            btntoGraph.Name = "btntoGraph";
-            btntoGraph.Size = new Size(166, 39);
-            btntoGraph.TabIndex = 29;
-            btntoGraph.Text = "Graphs";
-            btntoGraph.UseVisualStyleBackColor = true;
-            btntoGraph.Click += button1_Click_1;
             // 
             // Form1
             // 

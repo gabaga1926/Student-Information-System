@@ -1,4 +1,4 @@
-# 🎓 Student Information System (SIS)
+# 🎓 Klink Klank System (KKS)
 
 ![C#](https://img.shields.io/badge/Language-C%23-blue.svg)
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4.svg)
